@@ -1,0 +1,17 @@
+/*
+https://leetcode.com/problems/single-number/
+You are here!  Runtime: 1 ms
+Your runtime beats 38.79% of javasubmissions
+https://leetcode.com/submissions/detail/54197501/
+*/
+
+public class Solution {
+    public int singleNumber(int[] nums) {
+        int t=nums[0];
+        for(int i=1;i<nums.length;i++)
+        {
+            t^=nums[i];
+        }
+        return t;
+    }
+}
