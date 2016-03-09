@@ -1,0 +1,17 @@
+/*
+https://leetcode.com/problems/power-of-three/
+You are here! Runtime: 19 ms
+Your runtime beats 33.19% of javasubmissions
+https://leetcode.com/submissions/detail/55411618/
+idea: log
+*/
+
+public class Solution {
+    public boolean isPowerOfThree(int n) {
+        double ans=Math.log10(n)/Math.log10(3);//n若是3的指數則ans必為整數
+        if(ans-(int)ans==0.0) //
+          return true;
+        else 
+          return false;
+    }
+}
