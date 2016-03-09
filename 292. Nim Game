@@ -1,0 +1,24 @@
+/*
+https://leetcode.com/problems/nim-game/
+You are here! Runtime: 0 ms
+Your runtime beats 2.54% of javasubmissions.
+https://leetcode.com/submissions/detail/54196084/
+*/
+
+public class Solution {
+    public boolean canWinNim(int n) {
+        boolean ans;
+        
+        if(n%4==0)
+        {
+            ans=false;
+        }
+        else
+        {
+            ans=true;
+        }
+    
+        return ans;
+        
+    }
+}
