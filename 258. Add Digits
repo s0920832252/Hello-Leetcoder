@@ -1,0 +1,17 @@
+/*
+https://leetcode.com/problems/add-digits/
+You are here! Runtime: 2 ms
+Your runtime beats 20.66% of javasubmissions.
+https://leetcode.com/submissions/detail/54590398/
+*/
+public class Solution {
+    public int addDigits(int num) {
+        int ans=num%9; 
+        if(num==0)
+         return 0;
+        else if(ans==0)
+         return 9;
+        else 
+         return (ans);
+    }
+}
