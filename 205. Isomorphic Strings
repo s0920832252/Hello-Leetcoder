@@ -1,0 +1,34 @@
+/*
+https://leetcode.com/problems/isomorphic-strings/
+You are here! Runtime: 41 ms
+Your runtime beats 20.81% of javasubmissions.
+https://leetcode.com/submissions/detail/55723790/
+
+idea: 最直覺的 一個字一個字比
+*/
+
+public class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length()!=t.length())
+           return false;
+        char Chars[]=s.toCharArray();
+        char Chart[]=t.toCharArray();
+        HashMap map = new HashMap();
+        HashMap map1 = new HashMap();
+        for(int i=0;i<s.length();i++)
+        {
+          if(map.containsKey(Chars[i])==true && map1.containsKey(Chart[i])==false)
+              return false;
+          else if(map.containsKey(Chars[i])==false && map1.containsKey(Chart[i])==true)
+              return false;
+          else if(map.get(Chars[i])!=map1.get(Chart[i]))
+              return false;
+          else if(map.containsKey(Chars[i])==false && map1.containsKey(Chart[i])==false)
+          {
+              map.put(Chars[i],i);
+              map1.put(Chart[i],i);
+          }
+        }
+        return true;
+   }
+}
