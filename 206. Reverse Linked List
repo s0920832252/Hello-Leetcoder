@@ -1,0 +1,37 @@
+/*
+https://leetcode.com/problems/reverse-linked-list
+You are here! Runtime: 0 ms
+Your runtime beats 38.64% of javasubmissions./
+https://leetcode.com/submissions/detail/54686099/
+
+idea: 想法是 next 先把cur.next存起來。
+cur.next就可以存入cur.pre
+到這邊cur就被反向了。
+再用pre去存入已被反向的cur
+*/
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null)
+          return head;
+        ListNode cur=head;
+        ListNode sol=null;
+        ListNode newHead;
+        while(cur!=null)
+        {
+            newHead=cur.next;
+            cur.next=sol;
+            sol=cur;
+            cur=newHead;
+        }
+        return sol;
+    }
+}
