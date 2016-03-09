@@ -1,0 +1,29 @@
+/*
+You are here! 
+Your runtime beats 87.69% of javasubmissions.
+https://leetcode.com/submissions/detail/54154697/
+*/
+
+public class Solution {
+    public void moveZeroes(int[] nums) {
+        int lim=nums.length-1;
+        int start=0;
+        
+        for(int i=0;i<=lim;i++)
+        {
+            if(nums[i]!=0)
+            {
+                nums[start]=nums[i];
+                start++;
+            }
+            
+        }
+        for(int j=start;j<=lim;j++)
+        {
+            nums[j]=0;
+        }
+      
+      
+      
+    }
+}
