@@ -1,0 +1,41 @@
+/*
+https://leetcode.com/problems/invert-binary-tree/
+You are here! Runtime: 1 ms
+Your runtime beats 0.52% of javasubmissions.
+https://leetcode.com/submissions/detail/55326999/
+idea: 地回走訪,左右中,在中的時候交換兩子樹
+*/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode invertTree(TreeNode root) {
+       if (root==null)
+         return null;
+    
+     
+        invertTree(root.left);
+        invertTree(root.right);
+        swap(root);
+       
+       return root;
+        
+    }
+    
+    public void swap(TreeNode root1)
+    {
+        TreeNode temp=new TreeNode(root1.val);
+        temp.left=root1.right;
+        root1.right=root1.left;
+        root1.left=temp.left;
+     
+    }
+}
