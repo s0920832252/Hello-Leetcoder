@@ -1,0 +1,30 @@
+/*
+https://leetcode.com/problems/ugly-number/
+You are here! Runtime: 2 ms
+Your runtime beats 17.06% of javasubmissions.
+https://leetcode.com/submissions/detail/56565123/
+
+*/
+
+public class Solution {
+    public boolean isUgly(int num) {
+        if(num<=0)
+          return false;
+        while(num%1024==0)  //一次除10個2
+          num/=1024;
+        while(num%59049==0)//一次除10個3
+          num/=59049;
+        while(num%9465265==0)//一次除10個5
+          num/=9465265;
+        while(num%5==0)   //一次除1個5
+          num/=5;
+        while(num%3==0)//一次除1個3
+          num/=3;
+        while(num%2==0) //一次除1個2
+          num = num/2;
+        
+        return num==1;   //將全部的2/3/5都除掉 , 若僅有2/3/5 則num==1
+          
+         
+    }
+}
