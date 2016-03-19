@@ -1,0 +1,33 @@
+/*
+https://leetcode.com/problems/same-tree/
+You are here! Runtime: Runtime: 0 ms
+Your runtime beats 14.90% of javasubmissions.
+https://leetcode.com/submissions/detail/56722638/
+*/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if(p==null && q==null)   //每次判斷的依據  結構/值
+          return true;
+        else if(p!=null && q!=null && p.val!=q.val)    
+          return false; 
+        else if(p!=null && q==null)
+          return false;
+        else if(p==null && q!=null)
+          return false;
+        
+        return isSameTree(p.left, q.left)&&isSameTree(p.right, q.right);  //
+        
+      
+    }
+}
