@@ -1,0 +1,12 @@
+/*
+https://leetcode.com/problems/power-of-two/
+You are here! 2 ms
+Your runtime beats 19.36% of javasubmissions.
+https://leetcode.com/submissions/detail/56718868/
+*/
+
+public class Solution {
+    public boolean isPowerOfTwo(int n) {
+         return (n > 0) && ((n & (n - 1)) == 0);  //if n 是pow 2 則 n & (n - 1)) == 0
+    }
+}
