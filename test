@@ -1,9 +1,7 @@
-#include<iostream>
-
-int main(){
-    import java.util.Scanner;
+import java.util.Scanner;
 import java.util.Queue;
 import java.util.LinkedList;
+
 public class Main{
     static int n;
     static int m;
@@ -67,12 +65,8 @@ public class Main{
              System.out.println(cur_Score);
              break;
            }
-          
-           
-           
        }
        
        
     }
-}
 }
