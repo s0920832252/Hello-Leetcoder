@@ -9,9 +9,11 @@ public class Main{
        Scanner in=new Scanner(System.in);
        n=in.nextInt();
        m=in.nextInt();
-       int x=0,y=m-2;
+       int x=1,y=3;
        int A[][]=new int[2*n][m];
        int Score[][]=new int[2*n][m];
+       int count=2;
+       int ans=0;
        
        for(int i=0;i<n;i++)
         for(int j=0;j<m;j++)
@@ -50,8 +52,10 @@ public class Main{
            //往下
            if( ((x+1)<2*n) && (A[x+1][y]!=-1) )
            {
-              if( x==n && (Score[x+1][y]==0) )  //飛機
+              if( x==(n-1) && (Score[x+1][y]==0) )  //飛機
               {
+                  Score[x+1][y]=A[x+1][y];
+                  Score[x+1-n][y]=A[x+1][y]; 
                   q1.offer(x+1);
                   q2.offer(y);
               }
@@ -64,12 +68,16 @@ public class Main{
                   q2.offer(y);
               }
            }
-          
-           if( (x==0 && y==m-1) || (x==n && y==m-1) )
-           { 
-             System.out.println(Score[x][y]);
-             break;
+           
+           if( (x==0 && y==m-1) || (x==n && y==m-1)  )
+           {
+               ans=Score[x][y];
+               break;
            }
+          
        }
+       
+       System.out.println(ans);
+      
     }
 }
