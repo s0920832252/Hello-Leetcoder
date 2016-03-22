@@ -9,7 +9,7 @@ public class Main{
        Scanner in=new Scanner(System.in);
        n=in.nextInt();
        m=in.nextInt();
-       int x=n-1,y=0;
+       int x=0,y=m-2;
        int A[][]=new int[2*n][m];
        int Score[][]=new int[2*n][m];
        
@@ -25,7 +25,7 @@ public class Main{
        
        q1.offer(x);
        q2.offer(y);
-       Score[n-1][0]=A[n-1][0];
+       Score[x][y]=A[x][y];
        while( (q1.element()!=null) && (q1.element()!=null) )
        {
            x=q1.poll(); 
@@ -40,7 +40,7 @@ public class Main{
                q2.offer(y);
            }
            //往右
-           if( ((y+1)<=m) && (A[x][y+1]!=-1) && (Score[x][y]+A[x][y+1]>Score[x][y+1]) )
+           if( ((y+1)<m) && (A[x][y+1]!=-1) && (Score[x][y]+A[x][y+1]>Score[x][y+1]) )
            {
                Score[x][y+1]=Score[x][y]+A[x][y+1];
                Score[x+n][y+1]=Score[x][y]+A[x][y+1];
