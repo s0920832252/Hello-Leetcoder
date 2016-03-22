@@ -1,28 +1,28 @@
-import java.util.Scanner;
+#include<iostream>
+
+int main(){
+    import java.util.Scanner;
 import java.util.Queue;
 import java.util.LinkedList;
 public class Main{
+    static int n;
+    static int m;
     public static void main(String[] args) {
        Scanner in=new Scanner(System.in);
-       int n=in.nextInt();
-       int m=in.nextInt();
+       n=in.nextInt();
+       m=in.nextInt();
        int x=0,y=m-1;
        int A[][]=new int[2*n][m];
        int Score[][]=new int[2*n][m];
        int ans=0;
        Boolean visit[][]=new Boolean[2*n][m];
+      
        
-       int d[][]=new int[2*n][m];
        for(int i=0;i<n;i++)
         for(int j=0;j<m;j++)
         {
             A[i][j]=in.nextInt();
             A[i+n][j]=A[i][j];
-            if(A[i][j]==-1)
-            {  
-                visit[i][j]==true;
-                visit[i+n][j]==true;
-            }
         }
        
        Queue<Integer> q1 = new LinkedList<Integer>();
@@ -36,32 +36,43 @@ public class Main{
            x=q1.poll(); 
            y=q2.poll();
            
-           if(visit[x][y]==false)
-           {
-                 
+           //往上
+           if( ((x-1)>=0) && (A[x-1][y]=!-1) && (Score[x][y]+A[x-1][y]>Score[x-1][y]) )
+           {  
+               Score[x-1][y]=Score[x][y]+A[x-1][y];
+               Score[x-1+n][y]=Score[x][y]+A[x-1][y];
+               q1.offer(x-1);
+               q2.offer(y);
            }
-        
-        
-            
-           visit[x][y]=true;
+           //往右
+           if( ((y+1)<=m) && (A[x][y+1]=!-1) && (Score[x][y]+A[x][y+1]>Score[x][y+1]) )
+           {
+               Score[x][y+1]=Score[x][y]+A[x][y+1];
+               Score[x+n][y+1]=Score[x][y]+A[x][y+1];
+               q1.offer(x);
+               q2.offer(y+1);
+           }      
+           //往下
+           if( ((x+1)<2*n) && (A[x+1][y]=!-1) )
+           {
+              if( x==n )  //飛機
+              {
+                  
+              }
+              else if( Score[x][y]+A[x+1][y]>=Score[x+1][y] )        //不坐飛機
+           }
+          
            if((x==0 && y==m-1) || (x==n && y==m-1) )
            { 
              System.out.println(cur_Score);
              break;
            }
-           
-           
-       
-           
-                    
-           
-           
           
-           q1.offer(0);
-           q2.offer(m-1);
+           
            
        }
        
        
     }
+}
 }
