@@ -9,12 +9,9 @@ public class Main{
        Scanner in=new Scanner(System.in);
        n=in.nextInt();
        m=in.nextInt();
-       int x=0,y=m-1;
+       int x=n-1,y=0;
        int A[][]=new int[2*n][m];
        int Score[][]=new int[2*n][m];
-       int ans=0;
-       Boolean visit[][]=new Boolean[2*n][m];
-      
        
        for(int i=0;i<n;i++)
         for(int j=0;j<m;j++)
@@ -35,7 +32,7 @@ public class Main{
            y=q2.poll();
            
            //往上
-           if( ((x-1)>=0) && (A[x-1][y]=!-1) && (Score[x][y]+A[x-1][y]>Score[x-1][y]) )
+           if( ((x-1)>=0) && (A[x-1][y]!=-1) && (Score[x][y]+A[x-1][y]>Score[x-1][y]) )
            {  
                Score[x-1][y]=Score[x][y]+A[x-1][y];
                Score[x-1+n][y]=Score[x][y]+A[x-1][y];
@@ -43,7 +40,7 @@ public class Main{
                q2.offer(y);
            }
            //往右
-           if( ((y+1)<=m) && (A[x][y+1]=!-1) && (Score[x][y]+A[x][y+1]>Score[x][y+1]) )
+           if( ((y+1)<=m) && (A[x][y+1]!=-1) && (Score[x][y]+A[x][y+1]>Score[x][y+1]) )
            {
                Score[x][y+1]=Score[x][y]+A[x][y+1];
                Score[x+n][y+1]=Score[x][y]+A[x][y+1];
@@ -51,22 +48,28 @@ public class Main{
                q2.offer(y+1);
            }      
            //往下
-           if( ((x+1)<2*n) && (A[x+1][y]=!-1) )
+           if( ((x+1)<2*n) && (A[x+1][y]!=-1) )
            {
-              if( x==n )  //飛機
+              if( x==n && (Score[x+1][y]==0) )  //飛機
               {
-                  
+                  q1.offer(x+1);
+                  q2.offer(y);
               }
               else if( Score[x][y]+A[x+1][y]>=Score[x+1][y] )        //不坐飛機
+              {
+                  Score[x+1][y]=Score[x][y]+A[x+1][y];
+                  if((x+1+n)<2*n)
+                    Score[x+1+n][y]=Score[x][y]+A[x+1][y];
+                  q1.offer(x+1);
+                  q2.offer(y);
+              }
            }
           
-           if((x==0 && y==m-1) || (x==n && y==m-1) )
+           if( (x==0 && y==m-1) || (x==n && y==m-1) )
            { 
-             System.out.println(cur_Score);
+             System.out.println(Score[x][y]);
              break;
            }
        }
-       
-       
     }
 }
