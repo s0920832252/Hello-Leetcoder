@@ -2,6 +2,8 @@
 https://leetcode.com/problems/palindrome-pairs/
 Runtime: 676 ms
 https://leetcode.com/submissions/detail/58320847/
+
+idea: 爆力法.  只是string轉字元陣列的操作or 字串加字串的操作 比較花時間.  所以盡量避免.
 */
 
 public class Solution 
