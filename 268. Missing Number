@@ -1,0 +1,15 @@
+/*
+https://leetcode.com/problems/missing-number/
+Runtime: 1 ms
+https://leetcode.com/submissions/detail/58574129/
+*/
+
+public class Solution {
+    public int missingNumber(int[] nums) 
+    {
+      int ans=0,i; 
+      for(i=0;i<nums.length;i++)  //因 0 XOR A = A  ,  A XOR B XOR A = B 所以把nums[]數字全部都XOR一遍  少一個的會存活
+         ans^=nums[i]^i;          // 成對的會消失
+      return ans^i;
+    }
+}
