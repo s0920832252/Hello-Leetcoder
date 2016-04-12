@@ -1,0 +1,23 @@
+/*
+https://leetcode.com/problems/delete-node-in-a-linked-list/
+Runtime: 1 ms Your runtime beats 2.72% of javasubmissions
+https://leetcode.com/submissions/detail/58851293/
+*/
+
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public void deleteNode(ListNode node) {
+        //idea:用下一個點覆蓋要刪除的點.
+        node.val=node.next.val;   //下一點的值覆蓋要刪除的點值
+        node.next=node.next.next; //直接指到下下一個點
+    }
+}
