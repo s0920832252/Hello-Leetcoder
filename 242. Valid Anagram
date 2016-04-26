@@ -1,0 +1,29 @@
+/*
+https://leetcode.com/problems/valid-anagram/
+Runtime: 8 ms Your runtime beats 46.36% of javasubmissions
+https://leetcode.com/submissions/detail/59992848/
+idea: 因字母只有小寫的a-z
+      因此有兩種方向
+      1.計算每一個a-z使用幾次 eg: 如此code
+      2.直接去比整個字串:eg: 字串轉為數字後,sort,在比兩個字串是否相同
+*/
+
+public class Solution {
+    public boolean isAnagram(String s, String t) {
+       if(s.length()!=t.length())
+         return false;
+         
+       int a[]=new int[26];
+       for(int i=0;i<s.length();i++)
+       {
+           a[(int)(s.charAt(i))-97]++;  //按照字元編碼,計算s字串a-z各使用幾次
+       }
+       for(int i=0;i<s.length();i++)
+       {
+           if(a[(int)(t.charAt(i))-97]-1 == -1)   //對比s t 字串
+             return false;
+           a[(int)(t.charAt(i))-97]--;
+       }
+       return true;
+    }
+}
