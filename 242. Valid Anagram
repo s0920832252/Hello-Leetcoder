@@ -5,7 +5,7 @@ https://leetcode.com/submissions/detail/59992848/
 idea: 因字母只有小寫的a-z
       因此有兩種方向
       1.計算每一個a-z使用幾次 eg: 如此code
-      2.直接去比整個字串:eg: 字串轉為數字後,sort,在比兩個字串是否相同
+      2.直接去比整個字串:eg: 按照字典排序後,比較兩字串是否相同
 */
 
 public class Solution {
