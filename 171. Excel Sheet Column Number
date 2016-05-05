@@ -1,0 +1,24 @@
+/*
+https://leetcode.com/problems/excel-sheet-column-number/
+Runtime: 3 ms e beats 11.24%
+https://leetcode.com/submissions/detail/60785485/
+*/
+
+
+public class Solution {
+public int titleToNumber(String s) {
+    char str[]=s.toCharArray();
+    int strLen=str.length;
+    int sum=0;
+    for(int i=strLen-1;i>=0;i--) //想成26進位計算即可
+    {
+        int temp;
+        if(i==strLen-1)
+        temp=(str[i]-64);
+        else
+        temp=(str[i]-64)*(int)Math.pow(26,(strLen-i-1));
+        sum+=temp;
+    }
+    return sum;
+  }
+}
