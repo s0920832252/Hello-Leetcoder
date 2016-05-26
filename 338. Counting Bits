@@ -1,0 +1,23 @@
+/*
+https://leetcode.com/problems/counting-bits/
+Runtime: 24 ms
+https://leetcode.com/submissions/detail/62580511/
+*/
+
+public class Solution {
+    public int[] countBits(int num) {
+        int ans[]=new int[num+1];  //要算0~num 他們的counting bit.
+        for(int i=0;i<=num;i++)
+        {
+            int sum=0;
+            char str[]=Integer.toBinaryString(i).toCharArray();//把整數字轉成二元字串,去數有幾個1.
+            for(int j=0;j<str.length;j++)
+            {
+                if(str[j]=='1')
+                    sum+=1;
+            }
+            ans[i]=sum;
+        }
+        return ans;
+    }
+}
