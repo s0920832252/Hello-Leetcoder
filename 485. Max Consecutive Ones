@@ -1,0 +1,28 @@
+https://leetcode.com/problems/max-consecutive-ones/
+https://leetcode.com/submissions/detail/89276839/
+
+public class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        
+        //count連續的1,並且當1不連續時,或者count最後一位時,更新目前最大的連續1s為多少.
+        
+        int arrayLength=nums.length;
+        int currentConsecutive_1s_Count=0;
+        int maxConsecutive_1s_Count=0;
+        for(int i=0;i<arrayLength;i++)
+        {
+            if(nums[i]==1)
+            {
+                currentConsecutive_1s_Count++;
+                if (i==arrayLength-1)
+                    maxConsecutive_1s_Count=Math.max(currentConsecutive_1s_Count,maxConsecutive_1s_Count);
+            }
+            else
+            {
+                maxConsecutive_1s_Count=Math.max(currentConsecutive_1s_Count,maxConsecutive_1s_Count);
+                currentConsecutive_1s_Count=0;
+            }
+        }
+        return maxConsecutive_1s_Count;
+    }
+}
