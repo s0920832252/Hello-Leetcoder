@@ -7,16 +7,16 @@ https://leetcode.com/submissions/detail/89254510/
 public class Solution {
     public int hammingDistance(int x, int y) {    
 		
-		int dif = x ^ y;  //找出兩個數字在2進位的差異部分. 差異的,會變成1		
+    int dif = x ^ y;  //找出兩個數字在2進位的差異部分. 差異的,會變成1		
     char ansStr[]=Integer.toBinaryString(dif).toCharArray(); //將此數字轉成2進位,準備找有幾個1	
     int count=0;
-		for (int j=0;j<ansStr.length;j++)
+    	for (int j=0;j<ansStr.length;j++)
+        {
+		if (ansStr[j]=='1')
 		{
-			if (ansStr[j]=='1')
-			{
-				count++;
-			}
+			count++;
 		}
-		return count;
+	}
+	return count;
     }
 }
