@@ -7,15 +7,15 @@ public class Solution {
     public int hammingDistance(int x, int y) {
     
 		
-		int dif = x ^ y;    //找出差異		
-    int count=0;
-		while (dif!=0) //開始計算有幾個1		
-    {
-		    count++;
-		    dif=dif & (dif-1);
-		}
+    	int dif = x ^ y;    //找出差異		
+    	int count=0;
+    	while (dif!=0) //開始計算有幾個1		
+    	{
+	    count++;
+	    dif=dif & (dif-1);
+	}
 		
-		return count;
+	return count;
 
     }
 }
