@@ -1,0 +1,27 @@
+https://leetcode.com/problems/sum-of-two-integers/
+You are here! 
+Your runtime beats 7.65% of java submissions
+https://leetcode.com/submissions/detail/89539908/
+
+
+public class Solution {
+    public int getSum(int a, int b) {
+        
+        //透過AND XOR運算模擬加法運算.
+        //使用,XOR運算計算出, 兩數字加法後的情況(進位值還不要加上).
+        //再使用AND運算計算出,哪一位有進位
+        //重複執行此動作, 直到沒有進位為止.
+        //話說這題,  直接寫 return a + b 也會對ㄟXD:
+        
+        int pas;
+        
+        while (b!=0)
+        {
+            pas=a^b;
+            b=a & b;
+            b=b<<1;
+            a=pas;
+        }
+        return a;
+    }
+}
