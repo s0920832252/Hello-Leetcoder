@@ -1,0 +1,21 @@
+https://leetcode.com/problems/fizz-buzz/
+You are here! 
+Your runtime beats 74.96% of java submissions
+Runtime: 3 ms
+https://leetcode.com/submissions/detail/90025246/
+
+//判斷是不是3 or 5 的倍數.   但在儲存的速度上, array似乎是比listArrat快的.
+//因此先使用array儲存, 最後才將其轉換為listArray作為答案回傳
+
+public class Solution {
+    public List<String> fizzBuzz(int n) {
+        String[] arr = new String[n];
+        for (int i = 0, j = 1; i < n; i++, j++) {
+            if      (j % 15 == 0) arr[i] = "FizzBuzz";
+            else if (j %  3 == 0) arr[i] = "Fizz";
+            else if (j %  5 == 0) arr[i] = "Buzz";
+            else                  arr[i] = String.valueOf(j);
+        }
+        return Arrays.asList(arr);
+    }
+}
