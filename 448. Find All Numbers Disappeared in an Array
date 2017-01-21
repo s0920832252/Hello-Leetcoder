@@ -1,0 +1,30 @@
+https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+Runtime: 12 ms
+You are here! 
+Your runtime beats 87.62% of java submissions
+https://leetcode.com/submissions/detail/90030674/
+
+
+public class Solution {
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> data = new ArrayList<Integer>();
+        int max=nums.length;
+        
+        
+        //使用一個array去紀錄這個數字到底用過了沒有, 若是用過了,則標示為1,反之,因為陣列初始化為0,
+        //所以之後走訪這個array,其值若是0,則代表此數字未用過.
+        int Position[]=new int[max+1];
+        for(int i=0;i<nums.length;i++)
+        {
+            Position[nums[i]]=1;
+        }
+        
+        for(int i=1;i<Position.length;i++)
+        {
+            if (Position[i]==0)
+                data.add(i);
+        }
+        
+        return data;
+    }
+}
