@@ -1,0 +1,33 @@
+https://leetcode.com/problems/island-perimeter/
+You are here! 
+Your runtime beats 78.19% of java submission
+Runtime: 139 ms
+https://leetcode.com/submissions/detail/90028557/
+
+
+public class Solution {
+    public int islandPerimeter(int[][] grid) {
+    int row=grid.length;
+		int col=grid[0].length;
+		int oneCount=0;
+		int redundantSide=0;
+		int ans=0;
+    
+    //一個cell有四個邊,每當有連續的cell,扣除兩邊.所以累贅邊(兩cell重疊的邊)是+2
+    
+		for(int i=0;i<row;i++)
+		{
+			for(int j=0;j<col;j++)
+			{
+				if (grid[i][j]==1)
+				{
+					oneCount++;
+					if((i-1)>=0 && grid[i-1][j]==1 ) redundantSide+=2;
+					if((j-1)>=0 && grid[i][j-1]==1 ) redundantSide+=2;	
+				}				
+			}
+		}
+		ans=oneCount*4-redundantSide;
+		return ans;
+    }
+}
