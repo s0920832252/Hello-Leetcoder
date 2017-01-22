@@ -1,0 +1,35 @@
+https://leetcode.com/problems/find-the-difference/
+Runtime: 13 ms
+You are here! 
+Your runtime beats 22.51% of java submissions.
+https://leetcode.com/submissions/detail/90137319/
+
+
+public class Solution {
+    public char findTheDifference(String s, String t) {
+        
+        //用陣列模擬dictionary. or hashTable
+        //開一個26空格的array,代表每一個字母使用的狀況.
+        
+        char ans='a';
+        int map[]=new int[26];
+        for(int i=0;i<s.length();i++)
+        {
+            map[ s.charAt(i) - 'a']++;
+        }
+        
+        for(int i=0;i<t.length();i++)
+        {
+            map[t.charAt(i) - 'a']--;
+            if(map[t.charAt(i) - 'a']<0)
+            {
+                ans = t.charAt(i);
+                break;
+            }
+        }
+        
+        return ans;
+        
+    }
+    
+}
