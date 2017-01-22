@@ -1,0 +1,27 @@
+https://leetcode.com/problems/find-the-difference/
+Runtime: 7 ms
+You are here! 
+Your runtime beats 75.94% of java submissions.
+https://leetcode.com/submissions/detail/90135437/
+
+public class Solution {
+    public char findTheDifference(String s, String t) {
+        
+        
+        //t字串是s字串打亂後,再加入一個字.  因此t字串的字元數總和必定會比s字串的字元數總和多一個字元的數.
+        //因此計算出兩字元數總和的差, 即可找到該字元  eg: A的字元數是65.
+        
+        int charScount=0;
+        int charTcount=0;
+        char arrS[]=s.toCharArray();
+        char arrT[]=t.toCharArray();
+        
+        for(int i=0;i<s.length();i++)
+          charScount+=(int)arrS[i];
+        for(int i=0;i<t.length();i++)
+          charTcount+=(int)arrT[i];
+        
+        
+        return (char)(charTcount-charScount);
+    }
+}
