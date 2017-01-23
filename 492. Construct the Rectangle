@@ -1,0 +1,47 @@
+https://leetcode.com/problems/construct-the-rectangle/
+You are here! 
+Your runtime beats 100.00% of java submissions.
+Runtime: 6 ms
+https://leetcode.com/submissions/detail/90287701/
+
+
+
+
+public class Solution {
+    public int[] constructRectangle(int area) {
+        int ans[]=new int[2];
+        int dif=area;
+        int cell=(int)Math.sqrt(area);
+        int temp=0;
+        int temp2=0;
+        
+        //其實這段不寫也可以,只是 area=1的測資蠻多的,寫了會快3ms XD:
+        if (area==1)
+        {
+            ans[0]=1;
+            ans[1]=1;
+            return ans;
+        }
+        
+        
+        //把所有的因素配對 展開,看一下哪一個配對 dif最小, 就存起來,輸出.
+        //這題蠻數學的,  如果沒有因素拆解, 其另一半配對的值小於 sqrt(area). 的 觀念的話,會慢很多.
+        //cell -> 我一時間想不到天花板的英文怎麼拚= =
+        for(int i=cell;i>=1;i--)
+        {
+            if ((area%i)==0)
+            {
+                temp=area/i;
+                temp2=i;
+                if( (temp-temp2)<dif )
+                {
+                    ans[0]=temp;
+                    ans[1]=temp2;
+                    dif=temp-temp2;
+                }              
+            }
+        }
+        return ans;
+        
+    }
+}
