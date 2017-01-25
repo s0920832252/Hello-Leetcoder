@@ -1,0 +1,22 @@
+https://leetcode.com/problems/ransom-note/
+Runtime: 23 ms
+You are here! 
+Your runtime beats 46.94% of java submissions.
+https://leetcode.com/submissions/detail/90524523/
+
+public class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        //使用26字元陣列記錄每一個字母使用的狀況
+        int letterDic[]=new int[26];
+        
+        for(int i=0;i<magazine.length();i++)
+            letterDic[magazine.charAt(i)-'a']++;
+        for(int i=0;i<ransomNote.length();i++)
+        {
+            if(letterDic[ransomNote.charAt(i)-'a']==0)
+                return false;
+            letterDic[ransomNote.charAt(i)-'a']--;
+        }
+        return true;
+    }
+}
