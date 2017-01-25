@@ -1,0 +1,47 @@
+https://leetcode.com/problems/ransom-note/
+Runtime: 70 ms
+You are here! 
+Your runtime beats 20.56% of java submissions.
+https://leetcode.com/submissions/detail/90525306/
+
+
+public class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        //使用一個dict 操作字母使用的狀況
+        
+        Map<Character,Integer> charDict = new HashMap<>();
+        int count=0;
+        char c;
+        
+        for(int i=0;i<magazine.length();i++)
+        {
+            c=magazine.charAt(i);
+            if(charDict.containsKey(c))
+            {
+                count=charDict.get(c);
+                count++;
+                charDict.put(c,count);
+            }
+            else
+                charDict.put(c,1);
+        }
+        
+        count=0;
+        for(int i=0;i<ransomNote.length();i++)
+        {
+            c=ransomNote.charAt(i);
+            if(charDict.containsKey(c))
+            {
+                count=charDict.get(c);
+                count--;
+                if (count<0)
+                    return false;
+                    
+                charDict.put(c,count);
+            }
+            else
+                return false;
+        }
+        return true;
+    }
+}
