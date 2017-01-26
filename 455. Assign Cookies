@@ -27,9 +27,11 @@ public class Solution {
                 if (cookie>0)
                 {
                     assignedChildCount++;
-                    if(cookie==1){
+                    if(cookie==1)
+                    {
     					treeDic.remove(index);
-    				}else{
+    				}else
+                    {
                         treeDic.put(index, cookie - 1);
                     }
                 }
