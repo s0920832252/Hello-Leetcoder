@@ -1,0 +1,40 @@
+https://leetcode.com/problems/assign-cookies/
+You are here! 
+Your runtime beats 8.08% of java submissions
+Runtime: 73 ms
+https://leetcode.com/submissions/detail/90631130/
+
+
+public class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        //使用TreeMap,使用二元搜尋方法去做
+        
+        int assignedChildCount=0;
+        TreeMap<Integer,Integer> treeDic = new TreeMap<>();
+        for(int temp : s){
+    		Integer num = treeDic.get(temp);
+    		num = num==null?0:num;
+    		treeDic.put(temp,num+1);
+    	}
+        
+        for (int temp : g)
+        {
+            Integer index=treeDic.ceilingKey(temp);
+            
+            if (index!=null)
+            {
+                Integer cookie=treeDic.get(index);
+                if (cookie>0)
+                {
+                    assignedChildCount++;
+                    if(cookie==1){
+    					treeDic.remove(index);
+    				}else{
+                        treeDic.put(index, cookie - 1);
+                    }
+                }
+            }                
+        }
+        return assignedChildCount;        
+    }
+}
