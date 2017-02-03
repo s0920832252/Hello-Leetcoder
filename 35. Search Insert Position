@@ -1,0 +1,32 @@
+https://leetcode.com/problems/search-insert-position/
+Runtime: 5 ms
+You are here! 
+Your runtime beats 70.94% of java submissions.
+https://leetcode.com/submissions/detail/91506479/
+
+
+public class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int left=0,right=nums.length-1;
+        int value=0;
+        int index=0;
+        
+        //while回圈內的等號,代表二元搜尋結束時的left right位置
+        //有加等號,代表結束時,兩index位置不同
+        //無等號,代表結束時,兩位置相同
+        //這個性質,在一些需要二元搜尋法解題的時候,很好用.
+        
+        while(left<=right)
+        {
+            index=(left+right)/2;
+            value=nums[index];
+            if(value==target)
+                return index;
+            else if(value > target)
+                right--;
+            else
+                left++;
+        }
+        return left;
+    }
+}
