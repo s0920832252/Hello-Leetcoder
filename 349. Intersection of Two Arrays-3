@@ -1,0 +1,40 @@
+https://leetcode.com/problems/intersection-of-two-arrays/
+Runtime: 5 ms
+You are here! 
+Your runtime beats 82.46% of java submissions.
+https://leetcode.com/submissions/detail/91607651/
+
+
+
+public class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> numSet1=new HashSet<Integer>();  //Set介面, 不會存入相同的元素.  (因為是集合咩XD)
+        ArrayList<Integer> intersection=new ArrayList<Integer>();
+        
+        //用兩個容器裝,來判斷是否有相同的交集.
+        //ArrayList 可換成Set , 只是再轉成ans[],時候,使用ArrayList會比較快而已.
+        //O(n)
+        
+        for(int i=0;i<nums1.length;i++)
+            numSet1.add(nums1[i]); 
+        for(int i=0;i<nums2.length;i++)
+            if(numSet1.contains(nums2[i]))
+            {    
+                intersection.add(nums2[i]);
+                numSet1.remove(nums2[i]); //因為ArrayList不是集合,所以用過了,就必須刪除.否則交集會有重複
+            }
+        
+        int ans[]=new int[intersection.size()];
+        for(int index=0;index<intersection.size();index++)
+            ans[index]=intersection.get(index);
+        
+        /*int index=0;
+        for(Integer i : intersection)
+        {
+            ans[index]=i;
+            index++;
+        }*/
+        return ans;
+        
+    }
+}
