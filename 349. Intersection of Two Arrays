@@ -8,6 +8,7 @@ https://leetcode.com/submissions/detail/91610794/
 public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
         //對nums2 sort,再用二元搜尋法在nums2去找nums2是否有nums1的元素
+        //O( nlog(n) ) 搜尋一個物件是log(n) * n 次
         
         Set<Integer> set=new HashSet<Integer>();
         Arrays.sort(nums2);
