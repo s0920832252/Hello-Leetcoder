@@ -1,0 +1,50 @@
+https://leetcode.com/problems/intersection-of-two-arrays/
+Runtime: 6 ms
+You are here! 
+Your runtime beats 46.24% of java submissions
+https://leetcode.com/submissions/detail/91610794/
+
+
+public class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        //對nums2 sort,再用二元搜尋法在nums2去找nums2是否有nums1的元素
+        
+        Set<Integer> set=new HashSet<Integer>();
+        Arrays.sort(nums2);
+        for(int i=0;i<nums1.length;i++)
+        {
+            if(binarySearch(nums2,0,nums2.length-1,nums1[i])!=-1)
+                set.add(nums1[i]);
+        }
+        
+        int ans[]=new int[set.size()];
+        int index=0;
+        for(Integer intesection : set)
+        {
+            ans[index]=intesection;
+            index++;
+        }
+        
+        return ans;
+    }
+    
+    public int binarySearch(int nums[],int left,int right,int find)
+    {
+        int index,value;
+        while(left<=right)
+        {
+            index=(left+right)/2;
+            value=nums[index];
+            if(value==find)
+                return value;
+            else if(value<find)
+                left=index+1;
+            else
+                right=index-1;
+        }
+        //throw new RuntimeException("not found!");
+        return -1;
+    }
+}
+
+
