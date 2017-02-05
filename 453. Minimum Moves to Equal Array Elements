@@ -1,0 +1,33 @@
+https://leetcode.com/problems/minimum-moves-to-equal-array-elements/
+Runtime: 9 ms
+You are here! 
+Your runtime beats 99.18% of java submissions.
+https://leetcode.com/submissions/detail/91700920/
+
+
+
+public class Solution {
+    public int minMoves(int[] nums) {
+        //這題太數學了= ="
+        //最好一般人會觀察的到啦...
+        //此題作法證明:
+        //令n為加的次數,m為矩陣維度,min為矩陣中最小值,sum為矩陣總和 , f為最後矩陣內數字相同的那個數字(f>=max)
+        //假設共加n次  (每加一次,總和增加m-1)
+        //故可得兩方程式
+        //1. n*f = sum + n*(m-1)
+        //2. f = n + min   最小數字至少要加n次才可能達到f
+        //將二式代入一式可得 n = sum - m * min.   n為要回傳的答案.
+        
+        int sum = nums[0];
+        int min = nums[0];
+        int m = nums.length;
+        
+        for(int i=1;i<m;i++)
+        {
+            min=(min>nums[i]?nums[i]:min);
+            sum+=nums[i];
+        }
+        
+        return sum - m *min;
+    }
+}
