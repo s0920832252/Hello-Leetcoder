@@ -1,0 +1,37 @@
+https://leetcode.com/problems/sum-of-left-leaves/
+Runtime: 9 ms
+You are here! 
+Your runtime beats 47.03% of java submissions.
+https://leetcode.com/submissions/detail/91883181/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        //使用dfs走訪tree, 使用一boolean變數傳遞是否是目標left
+        return dfs(root, false);
+    }
+    
+    public int dfs(TreeNode tree,Boolean isLeft)
+    {
+        if(tree==null)
+            return 0;
+        else if (tree.right==null && tree.left==null)
+            if (isLeft)
+                return tree.val;
+            else
+                return 0;
+        else
+            return dfs(tree.left,true)+dfs(tree.right,false);
+    }
+
+      
+}
