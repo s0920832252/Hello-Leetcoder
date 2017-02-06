@@ -1,0 +1,53 @@
+https://leetcode.com/problems/sum-of-left-leaves/
+Runtime: 11 ms
+You are here! 
+Your runtime beats 14.95% of java submissions.
+https://leetcode.com/submissions/detail/91882445/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ 
+
+ 
+public class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+         // BFS走訪整顆tree by Stack and 迴圈
+         // 想法是: 再走這點時,看一下這點左邊那點是不是leaf,是的話,就加起來
+         // 同時看看這點右邊有沒有點,有的話加入Stack , 以後再走這點
+         // 若是左邊這點不是leaf,則代表左右兩點都有可能要走訪一下.
+    
+        TreeNode tree=null;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(root);
+        int ans=0;
+        
+        while(!stack.isEmpty())
+        {
+            tree = stack.pop();
+            if(tree!=null && !(root.right==null && root.left==null))
+            {
+                if(tree.left!=null && tree.left.right==null && tree.left.left==null)
+                {
+                    ans+=tree.left.val;
+                    if(tree.right!=null)
+                       stack.push(tree.right); 
+                }
+                else
+                {
+                    //if(tree.left!=null)
+                       stack.push(tree.left); 
+                    //if(tree.right!=null)
+                       stack.push(tree.right); 
+                }
+            }
+        }
+        return ans;
+    } 
+}
