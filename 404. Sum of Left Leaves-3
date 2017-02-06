@@ -1,0 +1,30 @@
+https://leetcode.com/problems/sum-of-left-leaves/
+Runtime: 8 ms
+You are here! 
+Your runtime beats 77.72% of java submissions.
+https://leetcode.com/submissions/detail/91880212/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        // 想法是: 再走這點時,看一下這點左邊那點是不是leaf,是的話,就加起來
+        // 同時看看這點右邊有沒有點,有的話去看看右邊那點的值是多少
+        // 若是左邊這點不是leaf,則代表左右兩點都有可能要走訪一下.
+        
+        if ( root==null || (root.right==null && root.left==null)) 
+            return 0;
+        else if ( root.left!=null && root.left.left==null && root.left.right==null )
+            return root.left.val+sumOfLeftLeaves(root.right);
+        else
+            return sumOfLeftLeaves(root.left)+sumOfLeftLeaves(root.right);
+    }
+}
