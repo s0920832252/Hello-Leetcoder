@@ -1,0 +1,35 @@
+https://leetcode.com/problems/first-unique-character-in-a-string/
+Runtime: 14 ms
+You are here! 
+Your runtime beats 99.53% of java submissions.
+https://leetcode.com/submissions/detail/91973704/
+
+
+public class Solution {
+    public int firstUniqChar(String s) {
+        char str[]=s.toCharArray();
+        int record[]=new int[128];
+        int ans=s.length();
+        int tempidx=0;
+        
+        //使用字元陣列代替hashTable
+        //與第一種方法不同的地方是,不再從s的開頭開始找
+        //而是去找record內的 non-repeating character 並判斷哪一個是first.
+        
+        for(int i=0;i<str.length;i++)
+            record[str[i]]++;
+        for(int i=96;i<123;i++)
+        {
+            if (record[i]==1)
+            {
+                //int indexOf(int ch)               	回傳第一個 ch 字元的索引值
+                //int indexOf(int ch, int fromIndex)	回傳 fromIndex 之後的第一個 ch 字元的索引值
+                //int indexOf(String str)	            回傳第一個子字串 str 開始的的索引值
+                tempidx=s.indexOf(i);//使用第一種用法
+                ans=Math.min(ans,tempidx);
+            }
+        }
+        
+        return (ans==s.length())?-1:ans ;    
+    }
+}
