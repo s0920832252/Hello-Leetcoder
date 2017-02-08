@@ -1,0 +1,51 @@
+https://leetcode.com/problems/majority-element/
+Runtime: 14 ms
+You are here! 
+Your runtime beats 29.75% of java submissions.
+https://leetcode.com/submissions/detail/92151827/
+
+
+
+
+
+public class Solution {
+    public class Obj
+    {
+        public int value=0;
+        public int count=0;
+        
+        public Obj(int value){
+            this.value=value;
+        }
+        
+        public void addOne(){
+            (this.count)++;
+        }
+    }
+    
+    public int majorityElement(int[] nums) {
+        Map<Integer, Obj> map = new HashMap<Integer, Obj>();
+        Obj o=new Obj(nums[0]);
+        int thredsold=(nums.length/2);
+        
+        //一樣使用hashTable去紀錄數字,但是是去紀錄一個自訂Class obj.
+        //可再減少每次put的次數(每次count增加一的時後).
+        
+        for(int i=1;i<nums.length;i++)
+        {
+            o = map.get(nums[i]);
+            if(o==null)
+            {
+                o=new Obj(nums[i]);
+                map.put(nums[i],o);
+            }
+            
+            o.addOne();
+            
+            if(o.count>thredsold)
+                return o.value;
+        }
+        return nums[0];
+    }
+}
+
