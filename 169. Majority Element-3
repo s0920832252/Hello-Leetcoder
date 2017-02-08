@@ -8,7 +8,7 @@ https://leetcode.com/submissions/detail/92150804/
 public class Solution {
    
     public int majorityElement(int[] nums) {
-        //取眾數.
+        //取中位數.
         Arrays.sort(nums);
         return nums[(nums.length)/2];
     }
