@@ -24,3 +24,9 @@ public class Solution {
         return major;
     }
 }
+
+
+http://www.println.net/post/Majority-Element
+http://www.programcreek.com/2014/02/leetcode-majority-element-java/
+http://celinechiu0809.blogspot.tw/2014/07/java-hashmap.html
+https://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html#containsKey(java.lang.Object)
