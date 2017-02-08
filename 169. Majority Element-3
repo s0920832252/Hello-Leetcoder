@@ -1,0 +1,17 @@
+https://leetcode.com/problems/majority-element/
+Runtime: 3 ms
+You are here! 
+Your runtime beats 42.30% of java submissions.
+https://leetcode.com/submissions/detail/92150804/
+
+
+public class Solution {
+   
+    public int majorityElement(int[] nums) {
+        //取眾數.
+        Arrays.sort(nums);
+        return nums[(nums.length)/2];
+    }
+}
+
+
