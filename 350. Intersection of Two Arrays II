@@ -1,0 +1,55 @@
+https://leetcode.com/problems/intersection-of-two-arrays-ii/
+Runtime: 41 ms
+You are here! 
+Your runtime beats 4.11% of java submissions
+https://leetcode.com/submissions/detail/92417703/
+
+
+
+public class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        //空陣列必定不會有交集所以回傳[];
+        if(nums1.length==0 || nums2.length==0) return new int[0];
+        
+        //為了題目提示的Tag: BinarySearch做的 , 二分搜尋法必須在有排序的array使用
+        //因此每次用到一個數值,就把它改成-1 然後再重新排序 (這邊應該可以不用重新排序,直接移項就好--但我好覽-二分函數先寫好了XDD,不想改)
+        //方法是逐項去看nums2的數值,再用二分搜尋法看nums1裡的數值是否跟nums2的數一樣.
+        
+        List<Integer> list =new ArrayList<Integer>();
+        int again=0;
+        for(int i=0;i<nums2.length;i++)
+        {
+            Arrays.sort(nums1);
+            again=binarySearch(nums1,0,nums1.length-1,nums2[i]);
+            if(again!=-1)
+            {   
+                list.add(nums2[i]);
+                nums1[again]=-1;
+            }
+        }
+        
+        int ans[]=new int [list.size()];
+        for(int j=0;j<list.size();j++)
+            ans[j]=list.get(j);
+        
+        return ans;
+    }
+    
+    public int binarySearch(int nums[],int left,int right,int target)
+    {
+        int index,value;
+        
+        while(left<=right)
+        {
+            index=(left+right)/2;
+            value=nums[index];
+            if(value>target)
+                right=index-1;
+            else if (value < target)
+                left=index+1;
+            else
+                return index;
+        }
+        return -1;
+    }
+}
