@@ -1,0 +1,42 @@
+https://leetcode.com/problems/intersection-of-two-arrays-ii/
+Runtime: 7 ms
+You are here! 
+Your runtime beats 43.23% of java submissions.
+https://leetcode.com/submissions/detail/92418358/
+
+
+public class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        //操作map 紀錄nums1的數字各有幾個
+        //再去看nums2的數字 與 nums1 的相同多少, 相同的 存入 list內 (不用array的原因是,不知道交集數目是多少)
+        
+        Map<Integer,Integer> map=new HashMap<Integer,Integer>();
+        List<Integer> list = new ArrayList<Integer> ();
+        int count=0;
+        for(int member : nums1)
+        {
+            if(map.containsKey(member))
+                map.put(member,map.get(member)+1);
+            else
+                map.put(member,1);
+        }
+        
+        for(int member : nums2)
+        {
+            if(map.containsKey(member))
+            {
+                int value=map.get(member);
+                if(value>0)
+                {
+                    list.add(member);
+                    map.put(member,value-1);
+                }    
+            }   
+        }
+        
+        int ans[]=new int[list.size()];
+        for(int i=0;i<list.size();i++)
+            ans[i]=list.get(i);
+        return ans;
+    }
+}
