@@ -1,0 +1,33 @@
+https://leetcode.com/problems/roman-to-integer/
+Runtime: 99 ms
+You are here! 
+Your runtime beats 65.78% of java submissions.
+https://leetcode.com/submissions/detail/92511027/
+
+//eg: "DCXXI"  做法是: 由右而左的,依序讀一個字並記錄上一個字,依據這兩字的大小判斷是否為XC這種特殊減法字元.
+// 後來看到別人的作法,並不用Map儲存, 而是用Switch去做文字以及數字的轉換(額外寫一個函數), 跑兩次就可以得到兩個字的數字了.
+// 而且蠻快的XDD:
+public class Solution {
+    public int romanToInt(String s) {
+        Map<Character,Integer> dict = new HashMap<Character,Integer>();
+        dict.put('I',1);
+        dict.put('V',5);
+        dict.put('X',10);
+        dict.put('L',50);
+        dict.put('C',100);
+        dict.put('D',500);
+        dict.put('M',1000);
+        char str[]=s.toCharArray();
+        int ans=dict.get(str[str.length-1]);
+        int curValue=0;
+        for(int i=str.length-2;i>=0;i--)
+        {
+            curValue=dict.get(str[i]);
+            if(curValue<dict.get(str[i+1]))
+                ans-=curValue;
+            else
+                ans+=curValue;
+        }
+        return ans;
+    }
+}
