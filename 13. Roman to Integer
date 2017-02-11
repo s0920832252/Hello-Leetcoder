@@ -1,4 +1,4 @@
-https://leetcode.com/problems/roman-to-integer/
+0https://leetcode.com/problems/roman-to-integer/
 Runtime: 99 ms
 You are here! 
 Your runtime beats 65.78% of java submissions.
@@ -29,5 +29,59 @@ public class Solution {
                 ans+=curValue;
         }
         return ans;
+    }
+}
+
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+
+public class Solution {
+    public int romanToInt(String s) {
+        
+        int ans = 0;
+        
+        // Previous with S indicating start.
+        char str[]=s.toCharArray();
+        char prev = 'S';
+        for(int i= s.length()-1; i>=0; i--) {
+            
+            char curr = str[i];
+            
+            int currValue = charValue(curr);
+            int prevValue = charValue(prev);
+            
+            if(currValue < prevValue) {
+                ans -= currValue;
+            } else {
+                ans += currValue;
+            }
+            prev = curr;
+        }
+        return ans;
+    }
+    
+    private int charValue(char c) {
+        
+        switch(c) {
+            case 'I':
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            case 'M':
+                return 1000;
+            case 'S':
+                return 0;
+            default:
+                return 0;
+        }
     }
 }
