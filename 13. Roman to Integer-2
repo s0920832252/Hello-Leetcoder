@@ -1,0 +1,57 @@
+https://leetcode.com/problems/roman-to-integer/
+Runtime: 96 ms
+You are here! 
+Your runtime beats 76.04% of java submissions
+https://leetcode.com/submissions/detail/92511010/
+
+
+public class Solution {
+    public int romanToInt(String s) {
+        //由右往左讀字元,但把特殊字元(eg:IV)隔開,這樣可以一次讀兩個字.或是一個字.
+        Map<String,Integer> dict = new HashMap<String,Integer>();
+        dict.put("I",1);
+        dict.put("V",5);
+        dict.put("X",10);
+        dict.put("L",50);
+        dict.put("C",100);
+        dict.put("D",500);
+        dict.put("M",1000);
+        
+        Map<String,Integer> dict2 = new HashMap<String,Integer>();
+        dict2.put("IV",4);
+        dict2.put("IX",9);
+        dict2.put("XL",40);
+        dict2.put("XC",90);
+        dict2.put("CD",400);
+        dict2.put("CM",900);
+        
+        if(s.length()==1) return dict.get(s);
+        
+        int end,ans;
+        if (dict2.containsKey(s.substring(s.length()-2)))
+        {    
+            end=s.length()-2;
+            ans=dict2.get(s.substring(end));
+        }
+        else 
+        {
+            end=s.length()-1;
+            ans=dict.get(s.substring(end));
+        }
+        
+        for(int index=0;index<end;)
+        {
+            if(dict2.containsKey(s.substring(index,index+2)))
+            {
+                ans+=dict2.get(s.substring(index,index+2));
+                index+=2;
+            }
+            else
+            {
+                ans+=dict.get(s.substring(index,index+1));
+                index++;
+            }
+        }
+        return ans;
+    }
+}
