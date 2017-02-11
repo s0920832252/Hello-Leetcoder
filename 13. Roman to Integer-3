@@ -1,0 +1,36 @@
+https://leetcode.com/problems/roman-to-integer/
+Runtime: 91 ms
+You are here! 
+Your runtime beats 89.33% of java submissions.
+https://leetcode.com/submissions/detail/92513211/
+
+
+
+public class Solution {
+    public int romanToInt(String s) {
+        
+        //若是由左往右讀的話, 則可發現數字必定是由大到小排列.
+        //例如100若是出現過了,則後面不可能再出現比100還要大的數字.
+        //以此方式,即可做到一次走兩個字元或是一個字元.
+        String dict[]={"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+        int value[]={1000,900,500,400,100,90,50,40,10,9,5,4,1};
+        int dictLen=dict.length;
+        int strLen=s.length();
+        int sLen=0;
+        int ans=0;
+        
+        for(int dcitIndex=0,strIndex=0;dcitIndex<dictLen && strIndex<strLen;)
+        {
+            sLen=dict[dcitIndex].length();
+            
+            if((strIndex+sLen)<=strLen && s.substring(strIndex,strIndex+sLen).equals(dict[dcitIndex]))
+            {
+                ans+=value[dcitIndex];
+                strIndex+=sLen;
+            }
+            else
+                dcitIndex++;
+        }
+        return ans;
+    }
+}
