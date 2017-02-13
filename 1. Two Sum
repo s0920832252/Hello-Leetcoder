@@ -1,0 +1,21 @@
+https://leetcode.com/problems/two-sum/
+Runtime: 8 ms
+ou are here! 
+Your runtime beats 69.23% of java submissions.
+https://leetcode.com/submissions/detail/92781378/
+
+
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        
+        Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+        
+        for (int i = 0; i < nums.length; i++) 
+        {
+            if(map.containsKey(nums[i]))
+                return new int[]{map.get(nums[i]),i};
+            map.put(target-nums[i],i);
+        }
+        return new int[]{0,0};
+    }
+}
