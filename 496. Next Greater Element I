@@ -4,7 +4,12 @@ You are here!
 Your runtime beats 99.39% of java submissions.
 https://leetcode.com/submissions/detail/92926372/
 
-
+//對每一個findNum元素, 去搜尋其在nums內是否有相同的數字,
+//若有則繼續在nums找是否有比它大的數字, 有則回傳第一個比它大的數字.
+//若無,以及無比它大的數字皆回傳-1
+//怎麼想這都是應該是最快的做法了( 接近O(N^2).)
+//因為每一個findNum數字這裡就需要O(N)了, nums陣列又沒有些特殊性質可用.(至少我想不到了= =)
+//若是要對nums做排序處理,則勢必超過O(N)的時間.
 public class Solution {
     public int[] nextGreaterElement(int[] findNums, int[] nums) {
         int ans[]=new int[findNums.length];
