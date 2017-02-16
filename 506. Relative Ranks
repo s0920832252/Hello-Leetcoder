@@ -1,0 +1,44 @@
+https://leetcode.com/problems/relative-ranks/
+Runtime: 22 ms
+You are here! 
+Your runtime beats 61.99% of java submissions.
+https://leetcode.com/submissions/detail/93201371/
+
+
+
+public class Solution {
+    public String[] findRelativeRanks(int[] nums) {
+        //把nums數字丟入TreeMap,讓TreeMap來自動排序.
+        //再依序poll出,存入相對位置
+        
+        TreeMap<Integer,Integer> treemap=new TreeMap<Integer,Integer>();
+        String ans[]=new String[nums.length];
+        
+        for (int i=0;i<nums.length;i++)
+            treemap.put(nums[i],i);
+        
+        int rank=nums.length;
+        
+        //http://docs.oracle.com/javase/7/docs/api/java/util/TreeMap.html#entrySet()
+        //TreeMap官網- TreeMap Key 加入後,以遞升的順序排列
+        for (Map.Entry<Integer, Integer> entry : treemap.entrySet())
+        {
+            switch(rank)
+            {
+                case 1:
+                    ans[entry.getValue()]="Gold Medal";
+                    break;
+                case 2:
+                    ans[entry.getValue()]="Silver Medal";
+                    break;
+                case 3:
+                    ans[entry.getValue()]="Bronze Medal";
+                    break;
+                default :
+                    ans[entry.getValue()]=Integer.toString(rank);
+            }
+            rank--;
+        }
+        return ans;
+    }
+}
