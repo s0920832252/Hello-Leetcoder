@@ -1,0 +1,37 @@
+https://leetcode.com/problems/relative-ranks/
+https://leetcode.com/submissions/detail/93201441/
+
+
+public class Solution {
+    public String[] findRelativeRanks(int[] nums) {
+      //複製nums陣列為temp, 並且將其排序(之後所有的nums上的值只要去查temp矩陣的位置,即可知道排名).
+    
+        String ans[]=new String[nums.length];
+        int[] temp = Arrays.copyOf(nums, nums.length);
+        Arrays.sort(temp);
+        
+        int rankPosition;
+        for(int i=0;i<nums.length;i++)
+        {
+            //Arrays 使用BSH
+            //https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html
+            rankPosition=Arrays.binarySearch(temp,nums[i]);
+            int value=nums.length-rankPosition;
+            switch(value)
+            {
+                case 1:
+                    ans[i]="Gold Medal";
+                    break;
+                case 2:
+                    ans[i]="Silver Medal";
+                    break;
+                case 3:
+                    ans[i]="Bronze Medal";
+                    break;
+                default :
+                    ans[i]=Integer.toString(value);
+            }
+        }
+        return ans;
+    }
+}
