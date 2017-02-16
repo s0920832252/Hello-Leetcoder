@@ -1,0 +1,52 @@
+https://leetcode.com/problems/relative-ranks/
+Runtime: 7 ms
+You are here! 
+Your runtime beats 99.34% of java submissions
+https://leetcode.com/submissions/detail/93201386/
+
+
+
+
+public class Solution {
+    public String[] findRelativeRanks(int[] nums) {
+        String ans[]=new String[nums.length];
+        
+        //先找出矩陣最大數字,因此就可以宣告一個矩陣去存所有的數字(依照他們的大小順序,數字越大的,存在矩陣位置越後面的地方)
+        //在從此矩陣最後面開始往前走訪(由第一名第二名第三名的順序...)並將之存入其原本矩陣相對應的位置
+        //此作法超快,複雜度大概O(N_Max)or O(n)(就只有用矩陣而已.)  屌打目前看過的做法~~(我超爽的XD:)
+        //缺點是 測資裡面只要放一個 int變數存不下的數字, 就爆掉了XD:
+        // 另外就是,陣列中的數字若是很大的話,則O(N_Max)會很大.  記憶體會消耗蠻多資源的
+        int max=-1;
+        for(int i=0;i<nums.length;i++)
+            if(nums[i]>max)
+                max=nums[i];
+        int tempRank[]=new int[max+1];
+        
+        for(int i=0;i<nums.length;i++)
+            tempRank[nums[i]]=i+1;
+        
+        int rank=1;
+        for(int i=tempRank.length-1;i>=0;i--)
+        {
+            if(tempRank[i]!=0)
+            {
+                switch(rank)
+                {
+                    case 1:
+                        ans[tempRank[i]-1]="Gold Medal";
+                        break;
+                    case 2:
+                        ans[tempRank[i]-1]="Silver Medal";
+                        break;
+                    case 3:
+                        ans[tempRank[i]-1]="Bronze Medal";
+                        break;
+                    default :
+                        ans[tempRank[i]-1]=Integer.toString(rank);
+                }
+                rank++;
+            }
+        }
+        return ans;
+    }
+}
