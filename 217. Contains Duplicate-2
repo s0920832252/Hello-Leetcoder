@@ -1,0 +1,23 @@
+https://leetcode.com/problems/contains-duplicate/
+Runtime: 20 ms
+You are here! 
+Your runtime beats 43.38% of java submissions.
+https://leetcode.com/submissions/detail/93300965/
+
+
+public class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        //走訪nums,若有相同的則回傳true. 透過使用set紀錄此數字是否出現過.
+        
+        Set<Integer> set=new HashSet<Integer>();
+        for(int num : nums)
+        {
+            if(set.contains(num))
+                return true;
+            else
+                set.add(num);
+        }
+        
+        return false;
+    }
+}
