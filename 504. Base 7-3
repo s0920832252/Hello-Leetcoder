@@ -11,6 +11,8 @@ public class Solution {
         //囧的是JAVA竟然有提供函數轉位數 Integer.toString(int i, int radix),  使用的話,一行就解決了= =
         //https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html
         
+        //做法的基本概念是 用%7得到目前位數, 用/7進入下一個位數
+        
         if(Math.abs(num)<7)
             return String.valueOf(num);
         return num>=0?convertToBase7(num/7)+num%7 :convertToBase7(num/7)+Math.abs(num%7);
