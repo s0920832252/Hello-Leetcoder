@@ -26,6 +26,7 @@ public class Solution {
         //至少是我目前想到做法最快的了...  那些beats 90%以上的  到底是怎麼做到的呀= =
         //囧的是JAVA竟然有提供函數轉位數 Integer.toString(int i, int radix),  使用的話,一行就解決了= =
         //https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html
+        
         return num>=0? convertBase7(num):"-"+convertBase7(-1*num);
         
     }
