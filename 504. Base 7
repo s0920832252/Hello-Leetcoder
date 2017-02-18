@@ -1,0 +1,60 @@
+https://leetcode.com/problems/base-7/?tab=Description
+Runtime: 18 ms
+You are here! 
+Your runtime beats 24.80% of java submissions.
+https://leetcode.com/submissions/detail/93433046/
+
+
+
+public class Solution {
+    
+    public String convertToBase7(int num) {
+        
+        return num>=0? convertBase7(num):"-"+convertBase7(-1*num);
+        
+    }
+    
+    public String convertBase7(int num)
+    {
+        //直覺的作法,先算出7^i的每個數字
+        //再去看num 在7^i的那個位數是多少.
+        //出乎預料的, 沒我想像中的快.  不確定是不是使用long變數計算的關西.
+    
+        if(num==0) return "0";
+        
+        long tempNum=num;
+        StringBuilder sb= new StringBuilder();
+        long Power7Array[]=new long[23];  //1e7最大範圍為 7^22
+        Power7Array[0]=1;
+        long basic=1;
+        int max=0;
+        for(int i=1;i<=22;i++)
+        {
+            basic*=7;
+            Power7Array[i]=(long)basic;
+            if(tempNum<basic)
+            {
+                max=i-1;
+                break;
+            }
+        }
+        
+        long base=0;
+        for (int i = max; i >= 0; i--) 
+        {
+		    base = Power7Array[i];
+		    if (tempNum >= base)
+		    {
+			    sb.append(tempNum/base);
+			    tempNum = tempNum%base;
+		    }
+		    else 
+		        sb.append(0);
+	    }
+        
+        return sb.toString();
+    }
+    
+  
+   
+}
