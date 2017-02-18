@@ -1,0 +1,18 @@
+https://leetcode.com/problems/base-7/?tab=Description
+Runtime: 15 ms
+You are here! 
+Your runtime beats 48.66% of java submissions.
+https://leetcode.com/submissions/detail/93424902/
+
+public class Solution {
+    public String convertToBase7(int num) {
+        //這作法本來是在挑戰最短行解決的, 但沒想到其實還蠻快的XD  
+        //至少是我目前想到做法中最快的了...  那些beats 90%以上的  到底是怎麼做到的呀= =
+        //囧的是JAVA竟然有提供函數轉位數 Integer.toString(int i, int radix),  使用的話,一行就解決了= =
+        //https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html
+        
+        if(Math.abs(num)<7)
+            return String.valueOf(num);
+        return num>=0?convertToBase7(num/7)+num%7 :convertToBase7(num/7)+Math.abs(num%7);
+    }
+}
