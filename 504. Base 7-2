@@ -1,0 +1,28 @@
+https://leetcode.com/problems/base-7/?tab=Description
+Runtime: 17 ms
+You are here! 
+Your runtime beats 32.83% of java submissions.
+https://leetcode.com/submissions/detail/93432252/
+
+
+
+public class Solution {
+    public String convertToBase7(int num) {
+        return num>=0? convertBase7(num):"-"+convertBase7(-1*num);
+    }
+    
+    public String convertBase7(int num)
+    {
+        //我是用觀察的= =   我不太確定數學定理如何.
+        //先透過%7把 目前位數的數字先得到.
+        //再透過/7去進入下個位數.
+        int tempNum=num;
+        StringBuilder sb = new StringBuilder();
+        while(num!=0)
+        {
+            sb.append(num%7);
+            num/=7;
+        }
+        return tempNum>0? sb.reverse().toString() : "0";
+    }
+}
