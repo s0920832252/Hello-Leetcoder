@@ -25,7 +25,7 @@ public class Solution {
     
     public boolean runTree(TreeNode root,int sum)
     {   
-        //希望可以減少遞迴的次數
+        //這次的目標是希望可以減少遞迴的次數
         //先衡量root是否有左右兒子,以此判斷是哪一種情況. 一共四種情形.
         //無左右兒子回傳sum==root.val;
         //有左右兒子回傳runTree(root.left,sum-root.val)||runTree(root.right,sum-root.val);
