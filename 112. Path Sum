@@ -1,0 +1,38 @@
+https://leetcode.com/problems/path-sum/?tab=Description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 13.88% of java submissions.
+https://leetcode.com/submissions/detail/93538303/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean hasPathSum(TreeNode root, int sum) {
+        
+        return runTree(root,sum);
+    }
+    
+    public boolean runTree(TreeNode root,int sum)
+    {   
+        //每一次走道下一點,都先把sum扣掉root.val的值,並當成下一點的sum,這樣只要比對
+        //sum==root.val即可知道是否走到對的點了 ,不然你就要額外記錄並傳遞一個值去加總所走訪的node值
+        //基本概念是確定走到了樹葉才判斷(root.val==sum),否則使用DFS走訪
+        if(root==null)return false;
+        if(root.left==null && root.right==null)
+        {   
+            if(root.val==sum)
+                return true;
+            else
+                return false;
+        }   
+        return runTree(root.left,sum-root.val)||runTree(root.right,sum-root.val);
+    }
+}
