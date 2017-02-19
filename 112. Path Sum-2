@@ -1,0 +1,52 @@
+https://leetcode.com/problems/path-sum/?tab=Description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 13.88% of java submissions.
+https://leetcode.com/submissions/detail/93538894/
+
+
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean hasPathSum(TreeNode root, int sum) {
+        
+        //排除root一開始就為空的 87測資.
+        return root!=null?runTree(root,sum):false;
+    }
+    
+    public boolean runTree(TreeNode root,int sum)
+    {   
+        //希望可以減少遞迴的次數
+        //先衡量root是否有左右兒子,以此判斷是哪一種情況. 一共四種情形.
+        //無左右兒子回傳sum==root.val;
+        //有左右兒子回傳runTree(root.left,sum-root.val)||runTree(root.right,sum-root.val);
+        //有左兒子,判斷左兒子是否為對的點,是則回傳結果,否則繼續遞迴.
+        //右兒子似左兒子作法.
+        if(root.left!=null && root.right!=null)
+            return runTree(root.left,sum-root.val)||runTree(root.right,sum-root.val);
+        if(root.left!=null)
+        {
+            if(root.left.left==null && root.left.right==null)
+                return (sum-root.val)==root.left.val;
+            else
+                return runTree(root.left,sum-root.val);
+        }
+        if(root.right!=null)
+        {
+            if(root.right.left==null && root.right.right==null)
+                return (sum-root.val)==root.right.val;
+            else
+                return runTree(root.right,sum-root.val);
+        }
+        return sum==root.val;
+    }
+}
