@@ -1,0 +1,31 @@
+https://leetcode.com/problems/plus-one/?tab=Description
+Runtime: 0 ms
+You are here! 
+Your runtime beats 44.80% of java submissions
+https://leetcode.com/submissions/detail/93892298/
+
+
+
+public class Solution {
+    public int[] plusOne(int[] digits) {
+        //想法是,這個數字的進位 可以持續進位到哪一個位數?
+        //只要檢查這個位數+carry是否沒進位,則停止,並將此位數+carry後回傳
+        //若此數字進位到最後一位, 則必定是 1000...0 這個type , 因此只要初始化一個多一位的int陣列即可.
+        int numLen = digits.length;
+        int carry=1;//題目要求的加一
+        for(int i=numLen-1;i>=0;i--)
+        {
+            if(digits[i]+carry<=9)
+            {
+                digits[i]++;
+                return digits;
+            }
+            else
+                digits[i]=0;           
+        }
+        
+        int carryToHigh[]=new int[numLen+1];
+        carryToHigh[0]=1;
+        return carryToHigh;
+    }
+}
