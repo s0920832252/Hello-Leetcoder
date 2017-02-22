@@ -1,0 +1,60 @@
+https://leetcode.com/problems/detect-capital/?tab=Description
+Runtime: 28 ms
+You are here! 
+Your runtime beats 89.79% of java submissions.
+https://leetcode.com/submissions/detail/93995869/
+
+
+
+
+public class Solution {
+    public boolean detectCapitalUse(String word) {
+        //字數若為一,則必為True
+        //字數若為二,則只有第一個字小寫,第二個字大寫會是false
+        //當字數大於二時,一共有三種case ,但 第一種和第二種可以一起處理.第三種額外處理. 所以只有兩種情況.
+        //因此先判斷是哪一種情況, 在去做處理.
+        
+        char wordChar[]=word.toCharArray();
+        boolean firstWordIsUperChar=isUperChar(wordChar[0]);
+        
+        if(wordChar.length==1)
+            return true;
+        if(wordChar.length==2)
+        {
+            if(isUperChar(wordChar[0])==false && isUperChar(wordChar[1])==true)
+                return false;
+            else
+                return true;
+        }
+        if(isUperChar(wordChar[0])==true && isUperChar(wordChar[1])==false)
+            return isCase3(wordChar);
+        else
+            return isCase1OrCase2(wordChar,firstWordIsUperChar);
+    }
+    
+    
+    public boolean isCase1OrCase2(char wordChar[],boolean firstWordIsUperChar)
+    {
+        for(int i=1;i<wordChar.length;i++)
+        {
+            if(isUperChar(wordChar[i])!=firstWordIsUperChar)
+                return false;
+        }
+        return true;
+    }
+    
+    public boolean isCase3(char wordChar[])
+    {
+        for(int i=2;i<wordChar.length;i++)
+        {
+            if(isUperChar(wordChar[i])==true)
+                return false;
+        }
+        return true;
+    }
+    
+    public boolean isUperChar(int assicCode)
+    {
+        return  (assicCode >= 65 && assicCode <= 90)? true :false;
+    }
+}
