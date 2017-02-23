@@ -1,0 +1,77 @@
+https://leetcode.com/problems/happy-number/?tab=Description
+Runtime: 2 ms
+You are here! 
+Your runtime beats 83.01% of java submissions
+https://leetcode.com/submissions/detail/94141349/
+
+
+
+public class Solution {
+    //由1開始平方往上找值. eg: 2^2=4 -> 4^2=16 -> 1^2+6^2=37 -> ... ;先紀錄1-9每一個值是否為快樂數.以及其經過的數字.
+    //這樣你可以判斷那些數字是否就是快樂數字了,
+    //以此減少遞迴的次數.
+    public int notHappy[]={136,89,85,81,65,58,52,51,50,46,45,41,40,37,36,29,26,25,17,16,9,8,6,5,4,3,2};
+    public int Happy[]={130,97,10,7,1};
+    public boolean isHappy(int n) {
+        if(binarySearch(notHappy,0,notHappy.length-1,n)) //目前這個Case 使用二分搜尋, 比使用hashSet快很多.
+            return false;
+        if(binarySearch(Happy,0,Happy.length-1,n))
+            return true;
+        
+        int temp=0;
+        while(n>0)
+        {
+            temp+=Math.pow(n%10,2);
+            n/=10;
+        }
+        
+        return isHappy(temp);
+    }
+    
+    public boolean binarySearch(int array[],int left,int right,int target)
+    {
+        int val=0;
+        int index;
+        while(left<=right)
+        {
+            index=(left+right)/2;
+            val=array[index];
+            if(val==target)
+                return true;
+            else if(val>target)
+                left=index+1;
+            else
+                right=index-1;
+        }
+        return false;
+    }    
+}
+
+
+
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+
+
+目前網路上看到最強的作法.
+Runtime: 1 ms
+You are here! 
+Your runtime beats 97.78% of java submissions.
+https://leetcode.com/submissions/detail/94137020/
+
+public class Solution {
+    public boolean isHappy(int n) {
+        if(n<10&&n!=1&&n!=7) return false;
+        if(n==1||n==7) return true;
+        int sum = 0;
+        while(n>0){
+            int digit = n%10;
+            sum = sum + digit*digit;
+            n/=10;
+        }
+        return isHappy(sum);
+    }
+}
