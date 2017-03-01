@@ -43,7 +43,7 @@ public class Solution {
 
 
 ---------------------------------------
-另外看到別人的做法, 概念跟我差不多,只是她不是用全域變數,而是直接把陣列傳下去了XDDD
+另外看到別人的做法, 概念跟我差不多,只是她不是用全域變數,而是直接把陣列傳址傳下去了XDDD
 
 public class Solution {
     public int findBottomLeftValue(TreeNode root) {
