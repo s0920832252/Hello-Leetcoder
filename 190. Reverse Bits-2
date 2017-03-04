@@ -1,0 +1,29 @@
+https://leetcode.com/problems/reverse-bits/?tab=Description
+Runtime: 2 ms
+You are here! 
+Your runtime beats 46.37% of java submissions.
+https://leetcode.com/submissions/detail/95351763/
+
+
+public class Solution {
+    // you need treat n as an unsigned value
+    public int reverseBits(int n) {
+        
+        //用 n&1 去取出相對應位數的數字.
+        //因為是讓n不斷右移,所以取出的數字順序是會與原數字相反.
+        //然後用左移ans  讓取出來的數字推到它應該去的位置.
+        //題外話: 若是沒有打算反轉bits, 只是有一個二元數字要轉乘數字.   
+        //則可以一直左移 1 這個數字 並與n 做and運算
+        //然後不斷ans^=結果.
+        
+        int ans=0;
+        for(int i=32;i>0;i--)
+        {
+            ans+=n&1;
+            n>>>=1;
+            if(i!=1)
+                ans<<=1;
+        }
+        return ans;
+    }
+}
