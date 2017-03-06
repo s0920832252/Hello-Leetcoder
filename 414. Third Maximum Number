@@ -101,7 +101,7 @@ public class Solution {
         while (itSet.hasNext())
         {
             count++;
-            if(count==1)                    //count++其實可以寫進來if敘述---->    if(++count==1)  不能會很難讓人看懂吧XD
+            if(count==1)                    //count++其實可以寫進來if敘述---->    if(++count==1)  不過會很難讓人看懂吧XD
                 max=(int)itSet.next();
             else if(count==3)
                 return (int)itSet.next();
