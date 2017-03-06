@@ -82,18 +82,24 @@ public class Solution {
     
     public int thirdMax(int[] nums) {
         
-        Set<Integer> set=new TreeSet<Integer>( new Comparator<Integer>() {
-            public int compare(Integer s1, Integer s2) {
-                return -Long.compare(s1, s2);//由大到小排列
+        Set<Integer> set=new TreeSet<Integer>( 
+            new Comparator<Integer>() 
+            {
+                public int compare(Integer s1, Integer s2) 
+                {
+                    return -Long.compare(s1, s2);//由大到小排列
+                }
             }
-        });
+        );
+        
         int count=0;
         int max=0;
         for(int num:nums)
             set.add(num);
         
         Iterator itSet = set.iterator();          
-        while (itSet.hasNext()) {
+        while (itSet.hasNext())
+        {
             count++;
             if(count==1)
                 max=(int)itSet.next();
