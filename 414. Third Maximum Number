@@ -84,12 +84,11 @@ public class Solution {
         
         Set<Integer> set=new TreeSet<Integer>( new Comparator<Integer>() {
             public int compare(Integer s1, Integer s2) {
-                return -Long.compare(s1, s2);
+                return -Long.compare(s1, s2);//由大到小排列
             }
         });
         int count=0;
         int max=0;
-        int ans=0;
         for(int num:nums)
             set.add(num);
         
@@ -99,15 +98,11 @@ public class Solution {
             if(count==1)
                 max=(int)itSet.next();
             else if(count==3)
-            {
-                ans=(int)itSet.next();
-                break;
-            }
+                return (int)itSet.next();
             else
                 itSet.next();
         }
             
-        return count<=2?max:ans;
+        return max;
     }
 }
-
