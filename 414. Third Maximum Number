@@ -1,0 +1,113 @@
+https://leetcode.com/problems/third-maximum-number/?tab=Description
+
+
+//很直覺的想法是,  要馬用三個變數分別去紀錄前三大的數字,要馬就把陣列排序,這樣就可以直接找第三大的數字了.
+
+Runtime: 6 ms
+You are here! 
+Your runtime beats 75.49% of java submissions.
+https://leetcode.com/submissions/detail/95609757/
+
+//陣列排序
+public class Solution {
+    public int thirdMax(int[] nums) {
+        Arrays.sort(nums);
+        
+        for(int i=nums.length-2,count=1;i>=0;i--)
+        {
+            if(nums[i]!=nums[i+1])
+                count++;
+            if(count==3)
+                return nums[i];
+        }
+        
+        return nums[nums.length-1];
+    }
+}
+
+=======================================================================================
+=======================================================================================
+
+https://leetcode.com/submissions/detail/95612240/
+Runtime: 3 ms
+You are here! 
+Your runtime beats 99.27% of java submissions
+//使用三個變數記錄前三大數字
+
+public class Solution {
+    public int thirdMax(int[] nums) {
+        long firstBig=Long.MIN_VALUE,secondBig=Long.MIN_VALUE,thirdBig=Long.MIN_VALUE;//起始值需要是最小值,不然不能更新.但測資有用int的最小值
+        
+        for(long num : nums)
+        {
+            if(num>thirdBig && num<secondBig)
+                thirdBig=num;
+            else if(num>secondBig && num<firstBig)
+            {
+                thirdBig=secondBig;
+                secondBig=num;
+            }
+            else if(num>firstBig)
+            {
+                thirdBig=secondBig;
+                secondBig=firstBig;
+                firstBig=num;
+            }
+        }
+        
+        return thirdBig==Long.MIN_VALUE? (int)firstBig:(int)thirdBig;
+    }
+}
+
+=======================================================================================
+=======================================================================================
+
+//雖然早知道一定不會快的XDD
+//不過想練習一下TreeSet這樣的資料結構.
+//因為不熟
+https://leetcode.com/submissions/detail/95655683/
+Runtime: 23 ms
+You are here! 
+Your runtime beats 10.16% of java submissions.
+
+public class Solution {
+    class Tcomp implements Comparator{
+        @Override
+        public int compare(Object o1, Object o2) {
+            String a=(String) o1;
+            String b=(String) o2;
+            return a.compareTo(b);        //String才用此比較方法 int直接相減就好   -  後來沒用到,因為想到可以用匿名類別就好XDDD
+        }
+    }    
+    
+    public int thirdMax(int[] nums) {
+        
+        Set<Integer> set=new TreeSet<Integer>( new Comparator<Integer>() {
+            public int compare(Integer s1, Integer s2) {
+                return -Long.compare(s1, s2);
+            }
+        });
+        int count=0;
+        int max=0;
+        int ans=0;
+        for(int num:nums)
+            set.add(num);
+        
+        Iterator itSet = set.iterator();          
+        while (itSet.hasNext()) {
+            count++;
+            if(count==1)
+                max=(int)itSet.next();
+            else if(count==3)
+            {
+                ans=(int)itSet.next();
+                break;
+            }
+            else
+                itSet.next();
+        }
+            
+        return count<=2?max:ans;
+    }
+}
+
