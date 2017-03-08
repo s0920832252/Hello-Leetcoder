@@ -1,0 +1,72 @@
+https://leetcode.com/problems/guess-number-higher-or-lower/?tab=Description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 21.28% of java submissions.
+https://leetcode.com/submissions/detail/95937968/
+
+
+//基本的二分搜尋法, 只是要小心overflow.  
+//eg :  mid = (left + right)/ 2;
+
+public class Solution extends GuessGame {
+    public int guessNumber(int n) 
+    {
+        long left = 1, right = n;
+        int mid;
+        while(left < right) 
+        {
+            mid = (int)((left + right)/ 2);//測資中 int的加總會overFlow.  因此需要特別處理.
+            if(guess(mid) == 0)
+                return mid;
+            else if(guess(mid) == 1)
+                left = mid + 1;
+            else 
+                right = mid-1;
+        }
+        return (int)left;
+    }
+}
+
+==============================================================
+==============================================================
+
+public class Solution extends GuessGame {
+    public int guessNumber(int n) 
+    {
+        long left = 1, right = n;
+        int mid;
+        while(left < right) 
+        {
+            mid = (int)((left + right)/ 2);;
+            if(guess(mid) == 0)
+                return mid;
+            else if(guess(mid) == 1)
+                left = mid + 1;
+            else 
+                right = mid-1;
+        }
+        return (int)left;
+    }
+}
+
+==============================================================
+==============================================================
+
+public class Solution extends GuessGame {
+    public int guessNumber(int n) 
+    {
+        int left = 1, right = n;
+        int mid;
+        while(left < right) 
+        {
+            mid = left/2 + right/ 2;;
+            if(guess(mid) == 0)
+                return mid;
+            else if(guess(mid) == 1)
+                left = mid + 1;
+            else 
+                right = mid-1;
+        }
+        return left;
+    }
+}
