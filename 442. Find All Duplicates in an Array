@@ -1,0 +1,52 @@
+https://leetcode.com/problems/find-all-duplicates-in-an-array/?tab=Description
+Runtime: 16 ms
+You are here! 
+Your runtime beats 84.81% of java submissions
+https://leetcode.com/submissions/detail/96213646/
+
+//題目給予Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array),這個資料範圍的限制. 
+//我看到這個限制就笑了...果然題目刷久了,有時候都有點條件反射了= ="
+//所以就可以用陣列的方式取代Map/Set等方式保存跑過的資料.
+//因為就直接run一次陣列所有值, 所以時間複雜度是O(n).
+
+public class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        int elements[]=new int[nums.length];
+        List<Integer> ans=new LinkedList<Integer>(); //List 有ArrayList 以及 LinkedList兩種,這邊因為只需要插入,因此使用LinkedList.
+        for(int i=0;i<nums.length;i++)
+        {
+            if(elements[nums[i]-1]==0)
+                elements[nums[i]-1]=1;
+            else
+                ans.add(nums[i]);
+        }
+        return ans;
+    }
+}
+
+
+===========================================
+===========================================
+https://leetcode.com/submissions/detail/96214142/
+Runtime: 54 ms
+You are here! 
+Your runtime beats 13.03% of java submissions.
+
+先sort後,在跑  也是一種方法
+
+public class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        int elements[]=new int[nums.length];
+        List<Integer> ans=new LinkedList<Integer>();
+        Arrays.sort(nums);
+        
+        for(int i=0;i<nums.length-1;i++)
+        {
+            if(nums[i]==nums[i+1])
+            {
+                ans.add(nums[i]);
+            }
+        }
+        return ans;
+    }
+}
