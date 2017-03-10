@@ -1,0 +1,55 @@
+https://leetcode.com/problems/power-of-four/?tab=Description
+Runtime: 2 ms
+You are here! 
+Your runtime beats 24.88% of java submissions.
+https://leetcode.com/submissions/detail/96222469/
+
+//非常直覺的想法,而且不慢XD
+//一直除4,看看最後會不會等於1, 若等於1 代表是4的指數
+public class Solution {
+    public boolean isPowerOfFour(int num) {
+        double ans=num;  //不用int的原因是 int在除法會失去精準度.
+        while(ans>1)
+            ans/=4;
+        return ans==1;
+    }
+}
+
+=============================================================
+Runtime: 4 ms
+You are here! 
+Your runtime beats 6.42% of java submissions.
+https://leetcode.com/submissions/detail/96222644/
+//用任何4的指數,必定可以用來整除  最大的4指數.
+//另外還要避開  測資是2的倍數2,但不是4的指數.(4的指數開根號,必定還可以整廚餘最大4指數. 但2不行...)
+//測資有0,要避開.
+public class Solution {
+    public boolean isPowerOfFour(int num) {
+        int max_4_power=(int)Math.pow(4,Math.floor(Math.log(Integer.MAX_VALUE)/Math.log(4)));
+        return num>0 && max_4_power%num==0 && max_4_power%Math.sqrt(num)==0;
+    }
+}
+
+===============================================================
+Runtime: 2 ms
+You are here! 
+Your runtime beats 24.88% of java submissions.
+https://leetcode.com/submissions/detail/96222219/
+//雖然題目說用bit 運算...但實在想不到= =
+//偷看別人的作法後,寫的.
+public class Solution {
+    public boolean isPowerOfFour(int num) {
+        if(num==1)
+            return true;
+        else if((num & (num-1)) !=0) 
+            return false;
+        else
+            while(num!=0)
+            {
+                num>>>=2;
+                if(num==1)
+                    return true;
+            }
+        return false;
+    }
+}
