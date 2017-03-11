@@ -1,0 +1,91 @@
+https://leetcode.com/problems/word-pattern/?tab=Description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 96.39% of java submissions.
+https://leetcode.com/submissions/detail/96306973/
+
+
+public class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        String strSplits[] = str.split(" ");//把str拆開
+        String patternArray[]=new String[128]; //用陣列索引
+        Set<String> record = new HashSet<String>(); //紀錄此str字串是否出現過
+        
+        //不解釋XD
+        if(pattern.length()!=strSplits.length)
+            return false;
+        
+        for(int i=0;i<strSplits.length;i++)
+        {
+            if(patternArray[pattern.charAt(i)]==null) //若這個pattern未出現過
+            {
+                //則此str勢必也不能出現過, 且同時把此str加入record中.
+                if(!record.add(strSplits[i]))   //Set.add() 除了會add內容物外,還會回傳是否已經有此值的boolean
+                    return false;
+                patternArray[pattern.charAt(i)]=strSplits[i];//紀錄pattern和str之間的mapping
+            }
+            else
+            {
+                if(!patternArray[pattern.charAt(i)].equals(strSplits[i]))    //pattern不合
+                    return false;
+            }
+        }
+        return true;
+    }
+}
+
+======================================
+紀錄別人的作法.  概念都差不多,  但使用保存的方式有差.
+
+public boolean wordPattern(String pattern, String str) {
+    String[] words = str.split(" ");
+    if (words.length != pattern.length())
+        return false;
+    Map index = new HashMap();
+    for (Integer i=0; i<words.length; ++i)
+        if (index.put(pattern.charAt(i), i) != index.put(words[i], i))
+            return false;
+    return true;
+}
+
+======================================
+紀錄別人的作法.  概念都差不多,  但使用保存的方式有差.
+
+ public boolean wordPattern(String pattern, String str) {
+        List<String> list = new LinkedList<String>();
+        Map<Character, String> map = new HashMap<Character, String>();
+        Set<String> set = new HashSet<String>();
+        int start = 0;
+        for(int end = 0; end < str.length(); end++) {
+            if(str.charAt(end) != ' ') {
+                if(end == str.length()-1) {
+                    list.add(str.substring(start, str.length()));
+                }
+            }else {
+                list.add(str.substring(start, end));
+                if(end+1<str.length()) {
+                     start = end+1;
+               }
+            
+            }
+        }
+        if(pattern.length() != list.size()) {
+            return false;
+        }
+  
+        for(int i = 0; i < pattern.length(); i++) {
+            if(!map.containsKey(pattern.charAt(i))) {
+                if(set.contains(list.get(i))) {
+                    return false;
+                }
+                map.put(pattern.charAt(i), list.get(i));
+                set.add(list.get(i));
+            } else {
+                if(!map.get(pattern.charAt(i)).equals(list.get(i))) {
+                     return false;
+                }
+           
+            }
+         }
+        return true;
+     }
