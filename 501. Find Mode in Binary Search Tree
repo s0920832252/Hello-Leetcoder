@@ -1,0 +1,113 @@
+https://leetcode.com/problems/find-mode-in-binary-search-tree/?tab=Description
+Runtime: 4 ms
+You are here! 
+Your runtime beats 84.72% of java submissions.
+https://leetcode.com/submissions/detail/96396017/
+
+
+//這題的樹是Binary Search Tree.  代表你要是按照中序的方式 走的話, 走訪順序(值)會是由小而大.
+//Assume a BST is defined as follows:
+//The left subtree of a node contains only nodes with keys less than or equal to the node's key.
+//The right subtree of a node contains only nodes with keys greater than or equal to the node's key.
+//Both the left and right subtrees must also be binary search trees.
+//因此要找出最多數量的值,只需要按照中序的方式,並檢查目前的值和上一個值是否相同即可開始計數.
+//我好費, 我想了一個多小時= =
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    List<Integer> list = new LinkedList<Integer>(); 
+    int count=0,max=0,preVal;
+    public int[] findMode(TreeNode root) {
+        
+        preVal=findLeftVal(root);
+        traverse(root);
+        
+        int ansArray[]=new int[list.size()];
+        int index=0;
+        for (int ans: list) 
+            ansArray[index++]=ans;
+        return ansArray;
+    }
+    
+    public int findLeftVal(TreeNode root)
+    {
+        if(root==null)
+            return -1;
+        if(root.left!=null)
+            return findLeftVal(root.left);
+        if(root.left==null && root.right==null)
+            return root.val;
+        return -1;
+    }
+    
+    public void traverse(TreeNode root)
+    {
+        if(root==null)
+            return;
+        traverse(root.left);
+        
+        if(root.val==preVal)
+            count++;
+        else
+            count=1;
+        
+        if(count>max)//找大更大的數量的值, 重新記錄答案.
+        {
+            list.clear();
+            max=count;
+        }
+        if(count>=max)    //加入紀錄更大數量或是與目前最大數量的值作為答案.
+            list.add(root.val);   
+            
+        preVal=root.val;
+        traverse(root.right);
+    }   
+}
+
+
+===============================================================================================
+Runtime: 17 ms
+You are here! 
+Your runtime beats 38.21% of java submissions.
+https://leetcode.com/submissions/detail/96396779/
+
+//紀錄別人有趣的寫法.
+//不用中序的方式,就走訪一次樹並記錄每一個值的數量.
+//若只是普通的樹的話,這方法應該是通用解了.
+
+public class Solution {
+    public int[] findMode(TreeNode root) {
+        List<Integer> res = new ArrayList<Integer>();
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        int m = helper(root, map);
+        for (int i : map.keySet()) {
+            if (map.get(i) == m) res.add(i);
+        }
+        int [] r = new int[res.size()];
+        for (int i = 0; i < res.size(); i++) {
+            r[i] = res.get(i);
+        }
+        return r;
+    }
+    
+    public int helper(TreeNode node, HashMap<Integer, Integer> map) {
+        if (node == null) return 0;
+        if (map.containsKey(node.val)) {
+            map.put(node.val, map.get(node.val)+1);
+        } else {
+            map.put(node.val, 1);
+        }
+        int l = helper(node.left, map);
+        int r = helper(node.right, map);
+        int m = Math.max(l, r);
+        return Math.max(map.get(node.val), m);
+    }
+}
