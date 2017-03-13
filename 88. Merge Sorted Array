@@ -1,0 +1,24 @@
+https://leetcode.com/problems/merge-sorted-array/#/description
+Runtime: 0 ms
+You are here! 
+Your runtime beats 48.81% of java submissions.
+https://leetcode.com/submissions/detail/96504226/
+
+//概念大概就是兩個陣列的point都必須要從頭跑到該陣列的尾為止.
+//才代表所有的值都被比較過大小,並且合併到某一個陣列當中.
+public class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int nums1Index=m-1,nums2Index=n-1,index=m+n-1;
+        for(;(nums1Index>=0) && (nums2Index>=0);)
+        {
+            if(nums1[nums1Index]>=nums2[nums2Index])   
+                nums1[index--]=nums1[nums1Index--];
+            else
+                nums1[index--]=nums2[nums2Index--];
+        }
+        for(;nums1Index>=0;)
+            nums1[index--]=nums1[nums1Index--];
+        for(;nums2Index>=0;)
+            nums1[index--]=nums2[nums2Index--];
+    }
+}
