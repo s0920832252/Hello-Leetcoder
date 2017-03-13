@@ -16,7 +16,7 @@ public class Solution {
             else
                 nums1[index--]=nums2[nums2Index--];
         }
-        for(;nums1Index>=0;)
+        for(;nums1Index>=0;)                        //19,20兩行,在此題目可不加.
             nums1[index--]=nums1[nums1Index--];
         for(;nums2Index>=0;)
             nums1[index--]=nums2[nums2Index--];
