@@ -1,0 +1,66 @@
+https://leetcode.com/problems/remove-duplicates-from-sorted-list/#/description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 19.35% of java submissions
+https://leetcode.com/submissions/detail/96654168/
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+ 
+ //就走訪link一次,重複的node就做處理.
+ //要馬比較當前點和下一個點(在迴圈判斷要注意會不會出現空指標的問題)  要馬比較當前點和上一個點(會比較多行,if判斷要多寫一點,以及記錄上一個值). 
+ //另外需要注意的 大概就是, 需要先留一個指向link開頭的point 當作答案回傳.
+ 
+public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode ans=head;
+        while(head!=null && head.next!=null)
+        {
+            if (head.val==head.next.val)
+                head.next=head.next.next;
+            else
+                head=head.next;
+        }
+        return ans;
+    }
+}
+
+=============================
+Runtime: 1 ms
+You are here! 
+Your runtime beats 19.35% of java submissions
+https://leetcode.com/submissions/detail/96653980/
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+ 
+ //遞迴版本.
+public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        
+        if(head==null || head.next==null)
+            return head;
+        if(head.val==head.next.val)
+        {
+            head.next=head.next.next;
+            deleteDuplicates(head);
+        }
+        else
+            deleteDuplicates(head.next);
+       
+        return head;
+    }
+}
