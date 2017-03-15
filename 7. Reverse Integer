@@ -1,0 +1,97 @@
+https://leetcode.com/problems/reverse-integer/#/description
+Runtime: 42 ms
+You are here! 
+Your runtime beats 61.77% of java submissions.
+https://leetcode.com/submissions/detail/96809513/
+
+//利用%10取出最右邊的位數, 利用/10 移動左邊的位數右移到各位數., 然後相加以前*10推回正確的數字.
+//重覆這個動作
+//需要特別注意overflow !!!!
+public class Solution {
+    public int reverse(int x) {
+        return x<0? -1*reverseInteger(-x):reverseInteger(x);
+    }
+    
+    public int reverseInteger(int x)
+    {
+        int ans=0,max=Integer.MAX_VALUE/10;
+        
+        while(x>=1)
+        {
+            if( ans>max || (ans==max && x%10>=8))
+                return 0;
+            ans = ans * 10 + (x % 10);
+            x/=10;
+        }
+        return ans;
+    }
+}
+
+=======================================================================================
+=======================================================================================
+Runtime: 56 ms
+You are here! 
+Your runtime beats 14.91% of java submissions
+https://leetcode.com/submissions/detail/96809029/
+
+//懶得解決overflow,  直接宣告成long 
+public class Solution {
+    public int reverse(int x) {
+        return x<0? -1*reverseInteger(-x):reverseInteger(x);
+    }
+    
+    public int reverseInteger(long x)
+    {
+        long ans=0;
+        while(x>=1)
+        {
+            if( (ans=ans*10+x%10)>=Integer.MAX_VALUE)
+                return 0;
+            x/=10;
+        }
+        return (int)ans;
+    }
+}
+
+=======================================================================================
+=======================================================================================
+
+Runtime: 107 ms
+You are here! 
+Your runtime beats 0.29% of java submissions.
+https://leetcode.com/submissions/detail/96813028/
+
+//把數字轉成字串處理.   鐵慢.
+public class Solution {
+    public int reverse(int x) {
+        int result = 0;
+		if (x > Integer.MAX_VALUE)
+			return 0;
+		if (x >= 0) {
+			StringBuffer sBuffer = new StringBuffer(Integer.toString(x));
+			String reString = sBuffer.reverse().toString().trim();
+			try {
+				result = Integer.parseInt(reString);
+			} catch (Exception ex) {
+				System.out.println("error");
+				return 0;
+			}
+
+		}
+		if (x < 0) {
+			StringBuffer sBuffer = new StringBuffer(Integer.toString(x)
+					.replace("-", ""));
+			String reString = "-" + sBuffer.reverse().toString();
+			try {
+				result = Integer.parseInt(reString);
+			} catch (Exception ex) {
+				System.out.println("error");
+				return 0;
+			}
+
+		}
+		System.out.println(result);
+
+		return result;
+    }
+}
