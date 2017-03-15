@@ -6,7 +6,7 @@ https://leetcode.com/submissions/detail/96809513/
 
 //利用%10取出最右邊的位數, 利用/10 移動左邊的位數右移到各位數., 然後相加以前*10推回正確的數字.
 //重覆這個動作
-//需要特別注意overflow !!!!
+//需要特別注意overflow !!!!   我沒注意到測資有說...在這邊卡了五分鐘...
 public class Solution {
     public int reverse(int x) {
         return x<0? -1*reverseInteger(-x):reverseInteger(x);
