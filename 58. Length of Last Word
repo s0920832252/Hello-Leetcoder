@@ -1,0 +1,60 @@
+https://leetcode.com/problems/length-of-last-word/#/description
+Runtime: 5 ms
+You are here! 
+Your runtime beats 74.63% of java submissions.
+https://leetcode.com/submissions/detail/96964441/
+
+//題目是要最後一個字串的字有多少個.  因此從最後面開始數.
+//下一個字遇到' ' 代表這最後一個字串的字數完了,就跳出.  限制i>=1  是因為測資有  'a'  i-1會出事.
+public class Solution {
+    public int lengthOfLastWord(String s) {
+        int ans=0;
+        for(int i=s.length()-1;i>=0;i--)
+        {
+            if(s.charAt(i)!=' ')
+            {
+                ans++;
+                if(i>=1 && s.charAt(i-1)==' ')
+                    break;
+            }
+        }
+        return ans;
+    }
+}
+
+=================================================
+=================================================
+Runtime: 8 ms
+You are here! 
+Your runtime beats 21.33% of java submissions.
+https://leetcode.com/submissions/detail/96961917/
+
+//用split(" ") 把字串拆成字串陣列.
+//就可以直接讀最後一個字串了
+public class Solution {
+    public int lengthOfLastWord(String s) {
+        String strSplit[]=s.split(" ");
+        return strSplit.length==0?0:strSplit[strSplit.length-1].length();
+    }
+}
+
+=================================================
+=================================================
+Runtime: 5 ms
+You are here! 
+Your runtime beats 74.63% of java submissions.
+https://leetcode.com/submissions/detail/96963805/
+
+//強者的寫法,  我必須要更熟悉java的API呀= =
+//trim() -> 去除字串首尾的空白字元
+//lastIndexOf(" ") -> 取得最後一個" "在字串中的位置.
+//substring(開始取子字串的位置) -> 若輸入3 代表從字串中位置3開始直到最後 回傳這樣的子字串.
+
+public class Solution {
+    public int lengthOfLastWord(String s) {
+        if (null == s || s.trim().length() == 0) return 0;
+        s = s.trim();
+        String lastWord = s.substring(s.lastIndexOf(" ") + 1);
+        return lastWord.length();
+    }
+}
