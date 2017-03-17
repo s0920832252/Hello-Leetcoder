@@ -35,7 +35,7 @@ Runtime: 7 ms
 You are here! 
 Your runtime beats 82.62% of java submissions.
 
-//概念同上作法, 但使用JAVA字串的substring.
+//概念抄襲上面作法XD, 但使用JAVA字串的substring 實現.
 public class Solution {
     public int strStr(String haystack, String needle)  {
         int haystackLen=haystack.length();
