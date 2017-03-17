@@ -1,0 +1,52 @@
+https://leetcode.com/problems/implement-strstr/#/description
+Runtime: 7 ms
+You are here! 
+Your runtime beats 82.62% of java submissions
+https://leetcode.com/submissions/detail/97065576/
+
+//這題真的太靠北了= =
+//到底為何"" ""  是要回答0 不是-1呀~~~~
+//不偷看寫不出來ORZ
+// 這行 i<haystackCharArray.length-needleCharArray.length+1 想出來的人,真的太神啦~
+// 反正比對 haystack每一個字, 若是有相同,則開始比needle, 若是needle包含在haystack每一個字內 則 j==needleCharArray.length
+public class Solution {
+    public int strStr(String haystack, String needle) {
+     
+        char haystackCharArray[]=haystack.toCharArray();
+        char needleCharArray[]=needle.toCharArray();
+        int ans=0;
+        for(int i=0;i<haystackCharArray.length-needleCharArray.length+1;i++) 
+        {
+            int j=0;
+            for(;j<needleCharArray.length;j++)
+                if(haystackCharArray[i+j]!=needleCharArray[j])
+                    break;
+            if(j==needleCharArray.length)
+                return i;
+        }
+        return -1;
+    }
+}
+
+===========================================================================================
+===========================================================================================
+https://leetcode.com/submissions/detail/97066477/
+Runtime: 7 ms
+You are here! 
+Your runtime beats 82.62% of java submissions.
+
+//概念同上作法, 但使用JAVA字串的substring.
+public class Solution {
+    public int strStr(String haystack, String needle)  {
+        int haystackLen=haystack.length();
+        int needleLen=needle.length();
+        String tempStr;
+        for(int i=0;i< haystackLen-needleLen+1;i++)
+        {
+            tempStr=haystack.substring(i,i+needleLen);
+            if(tempStr.equals(needle))
+                return i;
+        }
+        return -1;
+    }
+}
