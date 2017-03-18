@@ -7,7 +7,7 @@ https://leetcode.com/submissions/detail/97163262/
 //用一個矩陣紀錄 找出的非質數,再去count有幾個質數.
 public class Solution {
     public int countPrimes(int n) {
-        boolean notPrimes[]=new boolean[n];
+        boolean notPrimes[]=new boolean[n];//陣列初始值全部都是false.
         int ans=0;
         
         for(int i=2;i*i<n;i++)  //用i*i<n 而非  i<math.sqrt(n),因為i*i<n會比較快.
