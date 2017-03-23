@@ -1,0 +1,48 @@
+https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/#/description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 15.00% of java submissions.
+https://leetcode.com/submissions/detail/97754472/
+
+
+//高手真多... 1ms 還只贏15% = =
+//tag是說DFS, 但我覺得應該說 Divide and Conquer會更好.
+//因為題目已經說了, 給的是已經排序過遞增的矩陣.
+//因此只要考慮如何建立平衡的BST子樹就好,左子樹必須比root小,反之相反.
+//因為是平衡的,所以直覺的想法是 root選擇中間點來擔任,這樣左子樹與右子樹的個數才會相同.
+//有了root,就可以去找左子樹以及右子樹了.
+//左子樹的範圍必定在矩陣1~(root位置-1)之間, 反之右子樹相反.
+//反正就是Divide and Conquer啦!!!
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return travelTree(nums,0,nums.length-1);
+    }
+    
+    public TreeNode travelTree(int[] nums,int left,int right)
+    {
+        TreeNode root;
+        if(left<=right)
+        {
+            int mid=(left+right)/2;
+            root=new TreeNode(nums[mid]);
+            root.right=travelTree(nums,mid+1,right);
+            root.left=travelTree(nums,left,mid-1);
+        }
+        else
+            return null;
+        
+        return root;
+    }
+    
+  
+}
