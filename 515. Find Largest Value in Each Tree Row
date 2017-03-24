@@ -4,6 +4,7 @@ You are here!
 Your runtime beats 87.41% of java submissions.
 https://leetcode.com/submissions/detail/97865386/
 
+//看來看去,主要就是這兩種解法了,細節不同,但大策略來說,就這兩種BFS,DFS
 //一個概念是 list的第一個放tree第一層的數字 , 第二個放Tree第二層最大的數字...以此類推...
 //所以就可以用DFS走訪整顆tree, 若level>=list.size() 代表現在還在第一次探訪tree的階段,還沒有到過leave
 //反之,則需要開始比較現在探訪的node值是否比之前同level的node值大!?
@@ -36,3 +37,42 @@ public class Solution {
         travelTree(list,root.right,level+1);
     }
 }
+
+========================================================================================
+========================================================================================
+
+Runtime: 10 ms
+You are here! 
+Your runtime beats 87.41% of java submissions.
+https://leetcode.com/submissions/detail/97866923/
+//概念同上,只是使用BFS, BFS我實在不太熟= =
+public class Solution {
+    public List<Integer> largestValues(TreeNode root) {
+        return root==null?new ArrayList<Integer>():travelTree(root);
+    }
+    
+    public List<Integer> travelTree(TreeNode root)
+    {
+        List<Integer> ans=new ArrayList<Integer>();
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(root); // queue.add(root)亦可,差別只在於多了是否回傳加入成功	
+        while (!queue.isEmpty())
+        {
+            int level = queue.size();
+            int max = Integer.MIN_VALUE;
+            for(int i=0;i<level;i++)
+            {
+                TreeNode node = queue.poll();//queue.peek()也會pop出東西,但不會移除出queue
+                if(node.left!=null)
+                    queue.offer(node.left);
+                if(node.right!=null)
+                    queue.offer(node.right);
+                if(max < node.val)
+                    max=node.val;
+            }
+            ans.add(max);
+        }
+        return ans;
+    }    
+}
+
