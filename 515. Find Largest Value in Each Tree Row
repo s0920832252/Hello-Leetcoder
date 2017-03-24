@@ -30,7 +30,7 @@ public class Solution {
         else if(level>=list.size())
             list.add(root.val);
         else if(list.get(level)<root.val)
-            list.set(level,root.val);
+            list.set(level,root.val);  //用root.val 替換 list第level個值.
         
         travelTree(list,root.left,level+1);
         travelTree(list,root.right,level+1);
