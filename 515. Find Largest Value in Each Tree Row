@@ -1,0 +1,38 @@
+https://leetcode.com/problems/find-largest-value-in-each-tree-row/#/description
+Runtime: 10 ms
+You are here! 
+Your runtime beats 87.41% of java submissions.
+https://leetcode.com/submissions/detail/97865386/
+
+//一個概念是 list的第一個放tree第一層的數字 , 第二個放Tree第二層最大的數字...以此類推...
+//所以就可以用DFS走訪整顆tree, 若level>=list.size() 代表現在還在第一次探訪tree的階段,還沒有到過leave
+//反之,則需要開始比較現在探訪的node值是否比之前同level的node值大!?
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List<Integer> largestValues(TreeNode root) {
+        List<Integer> ans=new ArrayList<Integer>();
+        travelTree(ans,root,0);
+        return ans;
+    }
+    
+    public void travelTree(List<Integer> list,TreeNode root,int level)
+    {
+        if(root==null)
+            return ;
+        else if(level>=list.size())
+            list.add(root.val);
+        else if(list.get(level)<root.val)
+            list.set(level,root.val);
+        
+        travelTree(list,root.left,level+1);
+        travelTree(list,root.right,level+1);
+    }
+}
