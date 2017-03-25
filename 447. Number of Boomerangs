@@ -38,3 +38,42 @@ public class Solution {
         return (pA[0]-pB[0])*(pA[0]-pB[0])+(pA[1]-pB[1])*(pA[1]-pB[1]);
     }   
 }
+
+
+===============================================================================
+
+Runtime: 119 ms
+You are here! 
+Your runtime beats 98.75% of java submissions.
+https://leetcode.com/submissions/detail/97928222/
+
+//突然想到可以用map.getOrDefault(powDist,0)去節省使用containsKey的時間,反正都要取值了,幹嘛還要多做containsKey()?
+
+public class Solution {
+    public int numberOfBoomerangs(int[][] points) {
+        
+        int pointNum=points.length;
+        int ans=0;
+        Map<Integer,Integer> map=new HashMap<Integer,Integer>();
+        for(int i=0;i<pointNum;i++)
+        {
+            for(int j=0;j<pointNum;j++)
+            {   
+                if(i==j)
+                    continue;
+                int powDist=getpowDist(points[i],points[j]);
+                int tempCount=map.getOrDefault(powDist,0);
+                map.put(powDist,tempCount+1);
+                if(tempCount!=0)
+                    ans+=tempCount;
+            }
+            map.clear();
+        }
+        return ans*2;
+    }
+    
+    public int getpowDist(int pA[],int pB[])
+    {
+        return (pA[0]-pB[0])*(pA[0]-pB[0])+(pA[1]-pB[1])*(pA[1]-pB[1]);
+    }   
+}
