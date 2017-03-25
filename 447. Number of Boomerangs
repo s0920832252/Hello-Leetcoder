@@ -28,7 +28,7 @@ public class Solution {
                 else
                     map.put(powDist,1);
             }
-            map.clear();//使用.clear清空這次的count,  會比把map放在for(int i=0)裡面的一開始 快,map的初始化超花時間.
+            map.clear();//使用.clear清空這次的count,  會比把map放在for(int i=0)裡面的一開始 快,map的初始化超花時間. 沒做這個動作大概在50%附近了
         }
         return ans*2;//兩個點可以互換,算兩個count所以*2
     }
