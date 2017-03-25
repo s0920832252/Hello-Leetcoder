@@ -1,0 +1,40 @@
+https://leetcode.com/problems/number-of-boomerangs/#/description
+Runtime: 123 ms
+You are here! 
+Your runtime beats 98.46% of java submissions.
+https://leetcode.com/submissions/detail/97917802/
+
+//我好費,這題我覺得好難= =,解了我兩個小時Orz
+//這題我一開始在理解題目的時候,就理解錯誤了,後來才發現這題的意思是 只要有一個點到另外兩個點的距離一樣就好,就算一個count,而非取最大count.
+public class Solution {
+    public int numberOfBoomerangs(int[][] points) {
+        
+        int pointNum=points.length;
+        int ans=0;
+        Map<Integer,Integer> map=new HashMap<Integer,Integer>();
+        for(int i=0;i<pointNum;i++)
+        {
+            for(int j=0;j<pointNum;j++)
+            {   
+                if(i==j)
+                    continue;
+                int powDist=getpowDist(points[i],points[j]);
+                if(map.containsKey(powDist))
+                {
+                    int tempCount=map.get(powDist);
+                    map.put(powDist,tempCount+1);
+                    ans+=tempCount;
+                }
+                else
+                    map.put(powDist,1);
+            }
+            map.clear();//使用.clear清空這次的count,  會比把map放在for(int i=0)裡面的一開始 快,map的初始化超花時間.
+        }
+        return ans*2;//兩個點可以互換,算兩個count所以*2
+    }
+    
+    public int getpowDist(int pA[],int pB[])
+    {
+        return (pA[0]-pB[0])*(pA[0]-pB[0])+(pA[1]-pB[1])*(pA[1]-pB[1]);
+    }   
+}
