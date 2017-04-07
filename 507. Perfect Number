@@ -1,0 +1,21 @@
+https://leetcode.com/problems/perfect-number/#/description
+Runtime: 16 ms
+https://leetcode.com/submissions/detail/99392535/
+
+//題外話:num是很大的數字,即使只是拿來做比較大小,也會花很多時間.
+//因為完整數是 不包含自己的,所有因數相加,
+//因此除了1這個因素外,其他都能夠配對.所以先找這些配對出來相加.
+//最後再看看這個數字加一是否等於num 即可知道是不是完整數了.
+public class Solution {
+    public boolean checkPerfectNumber(int num) {
+        if(num==1) return false;
+        
+        int ans=0;
+        for(int i=2;i<num/i;i++)
+        {
+            if(num%i==0)
+                ans+=(i+num/i);
+        }
+        return (ans+1)==num;
+    }
+}
