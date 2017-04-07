@@ -11,7 +11,7 @@ public class Solution {
         if(num==1) return false;
         
         int ans=0;
-        for(int i=2;i*i<num;i++) // i*i<num 亦可寫成 i<num/i 但乘法比除法快.  , 大概可以快3ms吧.
+        for(int i=2;i*i<num;i++) // i*i<num 亦可寫成 i<num/i 亦可寫成 i<=Math.sqrt(num)  由左到右大概各快右邊的3ms吧.
         {
             if(num%i==0)
                 ans+=(i+num/i);
