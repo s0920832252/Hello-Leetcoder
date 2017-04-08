@@ -1,0 +1,65 @@
+https://leetcode.com/problems/convert-bst-to-greater-tree/#/description
+Runtime: 18 ms
+https://leetcode.com/submissions/detail/99440060/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ 
+//這題需要知道 BST 的結構特性是 又兒子>=自己,左兒子<=自己.
+//概念:樹中每一個點都要加上比自己大的數字.
+//換句話說,只要由大到小走訪,並加總所經過的root.val,當時的加總就是那個root.val的值了.
+//實作:用DFS比較方便好做.
+//不過應該也可以用BFS的方式做吧XDD,不論是用Stack or Queue實作BFS. 只要注意放進去容器的順序. 應該大概或許吧...
+ 
+public class Solution {
+    public int sum=0;
+    public TreeNode convertBST(TreeNode root) {
+        if(root!=null)
+            convertGreatBST(root);
+        return root;
+    }
+    
+    public void convertGreatBST(TreeNode root)
+    {
+        if(root.right!=null)
+            convertGreatBST(root.right);
+        sum+=root.val;
+        root.val=sum;
+        if(root.left!=null)
+            convertGreatBST(root.left);
+    }
+}
+
+
+============================================================================================
+============================================================================================
+============================================================================================
+Runtime: 19 ms
+https://leetcode.com/submissions/detail/99444056/
+突然想到sum不一定要用global的方式傳遞,反正只要能把目前的加總傳回來就好了.
+
+public class Solution {
+    public TreeNode convertBST(TreeNode root) {
+        int sum=0;
+        if (root!=null)
+            convertGreatBST(root,sum);
+        return root;
+    }
+    
+    public int convertGreatBST(TreeNode root,int sum)
+    {
+        root.val+=root.right==null?sum:convertGreatBST(root.right,sum);
+        return root.left==null?root.val:convertGreatBST(root.left, root.val);
+    }
+}
+
+
+
