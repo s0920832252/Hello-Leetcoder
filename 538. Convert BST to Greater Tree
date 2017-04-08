@@ -44,7 +44,9 @@ public class Solution {
 ============================================================================================
 Runtime: 19 ms
 https://leetcode.com/submissions/detail/99444056/
-突然想到sum不一定要用global的方式傳遞,反正只要能把目前的加總傳回來就好了.
+//突然想到sum不一定要用global的方式傳遞,反正只要能把目前的加總傳回來就好了.
+//有兒子時,用函數的方式傳下去,
+//沒有兒子則透過回傳的方式,傳回去.
 
 public class Solution {
     public TreeNode convertBST(TreeNode root) {
