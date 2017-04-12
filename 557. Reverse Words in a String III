@@ -1,0 +1,50 @@
+https://leetcode.com/problems/reverse-words-in-a-string-iii/#/description
+Runtime: 16 ms
+https://leetcode.com/submissions/detail/99854812/
+
+public class Solution {
+    public String reverseWords(String s) {
+    //直接call api了.
+        String str[]=s.split(" ");
+        StringBuilder sb= new StringBuilder();
+        
+        sb.append((new StringBuilder(str[0])).reverse());
+        for(int i=1;i<str.length;i++)
+            sb.append(" "+(new StringBuilder(str[i])).reverse());
+        
+        return sb.toString();
+    }
+}
+
+
+
++=========================================
++=========================================
+Runtime: 8 ms
+https://leetcode.com/submissions/detail/99857086/
+
+public class Solution {
+    public String reverseWords(String s) {
+        char[] str = s.toCharArray();
+        for(int i=0,j=0; j<str.length;i=++j)    
+        {
+            while(j<str.length && str[j]!=' ')//找到空格位置.
+                j++;
+            reverse(str, i, j-1);//反轉字串
+        }
+      
+        return new String(str);
+    }
+    
+    public void reverse(char[] str, int left, int right){
+        char temp;
+        while(left<right)
+        {
+                temp = str[right];
+                str[right] = str[left];
+                str[left] = temp;
+                left++;
+                right--;
+        }
+    }
+}
