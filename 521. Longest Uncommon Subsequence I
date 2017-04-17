@@ -1,0 +1,17 @@
+https://leetcode.com/problems/longest-uncommon-subsequence-i/#/description
+Runtime: 4 ms
+https://leetcode.com/submissions/detail/100357661/
+
+//若兩字串相同,代表不存在Longest Uncommon Subsequence
+//否則回傳兩字串中,最長的那一個字串長度.  - 因為她要的是兩字串中 最長的那一個Longest Uncommon Subsequence,所以你找兩字串中最長的那一個,就是了.
+//這一題,最難的是題目的英文............................我她媽看了十幾分鐘才看懂她在幹嘛= =:
+//我英文好弱....................................
+
+public class Solution {
+    public int findLUSlength(String a, String b) {
+        if(a.equals(b))
+            return -1;
+        else
+            return Math.max(a.length(),b.length());
+    }
+}
