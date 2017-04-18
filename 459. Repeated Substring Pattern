@@ -1,0 +1,132 @@
+https://leetcode.com/problems/repeated-substring-pattern/#/description
+Runtime: 255 ms
+You are here! 
+Your runtime beats 10.52% of java submissions.
+https://leetcode.com/submissions/detail/100439971/
+
+//配合hint用String解決問題,但不出所料,還蠻慢的XD
+//要判斷此字串是否為重複字串,  第一個問題是 重複字串的字數為多少?
+//因此先測試這個數字是多少,若重複字串字數無法被總字串字數整除,自然不可是答案,因此排除.
+//再來就是判斷是該重複字數是不是真的是重複字串了,  透過檢查第一組重複字串與其他組字串是否相同.
+public class Solution {
+    public boolean repeatedSubstringPattern(String s) {
+        int strLen=s.length();
+        if(strLen<2) 
+            return false;
+        for(int i=1;i<strLen;i++)
+        {
+            if(strLen%i==0 && checkRepeat(s, i))
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean checkRepeat(String str, int divide)
+    {
+        boolean repeat=false;
+        int strLen=str.length();
+        String splitStr[]=str.split(str.substring(0,divide));
+        for(int i=1;i<splitStr.length;i++)
+        {
+            if(!splitStr[0].equals(splitStr[i]))
+                return false;
+        }
+        return true;
+    }
+}
+
+=====================================================================================
+=====================================================================================
+
+Runtime: 50 ms
+You are here! 
+Your runtime beats 59.63% of java submissions.
+https://leetcode.com/submissions/detail/100441049/
+
+//改用charAt()的方式.  因此只是要判斷重複字串是否皆相同, 所以亙本不需要做字串分割的動作.
+public class Solution {
+    public boolean repeatedSubstringPattern(String s) {
+        int strLen=s.length();
+        if(strLen<2) 
+            return false;
+        for(int i=1;i<strLen;i++)
+        {
+            if(strLen%i==0 && checkRepeat(s, i))
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean checkRepeat(String str, int divide)
+    {
+        boolean repeat=false;
+        int strLen=str.length();
+        for(int i=divide;i<str.length();i+=divide)
+        {
+            for(int j=0;j<divide;j++)
+            {
+                if(str.charAt(j)!=str.charAt(i+j))
+                    return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+=====================================================================================
+=====================================================================================
+
+Runtime: 66 ms
+You are here! 
+Your runtime beats 34.85% of java submissions.
+https://leetcode.com/submissions/detail/100441333/
+
+//偷看別人的作法,蠻聰明的.   若是重複的字串位置處於s+s, 則代表沒有重複字串.
+public class Solution {
+    public boolean repeatedSubstringPattern(String s) {
+        return ((s+s).indexOf(s,1))<s.length();
+    }
+}
+
+
+=====================================================================================
+=====================================================================================
+
+Runtime: 9 ms
+You are here! 
+Your runtime beats 99.97% of java submissions.
+https://leetcode.com/submissions/detail/100441569/
+
+//偷看別人的作法, 但這做法,並不是因為真的很強,只是因為測資中並沒有2,3以上重複字串的組成.   因此用一個5*7的字串,就爆掉了.
+
+public class Solution {
+    public boolean repeatedSubstringPattern(String s) {
+        int len = s.length();
+        if(s.length()<2) return false;
+       // repeating even time
+        int mid = len/2;
+        if (s.substring(0,mid).equals(s.substring(mid))) {
+            return true;
+        }
+
+        // check odd time
+        int one_third = len / 3;
+        String sub = s.substring(0,one_third);
+        if (sub.equals(s.substring(one_third,one_third*2))
+                && sub.equals(s.substring(one_third*2))) {
+            return true;
+        }
+
+        // special case for string consists of one character.
+        if (len % 2 == 1) {
+            char c = s.charAt(0);
+            for (int i=1; i<len; i++) {
+                if (s.charAt(i) !=c ) return false;
+            }
+            return true;
+        }
+
+        return false;
+    }
+}
