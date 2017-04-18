@@ -98,7 +98,7 @@ You are here!
 Your runtime beats 99.97% of java submissions.
 https://leetcode.com/submissions/detail/100441569/
 
-//偷看別人的作法, 但這做法,並不是因為真的很強,只是因為測資中並沒有2,3以上重複字串的組成.   因此用一個5*7的字串,就爆掉了.
+//別人的作法, 但這做法,並不是因為真的很強,所以我也懶得改寫,只是因為測資中並沒有2,3以上重複字串的組成.   因此用一個5*7的字串,就爆掉了.
 
 public class Solution {
     public boolean repeatedSubstringPattern(String s) {
