@@ -1,0 +1,33 @@
+https://leetcode.com/problems/balanced-binary-tree/#/description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 76.41% of java submission
+https://leetcode.com/submissions/detail/100537516/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ 
+ //使用DFS走訪,若碰到葉子,回傳深度0.,透過bottum up的方式,逐步往上加數字.   深度越深,回傳的深度越大.
+ //因為此題目是要判斷平衡樹,因此加入判斷是否為平衡樹,並且將 非平衡樹的結果回傳.
+public class Solution {
+    public boolean isBalanced(TreeNode root) {
+        return getDepth(root) >= 0;
+    }
+    
+    public int getDepth(TreeNode root)
+    {
+        if(root==null)
+            return 0;
+        int left=getDepth(root.left),right=getDepth(root.right);
+        if(left<0 || right<0 || Math.abs(left-right)>1)
+            return -1;
+        return Math.max(left,right)+1;
+    }
+}
