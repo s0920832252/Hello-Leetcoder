@@ -15,7 +15,7 @@ https://leetcode.com/submissions/detail/100537516/
  */
  
  //使用DFS走訪,若碰到葉子,回傳深度0.,透過bottum up的方式,逐步往上加數字.   深度越深,回傳的深度越大.
- //因為此題目是要判斷是否為平衡樹而不是求樹的最大深度,因此加入判斷是否為平衡樹,並且將 非平衡樹的結果回傳.
+ //因為此題目是要判斷是否為平衡樹而不是求樹的最大深度,因此修改判斷為是否為平衡樹,並且將 非平衡樹的結果回傳.
 public class Solution {
     public boolean isBalanced(TreeNode root) {
         return getDepth(root) >= 0;
