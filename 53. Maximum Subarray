@@ -31,7 +31,7 @@ Your runtime beats 97.59% of java submissions.
 https://leetcode.com/submissions/detail/100743881/
 
 //仔細想想,亙本不用把所有的sum都記起來= =
-//只要能判斷sum是否為正就好.
+//只要能判斷sum是否為正就好.  即是說,重點是那個歸零重新計數的那個動作
 //PS: 需要注意測資全部為負的  情況.
 public class Solution {
     public int maxSubArray(int[] nums) {
