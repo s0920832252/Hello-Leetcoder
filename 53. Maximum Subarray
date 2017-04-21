@@ -1,0 +1,51 @@
+https://leetcode.com/problems/maximum-subarray/#/description
+Runtime: 16 ms
+You are here! 
+Your runtime beats 67.98% of java submissions.
+https://leetcode.com/submissions/detail/100746182/
+
+
+//用sum紀錄 到i為止,最大的sum值
+//之後找出所有的sum中最大的回傳作為答案.
+public class Solution {
+    public int maxSubArray(int[] nums) {
+        int sum[]=new int[nums.length];
+        sum[0]=nums[0];
+        int ans=nums[0];
+        for(int i=1;i<nums.length;i++)
+        {
+            sum[i]=Math.max(sum[i-1]+nums[i],nums[i]);
+            if(sum[i]>ans)
+                ans=sum[i];
+        }
+        return ans;
+    }    
+}
+
+
+======================================================================================
+======================================================================================
+Runtime: 14 ms
+You are here! 
+Your runtime beats 97.59% of java submissions.
+https://leetcode.com/submissions/detail/100743881/
+
+//仔細想想,亙本不用把所有的sum都記起來= =
+//只要能判斷sum是否為正就好.
+//PS: 需要注意測資全部為負的  情況.
+public class Solution {
+    public int maxSubArray(int[] nums) {
+        int ans=Integer.MIN_VALUE;
+        int sum=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            sum+=nums[i];
+            if (sum>ans)
+                ans=sum;
+            if (sum<0) 
+                sum=0;
+        }
+        return ans;
+    }
+    
+}
