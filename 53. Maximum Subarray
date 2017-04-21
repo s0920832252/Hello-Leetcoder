@@ -33,6 +33,22 @@ https://leetcode.com/submissions/detail/100743881/
 //仔細想想,亙本不用把所有的sum都記起來= =
 //只要能判斷sum是否為正就好.  即是說,重點是那個歸零重新計數的那個動作
 //PS: 需要注意測資全部為負的  情況.
+
+public class Solution {
+    public int maxSubArray(int[] nums) {
+        int sum=0;
+        int ans=Integer.MIN_VALUE;
+        for(int i=0;i<nums.length;i++)
+        {
+            sum=Math.max(sum+nums[i],nums[i]);
+            if(sum>ans)
+                ans=sum;
+        }
+        return ans;
+    }    
+}
+
+
 public class Solution {
     public int maxSubArray(int[] nums) {
         int ans=Integer.MIN_VALUE;
@@ -46,6 +62,5 @@ public class Solution {
                 sum=0;
         }
         return ans;
-    }
-    
+    }    
 }
