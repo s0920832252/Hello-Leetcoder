@@ -5,7 +5,7 @@ Your runtime beats 67.98% of java submissions.
 https://leetcode.com/submissions/detail/100746182/
 
 
-//用sum紀錄 到i為止的sum值
+//用sum紀錄 到i為止的最大sum值,當然若是為負,則重新計數
 //之後找出所有的sum中最大的回傳作為答案.
 public class Solution {
     public int maxSubArray(int[] nums) {
