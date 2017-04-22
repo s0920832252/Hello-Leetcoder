@@ -1,0 +1,115 @@
+https://leetcode.com/problems/minimum-depth-of-binary-tree/#/description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 25.23% of java submissions.
+https://leetcode.com/submissions/detail/100825762/
+
+
+//使用DFS走訪,   需要注意的是,與回傳最大深度不同的地方在於, 需要特別判斷兒子其一為null的情況(只有一個兒子).
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ 
+public class Solution {
+    public int minDepth(TreeNode root) {        
+        return findMinDepth(root);
+    }    
+    public int findMinDepth(TreeNode root)
+    {
+        if(root==null)
+            return 0;
+        int left=findMinDepth(root.left),right=findMinDepth(root.right);
+        
+        if(left==0)
+            return right+1;
+        if(right==0)
+            return left+1;
+        return Math.min(left,right)+1;
+    }
+}
+
+=========================================================
+=========================================================
+Runtime: 1 ms
+You are here! 
+Your runtime beats 25.23% of java submissions.
+https://leetcode.com/submissions/detail/100826328/
+//概念同上,只是在進入root==null之前,就先做判斷.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int minDepth(TreeNode root) {        
+        return root==null?0:findMinDepth(root);
+    }    
+    public int findMinDepth(TreeNode root)
+    {
+        if(root.left!=null && root.right!=null)
+            return Math.min(findMinDepth(root.left),findMinDepth(root.right))+1;
+        else if(root.left!=null)
+            return findMinDepth(root.left)+1;
+        else if(root.right!=null)
+            return findMinDepth(root.right)+1;
+        else
+            return 1;    
+    }
+}
+
+=========================================================
+=========================================================
+
+Runtime: 1 ms
+You are here! 
+Your runtime beats 25.23% of java submissions.
+https://leetcode.com/submissions/detail/100834554/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int minDepth(TreeNode root) {        
+        return root==null?0:findMinDepth(root);
+    }
+    
+    public int findMinDepth(TreeNode root)
+    {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        int depth=1;
+        while(!queue.isEmpty())
+        {
+            int levelCount = queue.size();
+            for (int i = 0; i< levelCount; i++)  //把同一層的node都pop出去.  若有兒子則加入queue,如此才能保證會優先愈到leaf.
+            {   
+                TreeNode node=queue.poll();
+                if(node.left==null && node.right==null)
+                    return depth;
+                if(node.left!=null)
+                    queue.add(node.left);
+                if(node.right!=null)
+                    queue.add(node.right);
+            }
+            depth++;
+        }
+        return -1;
+    }
+}
