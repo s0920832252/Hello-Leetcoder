@@ -6,6 +6,7 @@ https://leetcode.com/submissions/detail/101039589/
 
 //需要特別注意的是"This path may or may not pass through the root." 這句話,
 //我剛開始寫的時候,就只計算root的Diameter,還想說怎麼這麼簡單,一行解決(使用findMaxTreeDepth()),然後就錯了..............Orz
+//直覺來說root的Diameter會最大,但實際上,如果某子node的左兒子和右兒子非常的茂密,其Diameter是可能大過root的
 
 //用DFS走訪每一個點,並且看這點的Diameter是否是整棵樹最大的Diameter,若是,則回傳.
 /**
