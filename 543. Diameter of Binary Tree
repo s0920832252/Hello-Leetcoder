@@ -5,7 +5,7 @@ Your runtime beats 17.02% of java submissions
 https://leetcode.com/submissions/detail/101039589/
 
 
-//用DFS走訪每一個點,並且看這點的Diameter是否是整棵樹最大的Diameter
+//用DFS走訪每一個點,並且看這點的Diameter是否是整棵樹最大的Diameter,若是,則回傳.
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
