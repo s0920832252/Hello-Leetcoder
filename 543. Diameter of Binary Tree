@@ -1,0 +1,70 @@
+https://leetcode.com/problems/diameter-of-binary-tree/#/description
+Runtime: 25 ms
+You are here! 
+Your runtime beats 17.02% of java submissions
+https://leetcode.com/submissions/detail/101039589/
+
+
+//用DFS走訪每一個點,並且看這點的Diameter是否是整棵樹最大的Diameter
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int diameterOfBinaryTree(TreeNode root) {
+        if(root==null || (root.left == null && root.right == null))
+            return 0;
+        else 
+        {
+            int rootDiameter=findMaxTreeDepth(root.left)+findMaxTreeDepth(root.right);
+            int maxDiameter=Math.max(diameterOfBinaryTree(root.left),diameterOfBinaryTree(root.right));
+            return Math.max(rootDiameter,maxDiameter);
+        }
+    }
+    public int findMaxTreeDepth(TreeNode root)
+    {
+        if(root==null)
+            return 0;
+        return Math.max(findMaxTreeDepth(root.left),findMaxTreeDepth(root.right))+1;
+    }
+}
+
+
+==============================================================================
+==============================================================================
+Runtime: 9 ms
+You are here! 
+Your runtime beats 83.05% of java submissions.
+https://leetcode.com/submissions/detail/101040242/
+
+//不用走訪每一個點,用一個變數紀錄maxDiameter,所以只要再找路徑的時候,更新這個值即可.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    int ans=0;
+    public int diameterOfBinaryTree(TreeNode root) {
+        findMaxTreeDepth(root);
+        return ans;
+    }
+    public int findMaxTreeDepth(TreeNode root)
+    {
+        if(root==null)
+            return 0;
+        int left=findMaxTreeDepth(root.left),right=findMaxTreeDepth(root.right);
+        if (ans<(left+right))
+            ans=left+right;
+        return Math.max(left,right)+1;
+    }
+}
