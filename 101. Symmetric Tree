@@ -1,0 +1,102 @@
+https://leetcode.com/problems/symmetric-tree/#/description
+Runtime: 3 ms
+You are here! 
+Your runtime beats 4.59 % of java submissions.
+https://leetcode.com/submissions/detail/101133649/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ 
+//概念是 若他是一顆對稱樹, 則只需要比較同一層的node 左半部是否和右半部相同,
+//使用BFS 加上一個new TreeNode[levelCount]即可完成上述動作.
+ 
+public class Solution {
+    public boolean isSymmetric(TreeNode root) {
+    return root==null?true:isSymmetrics(root);
+}
+    public boolean isSymmetrics(TreeNode root) 
+    {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while(!queue.isEmpty())
+        {
+            int levelCount = queue.size();
+            TreeNode levelNode[]=new TreeNode[levelCount];
+            for (int i = 0; i< levelCount; i++) 
+            {   
+                levelNode[i]=queue.poll();
+                if(levelNode[i]!=null)
+                {
+                    if(levelNode[i].left==null)//為了保持這一層的數目結構是對的,因此必須加入null
+                        queue.add(null);
+                    else
+                        queue.add(levelNode[i].left);
+                
+                    if(levelNode[i].right==null)
+                        queue.add(null);
+                    else
+                        queue.add(levelNode[i].right);   
+                }
+                
+            }
+            for (int i = 0; i< levelCount/2; i++)
+            {
+                if(levelNode[i]!=null && levelNode[levelCount-1-i]==null)
+                    return false;
+                else if(levelNode[i]==null && levelNode[levelCount-1-i]!=null)
+                    return false;
+                else if(levelNode[i]!=null && levelNode[levelCount-1-i]!=null)
+                    if(levelNode[i].val!=levelNode[levelCount-1-i].val)
+                        return false;
+            }
+        }
+        return true;
+    }    
+}
+
+======================================================================================
+======================================================================================
+Runtime: 1 ms
+You are here! 
+Your runtime beats 24.78 % of java submissions.
+https://leetcode.com/submissions/detail/101129757/
+
+//使用DFS,  每一次檢查isSymmetrics(p.left,q.right)-(樹外圍的點) 以及isSymmetrics(q.right,p.left)-(樹內維的點)是否是對稱的.
+//若是,則繼續往下檢查,否則回傳false
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isSymmetric(TreeNode root) {
+    return isSymmetrics(root,root);
+}
+    public boolean isSymmetrics(TreeNode p,TreeNode q) 
+    {
+        if(p==null && q==null)
+            return true;
+        else if((p!=null && q!=null))
+        {
+            if(p.val==q.val)
+                return isSymmetrics(p.left,q.right)&&isSymmetrics(q.right,p.left);
+            else
+                return false;
+        }
+        else
+            return false;
+    }
+}
