@@ -1,0 +1,50 @@
+https://leetcode.com/problems/house-robber/#/description
+Runtime: 0 ms
+You are here! 
+Your runtime beats 45.90 % of java submissio
+https://leetcode.com/submissions/detail/101743573/
+
+
+//有點像背包問題,只是限制是不能取鄰近點.
+//因此用兩個暫存temp變數去紀錄 這次拿或不拿的結果.
+//用curNotRobed去判斷哪一個比較大.
+//curRobed去更新若這次拿的錢是多少.
+public class Solution {
+    public int rob(int[] nums) {
+        if(nums.length==0)  return 0;
+        if(nums.length==1)  return nums[0];
+            
+        int tempRob=0,tempRobNot=0,curRobed=0,curNotRobed=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            curNotRobed=Math.max(tempRob,tempRobNot);
+            curRobed=tempRobNot+nums[i];
+            tempRobNot=curNotRobed;
+            tempRob=curRobed;
+        }
+        return Math.max(curNotRobed,curRobed);
+    }
+}
+
+============================================================
+============================================================
+https://leetcode.com/submissions/detail/101742871/
+Runtime: 0 ms
+You are here! 
+Your runtime beats 45.90 % of java submissions.
+
+
+概念同上,只是用DP解.
+public class Solution {
+    public int rob(int[] nums) {
+        if(nums.length==0)  return 0;
+        if(nums.length==1)  return nums[0];
+            
+        nums[1]=Math.max(nums[0],nums[1]);
+        
+        for(int i=2;i<nums.length;i++)
+            nums[i]=Math.max(nums[i]+nums[i-2],nums[i-1]);
+        
+        return nums[nums.length-1];
+    }
+}
