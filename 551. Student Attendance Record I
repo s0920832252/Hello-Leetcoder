@@ -1,0 +1,46 @@
+https://leetcode.com/problems/student-attendance-record-i/#/description
+untime: 8 ms
+You are here! 
+Your runtime beats 97.10 % of java submissions
+https://leetcode.com/submissions/detail/101832133/
+
+
+//概念就只是找有沒有超過一個A  以及有沒有連續的LLL
+public class Solution {
+    public boolean checkRecord(String s) {
+        int aCount=0;
+        int lCount=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)=='L')
+                lCount++;
+            else
+            {
+                if(s.charAt(i)=='A')
+                     aCount++;
+                lCount=0;
+            }
+            
+            if(aCount>1 || lCount>2)
+                return false;
+        }
+        return true;
+    }
+}
+
+
+==============================================
+==============================================
+Runtime: 9 ms
+You are here! 
+Your runtime beats 70.55 % of java submissions
+https://leetcode.com/submissions/detail/101832762/
+
+//概念同上,只是用API
+//找LLL在字串的起始index 若不存在則 indexOf回傳-1
+//若超過一個A則  indexOf得到的位置和lastIndexOf得到的位置不會相同.
+public class Solution {
+     public boolean checkRecord(String s) {
+        return (s.indexOf("LLL") == -1 && (s.indexOf("A") == s.lastIndexOf("A")));
+    }
+}
