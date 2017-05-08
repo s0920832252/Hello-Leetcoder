@@ -1,0 +1,49 @@
+一開始的思考邏輯是 到達第n階梯的方法數是到達第n-1階梯+到達第n-2階梯的方法數加總.
+恩...這不就是費事數列!!!
+於是很高興的寫完後,發現time out了.....................Orz
+public class Solution {
+    public int climbStairs(int n) {
+        if(n==0 || n==1)
+            return 1;
+        else
+            return climbStairs(n-1)+climbStairs(n-2);
+    }
+}
+
+
+https://leetcode.com/problems/climbing-stairs/#/description
+Runtime: 0 ms
+You are here! 
+Your runtime beats 16.78 % of java submissions.
+https://leetcode.com/submissions/detail/102302524/
+
+費事公式解.
+public class Solution {
+    public int climbStairs(int n) {        
+        return (int)((Math.pow((1 + Math.sqrt(5)) / 2, n+1) - Math.pow((1 - Math.sqrt(5)) / 2, n+1))/Math.sqrt(5));       
+    }
+}
+
+==============================================================================================================
+==============================================================================================================
+Runtime: 0 ms
+You are here! 
+Your runtime beats 16.78 % of java submissions.
+https://leetcode.com/submissions/detail/102303182/
+
+費事迴圈解.
+public class Solution {
+    public int climbStairs(int n) {
+        if (n==1 || n==0)
+            return 1;
+            
+        int before2=1,ans=2,temp;
+        for(int i=2;i<n;i++)
+        {
+            temp=ans;
+            ans=before2+ans;
+            before2=temp;
+        }
+        return ans;
+    }
+}
