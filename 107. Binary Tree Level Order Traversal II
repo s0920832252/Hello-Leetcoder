@@ -1,0 +1,74 @@
+https://leetcode.com/problems/binary-tree-level-order-traversal-ii/#/description
+Runtime: 2 ms
+You are here! 
+Your runtime beats 72.72 % of java submissions
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+//直覺想法,用BFS解決.  因為可以很清楚知道目前正在處理哪一層的node.
+public class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        List<List<Integer>> ans=new LinkedList<List<Integer>>();
+        
+        if (root==null)
+            return ans;
+        
+        queue.offer(root);  //也可以用add()[繼承自collection class] , 不過若有錯誤,add()會丟出一個例外.所以還是用offer比較方便(若有錯誤回傳特定值)
+        while(!queue.isEmpty())
+        {
+            int levelCount=queue.size();
+            List<Integer> tempList=new LinkedList<Integer>();
+            for(int i=0;i<levelCount;i++)
+            {
+                TreeNode node = queue.poll();// poll()移出並回傳這個值.,  peek()回傳這個值.兩者若發生錯誤皆會回傳null.而非拋出例外
+                if(node.left!=null)
+                    queue.offer(node.left);
+                if(node.right!=null)
+                    queue.offer(node.right);
+                tempList.add(node.val);
+            }
+            ans.add(0,tempList);//add(positionIndex,內容物)
+        }
+        return ans;
+    }
+}
+
+
+
+============================================================================================================================
+============================================================================================================================
+//別人的做法...真的太屌了...
+//基礎概念是用DFS.
+//但使用List<List<Integer>> list(用ArrayList實做) , 並且在DFS走訪的時候,預先配置好ArratList<Integer>的空間(尚未放入值).
+//然後再list.get 特定ArratList<Integer> . 並且將目前走訪的node value塞入這個ArratList<Integer>.
+//使用用ArrayList實做的原因就在於此,因為是隨機存取. get()會比Listedlist取得值快.
+
+public class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        // following statement wont work since Box<Number> != Box<Integer>
+        // even though Integer is subtype of Number
+        // List<List<Integer>> list = new ArrayList<ArrayList<Integer>>();
+        List<List<Integer>> list = new ArrayList<List<Integer>>();
+        levelOrderBottomHelp(list, root, 0);
+        return list;
+    }
+    
+    static void levelOrderBottomHelp(List<List<Integer>> list, TreeNode root, int level){
+        if(root==null) return;
+        if(level>=list.size()) list.add(0, new ArrayList<Integer>());
+        
+        levelOrderBottomHelp(list, root.left, level+1);
+        levelOrderBottomHelp(list, root.right, level+1);
+        list.get(list.size()-level-1).add(root.val);
+    }
+}
+
+
