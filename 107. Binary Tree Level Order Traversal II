@@ -2,6 +2,7 @@ https://leetcode.com/problems/binary-tree-level-order-traversal-ii/#/description
 Runtime: 2 ms
 You are here! 
 Your runtime beats 72.72 % of java submissions
+https://leetcode.com/submissions/detail/102512186/
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -45,6 +46,10 @@ public class Solution {
 
 ============================================================================================================================
 ============================================================================================================================
+Runtime: 2 ms
+You are here! 
+Your runtime beats 72.72 % of java submissions
+https://leetcode.com/submissions/detail/102515825/
 //別人的做法...真的太屌了...
 //基礎概念是用DFS.
 //但使用List<List<Integer>> list(用ArrayList實做) , 並且在DFS走訪的時候,預先配置好ArratList<Integer>的空間(尚未放入值).
