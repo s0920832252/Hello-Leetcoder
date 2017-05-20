@@ -1,0 +1,122 @@
+https://leetcode.com/problems/subtree-of-another-tree/#/description
+untime: 31 ms
+You are here! 
+Your runtime beats 43.17 % of java submissions.
+https://leetcode.com/submissions/detail/103463038/
+
+//基本概念是 以s去走訪 先看看s當前的點,t是否是subTree,若否,則去看看s的左右兒子.
+//我覺得這題的速度要快,取決於 是否能夠早點知道答案,而不用一層一層的遞迴.
+
+//DFS解
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if(s==null || t==null)
+            return false;
+        return isSameTree(s,t)||isSubtree(s.left,t)||isSubtree(s.right,t);
+    }
+    
+    public boolean isSameTree(TreeNode s, TreeNode t)
+    {
+        if(s==null && t==null)
+            return true;
+        if(s==null || t==null)
+            return false;
+        return (s.val==t.val)&&isSameTree(s.left,t.left)&&isSameTree(s.right,t.right);
+    }
+}
+
+================================================================================
+================================================================================
+Runtime: 27 ms
+You are here! 
+Your runtime beats 73.84 % of java submissions.
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if(s==null || t==null)
+            return false;
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(s);
+        while(!queue.isEmpty())
+        {
+            TreeNode node = queue.poll();
+            if(isSameTree(node,t))
+                return true;
+            if(node.left!=null)
+                queue.offer(node.left);
+            if(node.right!=null)
+                queue.offer(node.right);
+        }
+        return false;
+    }
+    
+    public boolean isSameTree(TreeNode s, TreeNode t)
+    {
+        if(s==null && t==null)
+            return true;
+        if(s==null || t==null)
+            return false;
+        return (s.val==t.val)&&isSameTree(s.left,t.left)&&isSameTree(s.right,t.right);
+    }
+}
+
+
+================================================================================
+================================================================================
+別人的解法
+Runtime: 20 ms
+You are here! 
+Your runtime beats 98.76 % of java submissions.
+https://leetcode.com/submissions/detail/103463165/
+
+public class Solution {
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        return isSubtree(s,t, false);
+    }
+    
+    public boolean isSubtree(TreeNode s, TreeNode t, boolean isPMatch){
+        if(s!=null &&  t!=null){
+            boolean l = false;
+            boolean r = false;
+            if(s.val==t.val){
+               l = isSubtree(s.left,t.left,true);
+               r = isSubtree(s.right,t.right,true);
+              if(r && l){
+                  return true;
+              }
+            }else if(isPMatch){
+                return false;
+            }
+            
+            l = isSubtree(s.left,t,false);
+            if(l==true){
+                return true;
+            }
+            
+            return isSubtree(s.right,t,false);
+        }
+        if(s==null && t==null && isPMatch){
+            return true;
+        }
+        return false;
+    }
+}
+
