@@ -13,8 +13,7 @@ public class Solution {
         if(rowIndex==0)
             return ans;
         
-        long record=1;
-        
+        long record=1;        
         for(int i=1;i<rowIndex;i++)
         {
             record=(rowIndex-i+1)*record/i;
