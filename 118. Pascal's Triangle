@@ -1,0 +1,56 @@
+https://leetcode.com/problems/pascals-triangle/#/description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 32.65 % of java submissions.
+https://leetcode.com/submissions/detail/103572226/
+
+
+//採用#94(LeetCode119)的公式解.公式是得到指定i列以及j行的數字(巴斯卡三角形).
+public class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ans=new ArrayList<List<Integer>>();
+     
+        for(int i=0;i<numRows;i++)
+        {
+            List<Integer> temp=new ArrayList<Integer>();
+            int listSize=i+1;
+            long record=1;     
+            for(int j=0;j<listSize;j++)
+            {
+                if(j==0||j==listSize-1)
+                    temp.add(1);
+                else
+                {
+                    record=((i-j+1)*record/j);
+                    temp.add((int)record);
+                }
+            }
+            ans.add(temp);
+        }
+        return ans;        
+    }
+}
+
+
+=====================================================================
+Runtime: 1 ms
+You are here! 
+Your runtime beats 32.65 % of java submissions.
+https://leetcode.com/submissions/detail/103571805/
+
+//自幹一個巴斯卡三角形.  左右兩邊都是1, 下層數字是上層數字的加總.
+public class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ans=new ArrayList<List<Integer>>();
+     
+        for(int i=0;i<numRows;i++)
+        {
+            List<Integer> temp=new ArrayList<Integer>();
+            int listSize=i+1;
+            for(int j=0;j<listSize;j++)
+                temp.add((j==0||j==listSize-1)?1:(ans.get(i-1)).get(j-1)+(ans.get(i-1)).get(j));
+            ans.add(temp);
+        }
+        return ans;        
+    }
+}
