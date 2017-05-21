@@ -1,0 +1,27 @@
+https://leetcode.com/problems/pascals-triangle-ii/#/description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 89.91 % of java submissions
+https://leetcode.com/submissions/detail/103541811/
+
+public class Solution {
+    public List<Integer> getRow(int rowIndex) {
+       
+        List<Integer> ans=new LinkedList<Integer>();
+        ans.add(1); 
+        
+        if(rowIndex==0)
+            return ans;
+        
+        long record=1;
+        
+        for(int i=1;i<rowIndex;i++)
+        {
+            record=(rowIndex-i+1)*record/i;
+            ans.add((int)record);
+        }
+        ans.add(1); 
+        
+        return ans;
+    }
+}
