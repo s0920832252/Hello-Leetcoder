@@ -45,3 +45,29 @@ public class Solution {
         return repeatIndex;
     }
 }
+
+
+================================================================================
+================================================================================
+Runtime: 88 ms.
+You are here! 
+Your runtime beats 74.28 % of python submissions
+https://leetcode.com/submissions/detail/103684289/
+
+#python真的比java慢很多呢...
+
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 0:
+            return 0
+        repeatIndex=1
+        for Index in range(0,len(nums)):
+            if nums[Index]!=nums[repeatIndex-1]:
+                nums[repeatIndex]=nums[Index]
+                repeatIndex=repeatIndex+1
+        return repeatIndex;
+        
