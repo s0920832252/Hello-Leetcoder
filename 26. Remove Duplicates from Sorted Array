@@ -1,0 +1,47 @@
+https://leetcode.com/problems/remove-duplicates-from-sorted-array/#/description
+Runtime: 22 ms
+You are here! 
+Your runtime beats 8.42 % of java submissions
+https://leetcode.com/submissions/detail/103679589/
+
+//突然想練習一下Set, 是說好久沒寫到Set的題目了說XD
+//Set的特性是 丟入Set後,會自動幫你濾掉相同的資料.
+//不過缺點就是會比較沒效率(硬要用Set的概念XD)
+public class Solution {
+    public int removeDuplicates(int[] nums) {
+        Set<Integer> set=new LinkedHashSet<Integer>();//使用hashSet 順序會不一樣
+        for(int num:nums)
+            set.add(num);
+        int index=0;
+        for(int n:set)
+            nums[index++]=n;
+        return set.size();
+    }
+}
+/*Set的另一種走訪方式
+  Iterator iterator = set.iterator();
+  while(iterator.hasNext()) {
+    System.out.print(iterator.next() + " ");  
+*/
+
+
+================================================================================
+================================================================================
+Runtime: 12 ms
+You are here! 
+Your runtime beats 97.88 % of java submissions.
+https://leetcode.com/submissions/detail/103680556/
+
+//因為是排序過的矩陣~~排序萬歲~~
+//所以只要檢查是否相同 即可知道是不是Duplicate.
+//使用兩個指標,一個是Index用來走訪整個nums 另一個是repeatIndex 用來記錄哪一個重複的值應該被取代掉的.同時也是排除重複值後的矩陣大小.
+
+public class Solution {
+    public int removeDuplicates(int[] nums) {
+        int repeatIndex=nums.length>0?1:0;//可以直接寫1,我後來發現測資中沒有矩陣是空的側資.
+        for(int Index=0;Index<nums.length;Index++)
+            if(nums[Index]!=nums[repeatIndex-1])
+                nums[repeatIndex++]=nums[Index];
+        return repeatIndex;
+    }
+}
