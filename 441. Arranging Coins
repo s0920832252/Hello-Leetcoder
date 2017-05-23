@@ -1,0 +1,72 @@
+https://leetcode.com/problems/arranging-coins/#/description
+Runtime: 59 ms
+You are here! 
+Your runtime beats 28.46 % of java submissions
+https://leetcode.com/submissions/detail/103748502/
+
+//用減的. 每一層的高度等於其數目, 一直減n  減到變負的,那一層就是答案了  複雜度O(n)
+public class Solution {
+    public int arrangeCoins(int n) {
+        for(int high=1;true;high++)
+        {
+            n=n-high;
+            if(n<0)
+                return high-1;
+        }        
+    }
+}
+
+====================================================================
+====================================================================
+Runtime: 44 ms
+You are here! 
+Your runtime beats 89.01 % of java submissions.
+https://leetcode.com/submissions/detail/103753496/
+
+//希望用比較聰明的方式得到(h=index),  因此試試看 二分搜尋法.
+public class Solution {
+    public int arrangeCoins(int n) {
+        return binarySearch(0,n,n);
+    }
+    
+    public long check(long h)
+    {
+        return (h*h+h)/2;
+    }
+    
+    public int binarySearch(int left,int right,int target)
+    {
+        while(left<right)
+        {
+            int index=(left-right)/2+right;
+            long value=check(index);
+            
+            if(value<target)
+                left=index;
+            else if(value>target)
+                right=index-1;
+            else 
+                return index;
+        }
+        return (int)left;        
+    }
+}
+====================================================================
+====================================================================
+Runtime: 42 ms
+You are here! 
+Your runtime beats 95.18 % of java submissions.
+https://leetcode.com/submissions/detail/103756469/
+
+
+//很數學的解法.  因為梯形面積 所以有這個1式這個等式 (h*h+h)/2<=n  ->  (h*h+h)<=2*n
+//猜h=floor(sqrt(2*n))
+
+public class Solution {
+    public int arrangeCoins(int n) {
+        int h=(int)Math.sqrt((long)n*2);
+        return (h*h+h>2*n)?h-1:h;
+    }
+}
+
+
