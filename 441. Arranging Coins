@@ -61,6 +61,7 @@ https://leetcode.com/submissions/detail/103756469/
 
 //很數學的解法.  因為梯形面積 所以有這個1式這個等式 (h*h+h)/2<=n  ->  (h*h+h)<=2*n
 //猜h=floor(sqrt(2*n))
+//速度應該和二分搜尋法差不多, 原因是 sqrt這個函數本身也是用二分搜尋法去找那個值.
 
 public class Solution {
     public int arrangeCoins(int n) {
