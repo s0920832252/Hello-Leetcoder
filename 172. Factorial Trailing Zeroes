@@ -1,0 +1,115 @@
+https://leetcode.com/problems/factorial-trailing-zeroes/#/description
+
+
+/*  印象中以前寫線代的時候,做過這題.  只要找出五和二成對的個數(正確來說,只要找出五的個數就好, 因為五的個數比較少).
+以下做法會 time out.
+題目要求 Note: Your solution should be in logarithmic time complexity.
+
+public class Solution {
+    public int trailingZeroes(int n) {
+        int ans=0;
+        for(int i=5;i<=n;i+=5)
+            ans+=getFiveCount(i);
+        return ans;
+    }
+    
+    public int getFiveCount(int n)
+    {
+        int count=0;
+        while(n%5==0)
+        {
+            n/=5;
+            count++;
+        }
+        return count;
+    }
+}
+*/
+
+===========================================================================================
+===========================================================================================
+Runtime: 2 ms
+You are here! 
+Your runtime beats 3.70 % of java submissions.
+https://leetcode.com/submissions/detail/103851253/
+
+//翻了一下線代的題目,回憶一下以前怎麼做的XDDDDDDDD
+//要找五的倍數, 就找   floor(n/5)  
+//同時還要考慮有兩個五的倍數  找  floor(n/25)
+//以此類推
+//因此答案是   ans=floor(n/5)+ floor(n/25)+ floor(n/125)+ ...
+
+public class Solution {
+    public int trailingZeroes(int n) {
+        return getFiveCount(n);
+    }
+    
+    public int getFiveCount(int n)
+    {
+        int ans=0;
+        long x=1;   //一直乘 可能會 overflow  因此用long
+        while(n>=x)
+        {
+            x*=5;
+            ans+=n/x;
+        }
+        return ans;
+    }
+}
+
+===========================================================================================
+===========================================================================================
+Runtime: 1 ms
+You are here! 
+Your runtime beats 41.77 % of java submissions
+https://leetcode.com/submissions/detail/103851276/
+
+//概念同上,只是改用除的, 避免大數運算.
+public class Solution {
+    public int trailingZeroes(int n) {
+        return getFiveCount(n);
+    }
+    
+    public int getFiveCount(int n)
+    {
+        int count=0;
+        while(n>0)
+        {
+            int result=n/5;    
+            count+=result;
+            n=result;
+        }
+        return count;
+    }
+}
+
+===========================================================================================
+===========================================================================================
+Runtime: 1 ms
+You are here! 
+Your runtime beats 41.77 % of java submissions
+https://leetcode.com/submissions/detail/103851901/
+
+//概念童上,  只是用地回.
+public class Solution {
+    public int trailingZeroes(int n) {
+        return n<5? 0:n/5+trailingZeroes(n/5);
+    }
+}
+
+===========================================================================================
+===========================================================================================
+Runtime: 49 ms
+You are here! 
+Your runtime beats 34.28 % of python submissions.
+https://leetcode.com/submissions/detail/103853428/
+
+class Solution:
+    # @return an integer
+    def trailingZeroes(self, n):
+        x = 5
+        ans = 0
+        while n >= x:
+            ans += n / x
+            x *= 5
+        return ans
