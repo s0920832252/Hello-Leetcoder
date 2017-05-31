@@ -1,0 +1,39 @@
+https://leetcode.com/problems/minimum-absolute-difference-in-bst/#/description
+Runtime: 15 ms
+You are here! 
+Your runtime beats 83.53 % of java submissions.
+https://leetcode.com/submissions/detail/104494387/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ //因為給的是 binary search tree.  所以按照中序走訪(由小到大拜訪).  找出最小值
+ 
+public class Solution {
+    public int diff=Integer.MAX_VALUE;
+    public int temp=-1;
+    public int getMinimumDifference(TreeNode root) {
+        runTree(root);
+        return diff;
+    }
+    
+    public void runTree(TreeNode root)
+    {
+        if(root.left!=null)
+            runTree(root.left);
+        
+        if(temp!=-1)
+            diff=Math.min(root.val-temp,diff);
+        temp=root.val;
+        
+        if(root.right!=null)
+            runTree(root.right);
+    }
+}
