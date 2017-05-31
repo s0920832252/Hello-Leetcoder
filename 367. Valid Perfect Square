@@ -1,0 +1,42 @@
+https://leetcode.com/problems/valid-perfect-square/#/description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 21.54 % of java submissions
+https://leetcode.com/submissions/detail/104506279/
+
+//題目只說不能用sqrt,但沒說不能用pow .............XD
+//就看開根號的數字是否整數就是答案了.
+public class Solution {
+    public boolean isPerfectSquare(int num) {
+        double value=Math.pow(num,0.5);
+        return value==Math.floor(value)?true:false;
+    }
+}
+
+=========================================
+=========================================
+Runtime: 1 ms
+You are here! 
+Your runtime beats 21.54 % of java submissions
+https://leetcode.com/submissions/detail/104508417/
+
+//這題希望的做法應該是使用二分搜尋法.
+public class Solution {
+    public boolean isPerfectSquare(int num) {
+        return binarySearchRecurrer(0,num/2+1,num);
+    }
+    
+    public boolean binarySearchRecurrer(long left,long right,int target)
+    {
+        if(left>=right)
+            return left*left == target;
+        long mid=(left+right)/2;
+        long value=mid*mid;
+        if(value==target)
+            return true;
+        else if(value>target)
+            return binarySearchRecurrer(left,mid-1,target);
+        else
+            return binarySearchRecurrer(mid+1,right,target);
+    }
+}
