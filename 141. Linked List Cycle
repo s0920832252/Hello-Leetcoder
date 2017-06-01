@@ -1,0 +1,68 @@
+https://leetcode.com/problems/linked-list-cycle/#/description
+Runtime: 10 ms
+You are here! 
+Your runtime beats 3.08 % of java submissions
+https://leetcode.com/submissions/detail/104625778/
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+ 
+ //跑過的,就記起來,若是用過了,代表loop了 
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        Set<ListNode> set=new HashSet<ListNode>();
+        while(head!=null)
+        {
+            if(!set.add(head))
+                return true;
+            head=head.next;
+        }
+        return false;
+    }
+}
+
+==========================================
+==========================================
+Runtime: 1 ms
+You are here! 
+Your runtime beats 7.36 % of java submissions
+https://leetcode.com/submissions/detail/104626079/
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+ 
+ //若是有loop, 則 比較快的point總有一天會追到比較慢的point.
+ 
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode tortoise=head;
+        ListNode rabbit=head;
+        
+        while(rabbit!=null && rabbit.next!=null)
+        {
+            tortoise=tortoise.next;
+            rabbit=rabbit.next.next;
+            if(tortoise==rabbit)
+                return true;
+        }
+        return false;
+    }
+}
