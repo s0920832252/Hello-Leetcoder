@@ -1,0 +1,39 @@
+https://leetcode.com/problems/number-of-segments-in-a-string/#/description
+Runtime: 4 ms
+You are here! 
+Your runtime beats 15.11 % of java submissions.
+https://leetcode.com/submissions/detail/104770808/
+
+public class Solution {
+    public int countSegments(String s) {
+        String str[]=s.trim().split("\\s+");  //正規表示, \s表特殊符號(\t 那些) + 表可能多個.
+        return s.length()==0?0:(s.indexOf(" ")==0 && str.length==1)?0:str.length; 
+    }
+}
+
+
+===============================================================================
+===============================================================================
+Runtime: 3 ms
+You are here! 
+Your runtime beats 38.29 % of java submissions.
+https://leetcode.com/submissions/detail/104771052/
+
+
+//懶得寫  分隔符號的驗證,  反正這裡的側資  分隔符號都是空白...XD
+//一個訝異...竟然過了...
+public class Solution {
+    public int countSegments(String s) {
+        char str[] = s.trim().toCharArray();
+        int count=1;
+        
+        if(str==null || str.length==0) 
+            return 0;
+        for(int i=1; i<str.length; i++)
+        {
+            if(str[i]==' ' && str[i-1]!=' ') 
+                count++;
+        }
+        return count;
+    }
+}
