@@ -1,0 +1,56 @@
+https://leetcode.com/problems/implement-queue-using-stacks/#/description
+Runtime: 109 ms
+You are here! 
+Your runtime beats 41.85 % of java submission
+https://leetcode.com/submissions/detail/104917580/
+
+
+//演算法課本有教  用兩個stack去模擬queue.
+
+public class MyQueue {
+    private Stack<Integer> stack=new Stack<Integer>();
+    private Stack<Integer> tempStack=new Stack<Integer>();
+    private int peek=0;
+    /** Initialize your data structure here. */
+    public MyQueue() {
+        
+    }
+    
+    /** Push element x to the back of queue. */
+    public void push(int x) {
+        if(stack.empty())
+            peek=x;
+        stack.push(x);   
+    }
+    
+    /** Removes the element from in front of queue and returns that element. */
+    public int pop() {
+        while(!stack.empty())
+            tempStack.push(stack.pop());
+        int popAns=tempStack.pop();
+        if(!tempStack.empty())
+            peek=tempStack.peek();
+        while(!tempStack.empty())
+            stack.push(tempStack.pop());
+        return popAns;
+    }
+    
+    /** Get the front element. */
+    public int peek() {
+        return peek;
+    }
+    
+    /** Returns whether the queue is empty. */
+    public boolean empty() {
+        return stack.empty();
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */
