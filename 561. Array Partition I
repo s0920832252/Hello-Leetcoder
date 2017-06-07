@@ -1,0 +1,56 @@
+https://leetcode.com/problems/array-partition-i/#/description
+Runtime: 43 ms
+You are here! 
+Your runtime beats 18.52 % of java submissions
+https://leetcode.com/submissions/detail/105279213/
+
+//題目很難看懂.....XD
+//這題是再說  要你把數字分成n組, 這n組都要挑一個 min(a,b) - a,b之中比較小的那個數字.
+//然後這n組的 min(a,b)加總 要盡可能最大.
+//例題的答案是  min(1,2)+min(3,4) = 4
+
+//先把數字排序, 加總floor那一個.
+//這樣min的加總損失才會最小.
+public class Solution {
+    public int arrayPairSum(int[] nums) {
+        int ans=0;
+        if (null == nums || 0 == nums.length) 
+            return ans;
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length;i+=2)
+            ans+=nums[i];
+        return ans;
+    }
+}
+
+===============================================
+===============================================
+https://leetcode.com/submissions/detail/105279945/
+Runtime: 18 ms
+You are here! 
+Your runtime beats 98.68 % of java submissions
+
+//因為pair是成對的
+//而且pair數字要盡可能的靠近,這樣min加總才會最大.
+
+public class Solution {
+    public int arrayPairSum(int[] nums) {
+        int array[]=new int[20002];
+        for(int i=0;i<nums.length;i++)
+            array[nums[i]+10000]++;
+        
+        boolean pairFloor=true;
+        int ans=0;
+        for(int i=0;i<array.length;i++)
+        {
+            while(array[i]!=0)
+            {
+                if(pairFloor)
+                    ans+=(i-10000);   
+                array[i]--;
+                pairFloor=!pairFloor;
+            }
+        }
+        return ans;
+    }
+}
