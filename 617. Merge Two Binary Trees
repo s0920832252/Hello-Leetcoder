@@ -1,0 +1,63 @@
+https://leetcode.com/problems/merge-two-binary-trees/#/description
+Runtime: 17 ms
+You are here! 
+Your runtime beats 66.67 % of java submissions.
+https://leetcode.com/submissions/detail/105807409/
+
+//應該可以用new Tree Node ,但我覺得這會很花時間,所以直接把點附加在t1上
+//地回, 加總該點,然後若兩tree都有佐又兒子,去左又兒子,
+public class Solution {
+    public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+        if(t1==null)
+            return t2;
+        if(t2==null)
+            return t1;
+        
+        runTree(t1, t2);
+        
+        return t1;
+    }
+    
+    public void runTree(TreeNode t1, TreeNode t2)
+    {
+        t1.val+=t2.val;
+        
+        if(t1.left!=null && t2.left!=null)
+            runTree(t1.left,t2.left);
+        else if(t1.left==null)
+            t1.left=t2.left;
+        
+        if(t1.right!=null && t2.right!=null)
+            runTree(t1.right,t2.right);
+        else if(t1.right==null)
+            t1.right=t2.right;
+    }
+}
+
+===================================================================
+===================================================================
+Runtime: 16 ms
+You are here! 
+Your runtime beats 100.00 % of java submissions.
+https://leetcode.com/submissions/detail/105807841/
+
+//把檢查null的部分,移動到 到了該點再做判斷是否為null
+public class Solution {
+    public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+        return runTree(t1, t2);
+    }
+    
+    public TreeNode runTree(TreeNode t1, TreeNode t2)
+    {
+        if(t1==null)
+            return t2;
+        if(t2==null)
+            return t1;
+            
+        t1.val+=t2.val;
+        t1.left=runTree(t1.left,t2.left);
+        t1.right=runTree(t1.right,t2.right);
+        return t1;
+    }
+}
+
