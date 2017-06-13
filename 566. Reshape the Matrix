@@ -1,0 +1,29 @@
+https://leetcode.com/problems/reshape-the-matrix/#/description
+Runtime: 8 ms
+You are here! 
+Your runtime beats 63.47 % of java submissions.
+https://leetcode.com/submissions/detail/105879525/
+
+//先檢查是否有無辦法 把nums裝成指定格式
+//若可則 裝進ans矩陣 否則回傳 原矩陣.
+public class Solution {
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+        if(nums.length*nums[0].length!=r*c)
+            return nums;
+        
+        int ans[][]=new int[r][c];
+        int rIndex=0;
+        int cIndex=0;
+        for(int row[]:nums)
+            for(int element:row)
+            {
+                ans[rIndex][cIndex++]=element;
+                if(cIndex==c)
+                {
+                    cIndex=0;
+                    rIndex++;
+                }
+            }
+        return ans;
+    }
+}
