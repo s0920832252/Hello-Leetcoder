@@ -1,0 +1,30 @@
+https://leetcode.com/problems/remove-linked-list-elements/#/description
+Runtime: 1 ms
+You are here! 
+Your runtime beats 66.87 % of java submissions.
+https://leetcode.com/submissions/detail/106448372/
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+ 
+public class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        while(head!=null && head.val==val)  //找到head.
+            head=head.next; 
+        ListNode point=head;
+        while (point !=null && point.next!=null ) //消除 val
+        {
+            if(point.next.val==val)
+                point.next=point.next.next;  //消除val
+            else
+                point=point.next;   //下一點安全,移動之
+        }
+        return head;
+    }
+}
