@@ -117,3 +117,43 @@ class Solution {
         return isSymmetrics(left.right,right.left) && isSymmetrics(left.left,right.right);
     }
 }
+
+
+==========================
+
+public class Solution {
+    public boolean isSymmetric(TreeNode root) {
+    return root==null?true:isSymmetrics(root);
+}
+    public boolean isSymmetrics(TreeNode root) 
+    {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while(!queue.isEmpty())
+        {
+            int levelCount = queue.size();
+            TreeNode levelNode[]=new TreeNode[levelCount];
+            for (int i = 0; i< levelCount; i++) 
+            {   
+                levelNode[i]=queue.poll();
+                if(levelNode[i]!=null)
+                {                   
+                    queue.add(levelNode[i].left);               
+                    queue.add(levelNode[i].right);   
+                }
+                
+            }
+            for (int i = 0; i< levelCount/2; i++)
+            {
+                if(levelNode[i]!=null && levelNode[levelCount-1-i]==null)
+                    return false;
+                else if(levelNode[i]==null && levelNode[levelCount-1-i]!=null)
+                    return false;
+                else if(levelNode[i]!=null && levelNode[levelCount-1-i]!=null)
+                    if(levelNode[i].val!=levelNode[levelCount-1-i].val)
+                        return false;
+            }
+        }
+        return true;
+    }    
+}
