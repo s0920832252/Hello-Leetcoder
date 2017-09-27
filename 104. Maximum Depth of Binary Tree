@@ -32,3 +32,134 @@ public class Solution {
        
    }
 }
+
+====================================
+======================================
+/*
+https://leetcode.com/problems/maximum-depth-of-binary-tree/
+You are here! Runtime: 1 ms
+Your runtime beats 10.20% of javasubmissions.
+https://leetcode.com/submissions/detail/54503425/
+*/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int maxDepth(TreeNode root) {
+       
+        if(root==null)
+        {
+            return 0;
+        }
+        int left=(maxDepth(root.left)+1);
+        int right=(maxDepth(root.right)+1);
+        if(left>=right)
+        {
+            root.val=left;
+        }
+        else
+        {
+            root.val=right;
+        }
+        
+        return root.val;
+    }
+}
+
+====================
+====================
+
+/*
+https://leetcode.com/problems/isomorphic-strings/
+You are here! Runtime: 30 ms
+Your runtime beats 36.31% of javasubmissions.
+https://leetcode.com/submissions/detail/55727607/
+idea: 使用字串編碼
+*/
+
+public class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length()!=t.length())
+           return false;
+        char Chars[]=s.toCharArray();
+        char Chart[]=t.toCharArray();
+        Map<Character, Integer> map = new HashMap<Character, Integer>(); //use map 去查詢是否使用過此char
+        Map<Character, Integer> map1 = new HashMap<Character, Integer>();
+        int a[]=new int[s.length()];    //儲存 給予字串內每個位置一個代號 -> 集合成一串數字編碼
+        int b[]=new int[s.length()];
+        
+        for(int i=0;i<s.length();i++)  //run 字串a  
+        {
+            if(map.get(Chars[i])==null) //若無使用過此字, 給予此字代號存入此位置
+            {
+                map.put(Chars[i],i);
+                a[i]=i+1;
+            }
+            else                        //若使用過此字, (給予此字之前賦予之代號)存入此位置
+                a[i]=map.get(Chars[i]);
+        }
+        for(int i=0;i<s.length();i++)  //run b 與a相同事情    同時比對b之數字編碼是否與a不同  不同,則回傳false
+        {
+            if(map1.get(Chart[i])==null)
+            {
+                map1.put(Chart[i],i);
+                b[i]=i+1;
+            }
+            else
+               b[i]=map1.get(Chart[i]);
+               
+            if(a[i]!=b[i])
+              return false;
+        }
+        return true;
+   }
+}
+
+========================
+========================
+
+/*
+https://leetcode.com/problems/isomorphic-strings/
+You are here! Runtime: 5 ms
+Your runtime beats 98.16% of javasubmissions.
+https://leetcode.com/submissions/detail/55727130/
+idea:使用字元編碼的概念
+*/
+public class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        
+       if(s.length() != t.length()) 
+          return false;
+    
+       int pointS, pointT;
+       char[] charS = s.toCharArray();
+       char[] charT = t.toCharArray();
+
+       int[] a = new int[256];//儲存代號  (為每個char 給予一個代號使用)
+       int[] b = new int[256];
+
+       for(int i = 0; i != s.length(); i++)
+       {
+          pointS = charS[i];  //以字元編碼作為array index
+          pointT = charT[i];
+          if(a[pointS] != b[pointT])  // 若兩個代號不同  false
+             return false;
+          else if(b[pointS] == 0)   //若兩代號相同,僅有皆為代號0  以及 之前存入的代號Q?  
+          {
+             a[pointS] = i+1;
+             b[pointT] = i+1;
+          } 
+       }
+       return true; 
+    }
+}
+
+
+
