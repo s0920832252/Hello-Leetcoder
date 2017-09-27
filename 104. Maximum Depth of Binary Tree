@@ -73,3 +73,34 @@ public class Solution {
     }
 }
 
+=============
+===============
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int level=0;
+    public int maxDepth(TreeNode root) {
+        if (root==null)
+            return level;
+        findDepth(root,1);
+        return level;
+    }
+    
+    public void findDepth(TreeNode root,int stair)
+    {
+        if(root==null)
+            return;
+        if (stair>level)
+            level=stair;
+        findDepth(root.left,stair+1);
+        findDepth(root.right,stair+1);
+    }
+}
