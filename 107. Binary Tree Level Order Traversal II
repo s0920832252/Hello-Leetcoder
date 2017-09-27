@@ -44,6 +44,47 @@ public class Solution {
 
 
 
+or 
+
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> ans=new LinkedList<List<Integer>>();
+        Queue<TreeNode> q1=new LinkedList<TreeNode>();
+        q1.offer(root);
+        while(q1.peek()!=null)
+        {
+            int qSize=q1.size();
+            List<Integer> tempList=new LinkedList<Integer>();
+            for(int i=0;i<qSize;i++)
+            {
+                TreeNode node=q1.poll();
+                tempList.add(node.val);
+                if(node.left!=null)
+                    q1.offer(node.left);
+                if(node.right!=null)
+                    q1.offer(node.right);                
+            }
+            ans.add(0,tempList);
+        }
+        
+        return ans;
+                
+    }
+}
+
+
+
 ============================================================================================================================
 ============================================================================================================================
 Runtime: 2 ms
