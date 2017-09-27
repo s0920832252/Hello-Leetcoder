@@ -104,3 +104,28 @@ class Solution {
         findDepth(root.right,stair+1);
     }
 }
+
+===========
+============
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int maxDepth(TreeNode root) {      
+        return  findDepth(root,0);
+    }
+    
+    public int findDepth(TreeNode root,int stair)
+    {
+        if(root==null)
+            return stair;
+        return Math.max(findDepth(root.left,stair+1),findDepth(root.right,stair+1));        
+    }
+}
