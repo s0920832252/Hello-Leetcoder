@@ -34,16 +34,9 @@ public class Solution {
             {   
                 levelNode[i]=queue.poll();
                 if(levelNode[i]!=null)
-                {
-                    if(levelNode[i].left==null)//為了保持這一層的數目結構是對的,因此必須加入null
-                        queue.add(null);
-                    else
-                        queue.add(levelNode[i].left);
-                
-                    if(levelNode[i].right==null)
-                        queue.add(null);
-                    else
-                        queue.add(levelNode[i].right);   
+                {                   
+                    queue.add(levelNode[i].left);               
+                    queue.add(levelNode[i].right);   
                 }
                 
             }
