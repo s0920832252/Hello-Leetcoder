@@ -88,3 +88,45 @@ public class Solution {
         return root;
     }
 }
+
+================\
+===============
+
+public class Solution {
+    class Node{ // need another class to store multi information
+        int l,r;
+        TreeNode t;
+        Node(int left,int right,TreeNode root)
+        {
+            l=left;
+            r=right;
+            t=root;
+        }
+    }
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if(nums==null||nums.length==0) return null;
+        Queue<Node> queue=new LinkedList<Node>();
+        TreeNode root=new TreeNode(nums[(nums.length-1)/2]);
+        Node node=new Node(0,nums.length-1,root);
+        queue.offer(node);
+        
+        while(!queue.isEmpty())
+        {
+            Node n=queue.poll();            
+            int left=n.l,right=n.r,mid=(n.l+n.r)/2;
+            
+            if(mid>n.l)
+            {
+                n.t.left=new TreeNode(nums[(n.l+mid-1)/2]);
+                queue.offer(new Node(n.l,mid-1,n.t.left));
+            }
+            if(mid<n.r)
+            {
+                n.t.right=new TreeNode(nums[(n.r+mid+1)/2]);
+                queue.offer(new Node(mid+1,n.r,n.t.right));
+            }           
+        }
+        return root;
+        
+    }
+}
