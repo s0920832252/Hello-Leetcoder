@@ -31,3 +31,31 @@ public class Solution {
         return Math.max(left,right)+1;
     }
 }
+
+===================
+===================
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        return getDepth(root,0)>=0;
+    }
+    
+    public int getDepth(TreeNode root,int stair)
+    {       
+        if(root==null)
+            return stair;
+        int left=getDepth(root.left,stair+1),right=getDepth(root.right,stair+1);
+        if(left==-1 || right==-1 || Math.abs(left-right)>1)
+            return -1;
+        return Math.max(left,right);      
+    }
+}
