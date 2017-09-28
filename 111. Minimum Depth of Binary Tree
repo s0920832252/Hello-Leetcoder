@@ -68,6 +68,36 @@ public class Solution {
     }
 }
 
+==================
+==============================
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int minDepth(TreeNode root) {
+        return root==null?0:getDepth(root);
+    }
+    
+    public int getDepth(TreeNode root)
+    {
+        if(root.left==null && root.right==null)
+            return 1;        
+        int left=root.left==null?Integer.MAX_VALUE:getDepth(root.left),right=root.right==null?Integer.MAX_VALUE:getDepth(root.right);
+        return Math.min(left,right)+1;
+    }
+    
+    
+}
+
+
 =========================================================
 =========================================================
 
