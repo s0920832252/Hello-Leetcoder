@@ -36,52 +36,142 @@ public class Solution {
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
 
+https://leetcode.com/problems/roman-to-integer/
+Runtime: 96 ms
+You are here! 
+Your runtime beats 76.04% of java submissions
+https://leetcode.com/submissions/detail/92511010/
+
+
 public class Solution {
     public int romanToInt(String s) {
+        //由右往左讀字元,但把特殊字元(eg:IV)隔開,這樣可以一次讀兩個字.或是一個字.
+        Map<String,Integer> dict = new HashMap<String,Integer>();
+        dict.put("I",1);
+        dict.put("V",5);
+        dict.put("X",10);
+        dict.put("L",50);
+        dict.put("C",100);
+        dict.put("D",500);
+        dict.put("M",1000);
         
-        int ans = 0;
+        Map<String,Integer> dict2 = new HashMap<String,Integer>();
+        dict2.put("IV",4);
+        dict2.put("IX",9);
+        dict2.put("XL",40);
+        dict2.put("XC",90);
+        dict2.put("CD",400);
+        dict2.put("CM",900);
         
-        // Previous with S indicating start.
-        char str[]=s.toCharArray();
-        char prev = 'S';
-        for(int i= s.length()-1; i>=0; i--) {
-            
-            char curr = str[i];
-            
-            int currValue = charValue(curr);
-            int prevValue = charValue(prev);
-            
-            if(currValue < prevValue) {
-                ans -= currValue;
-            } else {
-                ans += currValue;
+        if(s.length()==1) return dict.get(s);
+        
+        int end,ans;
+        if (dict2.containsKey(s.substring(s.length()-2)))
+        {    
+            end=s.length()-2;
+            ans=dict2.get(s.substring(end));
+        }
+        else 
+        {
+            end=s.length()-1;
+            ans=dict.get(s.substring(end));
+        }
+        
+        for(int index=0;index<end;)
+        {
+            if(dict2.containsKey(s.substring(index,index+2)))
+            {
+                ans+=dict2.get(s.substring(index,index+2));
+                index+=2;
             }
-            prev = curr;
+            else
+            {
+                ans+=dict.get(s.substring(index,index+1));
+                index++;
+            }
         }
         return ans;
     }
-    
-    private int charValue(char c) {
+}
+
+
+
+===============================
+===============================
+
+Runtime: 88 ms
+You are here! 
+Your runtime beats 94.79 % of java submissions.
+https://leetcode.com/submissions/detail/121172879/
+
+
+
+class Solution {
+    public int romanToInt(String s) {
+        String sign[]={"M","CM","DC","D","CD","C","XC","LX","L","XL","X","IX","VI","V","IV","I"};
+        int value[]={  1000,900,600, 500,400, 100,90  ,60  ,50 ,40  ,10 ,9   , 6  ,5  , 4  ,1 };
         
-        switch(c) {
-            case 'I':
-                return 1;
-            case 'V':
-                return 5;
-            case 'X':
-                return 10;
-            case 'L':
-                return 50;
-            case 'C':
-                return 100;
-            case 'D':
-                return 500;
-            case 'M':
-                return 1000;
-            case 'S':
-                return 0;
-            default:
-                return 0;
+        int ans=0;
+        for(int digit=0,strIndex=0;digit<sign.length && strIndex<s.length();)
+        {
+            int digitSize=sign[digit].length();
+            if( (s.length()>=(strIndex+digitSize)) && s.substring(strIndex,strIndex+digitSize).equals(sign[digit]))
+            {
+                ans+=value[digit];
+                strIndex+=digitSize;
+            }
+            else
+                digit++;            
         }
+        return ans;
+    } 
+}
+
+
+===================================
+===================================
+Runtime: 84 ms
+You are here! 
+Your runtime beats 98.58 % of java submissions
+https://leetcode.com/submissions/detail/121174934/
+
+
+class Solution {
+    public int romanToInt(String s) {
+        int[] nums = new int[s.length()];
+        for (int i = 0; i < s.length(); i++) {
+            switch (s.charAt(i)){
+                case 'M':
+                    nums[i]=1000;
+                    break;
+                case 'D':
+                    nums[i]=500;
+                    break;
+                case 'C':
+                    nums[i]=100;
+                    break;
+                case 'L':
+                    nums[i]=50;
+                    break;
+                case 'X' :
+                    nums[i]=10;
+                    break;
+                case 'V':
+                    nums[i]=5;
+                    break;
+                case 'I':
+                    nums[i]=1;
+                    break;
+            }
+        }
+        int sum = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (i + 1 < s.length() && nums[i] < nums[i + 1]) {
+                sum -= nums[i];
+            } else {
+                sum += nums[i];
+            }
+        }
+        return sum;        
     }
 }
