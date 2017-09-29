@@ -22,3 +22,20 @@ public class Solution {
         return profit;
     }
 }
+
+===========================
+===========================
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int buyPrice=Integer.MAX_VALUE,profit=0;
+        for(int i=0;i<prices.length;i++)
+        {
+            if(buyPrice>prices[i])
+                buyPrice=prices[i];   
+            else if(profit<(prices[i]-buyPrice))
+                profit=prices[i]-buyPrice;
+        }
+        return profit;        
+    }
+}
