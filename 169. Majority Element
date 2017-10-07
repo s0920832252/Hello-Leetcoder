@@ -32,3 +32,113 @@ public class Solution {
         return nums[0];
     }
 }
+
+===================
+=================
+
+https://leetcode.com/problems/majority-element/
+Runtime: 14 ms
+You are here! 
+Your runtime beats 29.75% of java submissions.
+https://leetcode.com/submissions/detail/92151827/
+
+
+
+
+
+public class Solution {
+    public class Obj
+    {
+        public int value=0;
+        public int count=0;
+        
+        public Obj(int value){
+            this.value=value;
+        }
+        
+        public void addOne(){
+            (this.count)++;
+        }
+    }
+    
+    public int majorityElement(int[] nums) {
+        Map<Integer, Obj> map = new HashMap<Integer, Obj>();
+        Obj o=new Obj(nums[0]);
+        int thredsold=(nums.length/2);
+        
+        //一樣使用hashTable去紀錄數字,但是是去紀錄一個自訂Class obj.
+        //可再減少每次put的次數(每次count增加一的時後).
+        
+        for(int i=1;i<nums.length;i++)
+        {
+            o = map.get(nums[i]);
+            if(o==null)
+            {
+                o=new Obj(nums[i]);
+                map.put(nums[i],o);
+            }
+            
+            o.addOne();
+            
+            if(o.count>thredsold)
+                return o.value;
+        }
+        return nums[0];
+    }
+}
+
+
+===============================
+===========================
+
+https://leetcode.com/problems/majority-element/
+Runtime: 3 ms
+You are here! 
+Your runtime beats 42.30% of java submissions.
+https://leetcode.com/submissions/detail/92150804/
+
+
+public class Solution {
+   
+    public int majorityElement(int[] nums) {
+        //取中位數.
+        Arrays.sort(nums);
+        return nums[(nums.length)/2];
+    }
+}
+
+========================
+=======================
+
+https://leetcode.com/problems/majority-element/
+Runtime: 2 ms
+You are here! 
+Your runtime beats 78.46% of java submissions.
+https://leetcode.com/submissions/detail/92149101/
+
+
+public class Solution {
+    public int majorityElement(int[] nums) {
+        int count=1;
+        int major=nums[0];
+        
+        //題目假設陣列中必存在一個數字的出現次數超過陣列大小的1/2.
+        //You may assume that the array is non-empty and the majority element always exist in the array.
+        //The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+        //因此若有一個這樣的數字,其次數必定比陣列中其他數字的次數加起來還多.
+                
+        for(int i=1;i<nums.length;i++)
+        {
+            if(major==nums[i])
+                count++;
+            else if(count==0)
+            {
+                count++;
+                major=nums[i];
+            }
+            else
+                count--;
+        }
+        return major;
+    }
+}
