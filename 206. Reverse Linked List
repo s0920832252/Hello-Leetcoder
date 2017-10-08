@@ -35,3 +35,34 @@ public class Solution {
         return sol;
     }
 }
+
+=========
+========
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head==null) return head;
+        
+        ListNode pre=null;
+        ListNode node=head;
+        ListNode next=head.next;
+        
+        while( next!=null)
+        {
+            node.next=pre;
+            pre=node;
+            node=next;
+            next=next.next;
+        }
+        node.next=pre;
+        return node;       
+    }
+}
