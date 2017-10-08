@@ -75,3 +75,36 @@ public class Solution {
         return isHappy(sum);
     }
 }
+
+==============
+===============
+
+https://leetcode.com/problems/happy-number/?tab=Description
+Runtime: 4 ms
+You are here! 
+Your runtime beats 60.72% of java submissions.
+https://leetcode.com/submissions/detail/94135785/
+
+
+
+
+public class Solution {
+    //數字拆解後,平方加總等於一的就是快樂數.但若是進入無窮迴圈則不是快樂數.
+    //所以使用一個Set去紀錄這個數字是否曾出現過,若出現了,代表進入無窮迴圈之中.
+    public Set<Integer>set=new HashSet<Integer>();
+    public boolean isHappy(int n) {
+        int temp=0;
+        set.add(n);
+        while(n>0)
+        {
+            temp+=Math.pow(n%10,2);
+            n/=10;
+        }
+        if(temp==1)
+            return true;
+        else if(set.contains(temp))
+            return false;
+        else
+           return isHappy(temp);
+    }
+}
