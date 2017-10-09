@@ -27,3 +27,31 @@ public class Solution {
        return true;
     }
 }
+
+============
+=========================
+https://leetcode.com/submissions/detail/122682628/
+Runtime: 5 ms
+You are here! 
+Your runtime beats 84.96 % of java submissions
+
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length()!=t.length()) return false;
+        
+        char sArr[]=s.toCharArray();
+        char tArr[]=t.toCharArray();
+        int dict[]=new int[256];
+        
+        for(int i=0;i<sArr.length;i++)
+            dict[sArr[i]]++;
+        for(int i=0;i<tArr.length;i++)
+        {
+            dict[tArr[i]]--;
+            if(dict[tArr[i]]<0)
+                return false;
+        }
+        return true;
+    }
+}
