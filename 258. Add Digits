@@ -15,3 +15,28 @@ public class Solution {
          return (ans);
     }
 }
+
+========================
+=======================
+https://leetcode.com/submissions/detail/122689253/
+You are here! Runtime: 2 ms
+You are here! 
+Your runtime beats 13.83 % of java submissions.
+
+
+class Solution {
+    public int addDigits(int num) {
+        int loop=0;
+        int sum=0;
+        while(num>0)
+        {
+            sum+=num%10;
+            num/=10;
+            loop++;
+        }
+        if(loop<=1)
+            return sum;
+        else
+            return addDigits(sum);
+    }
+}
