@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/move-zeroes/description/
 You are here! 
 Your runtime beats 87.69% of javasubmissions.
 https://leetcode.com/submissions/detail/54154697/
@@ -25,5 +26,21 @@ public class Solution {
       
       
       
+    }
+}
+
+
+============
+=================
+
+
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int zeros=0;
+        for(int i=0;i<nums.length;i++)
+            if(nums[i]!=0)
+                nums[zeros++]=nums[i];
+        while(zeros<nums.length)
+            nums[zeros++]=0;       
     }
 }
