@@ -13,3 +13,89 @@ public class Solution {
       return ans^i;
     }
 }
+
+===============
+===============
+
+public class Solution {
+    public int missingNumber(int[] nums) 
+    {
+        if(nums.length==0) return 0;
+        int ans=nums[0]^0;
+        for(int i=1;i<nums.length;i++)
+            ans^=nums[i]^i;
+        return ans^nums.length;
+    }
+}
+
+
+==================
+=================
+/*
+https://leetcode.com/problems/missing-number/
+Runtime: 1 ms 37.49%
+https://leetcode.com/submissions/detail/58574348/
+*/
+
+public class Solution {
+    public int missingNumber(int[] nums) 
+    {
+      int length=nums.length;
+      int sum=(length+1)*length/2;  //梯形面積公式
+      for(int i=0;i<length;i++)      //sum(0~n的總和)減掉nums[]數字, 會剩下 miss掉的數字 
+        sum-=nums[i];
+      return sum;
+    }
+}
+
+================
+==================
+
+public class Solution {
+    public int missingNumber(int[] nums) 
+    {
+        if(nums.length==0) return 0;
+        for(int i=1;i<nums.length;i++)
+            nums[0]+=nums[i];                    
+        return (1+nums.length)*nums.length/2-nums[0];
+    }
+}
+
+==================
+=================
+
+/*
+https://leetcode.com/problems/missing-number/
+Runtime: 14 ms
+https://leetcode.com/submissions/detail/58573837/
+*/
+
+public class Solution {
+    public int missingNumber(int[] nums) 
+    {
+      Arrays.sort(nums); //sort   因為答案範圍為 0~n
+      int ans,i;
+      for(i=0;i<nums.length;i++)  //所以由0開始檢查 哪一個數字不見了
+      {
+          if(i-nums[i] != 0)      //找到數字不見回傳該數字
+            return i;
+      }
+      return i;                   //回傳最後唯一的可能n
+    }
+}
+
+
+==================
+=================
+
+public class Solution {
+    public int missingNumber(int[] nums) 
+    {
+        Arrays.sort(nums);
+        int i;
+        for(i=0;i<nums.length;i++)
+            if(nums[i]!=i)
+                return i;                    
+        return i;
+    }
+}
