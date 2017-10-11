@@ -34,7 +34,73 @@ public class Solution {
     }
 }
 
+==================================
+
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        Set<String> set=new HashSet<String>();
+        String dict[]=new String[256];
+        String s[]=str.split(" ");
+        
+        if(s.length!=pattern.length()) return false;
+        
+        for(int i=0;i<pattern.length();i++)
+        {
+            if(dict[pattern.charAt(i)]==null)
+            {
+                if(set.contains(s[i]))
+                    return false;
+                dict[pattern.charAt(i)]=s[i];
+                set.add(s[i]);
+            }
+            else
+            {
+                if(!(dict[pattern.charAt(i)].equals(s[i])))
+                    return false;
+            }
+        }        
+        return true;       
+    }
+}
+
+
+
+
 ======================================
+
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        Map<String,Character> map=new HashMap<String,Character>();
+        
+        if(pattern.equals("")||str.equals("")) return false;
+        
+        String word[]=str.split(" ");
+        char patt[]=pattern.toCharArray();
+        
+        if(patt.length!=word.length) return false;
+                 
+        
+        for(int i=0;i<patt.length;i++)
+        {
+            if(map.containsKey(word[i]))
+            {
+                //if(!(map.get(word[i]).equals(patt[i])))          
+                //    return false;
+                if(map.get(word[i])!=patt[i])          
+                    return false;
+            }
+            else if(map.containsValue(patt[i]))
+                    return false;
+            else
+                map.put(word[i],patt[i]);      
+        }
+        return true;        
+    }
+}
+
+
+
+=====================================
 紀錄別人的作法.  概念都差不多,  但使用保存的方式有差.
 
 public boolean wordPattern(String pattern, String str) {
