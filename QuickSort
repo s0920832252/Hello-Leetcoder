@@ -1,32 +1,52 @@
-public static void quickSort(int[] arr){
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		int arr[]={1,1,1,2,2,2,3,3,4,1};
+		//int arr[]={1,2,3,4,5};
+		//int arr[]={3,5,5,4,2};
+		//int arr[]={5,4,3,5};
+		//int arr[]={1,3,4,2,7,7,8,1,5,6,9,8};
+		//int arr[]={5,4,3,2,1,1,1,2,2,3,3,1};
+		//int arr[]={3,3,4,3,2,33,3,3,3,3,3,3,3};
+		for(int i:arr)
+			System.out.print(i+" ");
+		System.out.println(" ");
+		
+		quickSort(arr);
+		for(int i:arr)
+			System.out.print(i+" ");
+	}
+	
+	public static void quickSort(int[] arr){
     		qsort(arr, 0, arr.length-1);
 	}
 	
 	private static void qsort(int[] arr, int low, int high){
     		if (low < high){
-        			int pivot=partition(arr, low, high);        //將陣列分成兩部分
-        			qsort(arr, low, pivot-1);                   //地回排序左邊
-        			qsort(arr, pivot+1, high);                  //地回排序右邊	
+        			int pivot=partition(arr, low, high);        //將陣列分開
+        			qsort(arr, low, pivot-1);                   //地回左邊
+        			qsort(arr, pivot+1, high);                  //地回右邊	
     		}
 	}
 	
+
+	
 	private static int partition(int[] arr, int left, int right){
 		int index=(int)Math.random()*(right-left+1)+left;
-		swap(arr,index,right);
-        
+		//int index=left;
+		swap(arr,index,right);	//交換位置  方便sort
 		int l=left,r=right-1;
-		while(l<=r)
+		while(l<=r)   //只允許在這個範圍移動
 		{
-			while(l<=r && arr[l]<=arr[right]) l++;  //找到左邊小人國的叛徒  一定要用l<=r  否則碰到index值是極端值,l會走不到極端值處
-			while(l<=r && arr[r]>=arr[right]) r--;  //找到右邊大人國的叛徒   用< 或 <=都可以  r 隨便
-			if(l<r)
-				swap(arr,l,r);                      //交換叛徒
+			while(l<=r && arr[l]<=arr[right]) l++;  //找小人國的間諜
+			while(l<=r && arr[r]>=arr[right]) r--;  //找大人國的間諜
+			if(l<r)				//交換間諜
+				swap(arr,l,r);
 		}
-		swap(arr,l,right);
+		swap(arr,l,right);		//換回索引
 		return l;
-    }
-    
-    public static void swap(int nums[],int left,int right)
+    	}
+	
+    	public static void swap(int nums[],int left,int right)
 	{
 		int temp=nums[left];	
 		nums[left]=nums[right];
