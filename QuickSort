@@ -15,7 +15,7 @@ public static void quickSort(int[] arr){
 		swap(arr,index,right);
         
 		int l=left,r=right-1;
-		while(l<r)
+		while(l<=r)
 		{
 			while(l<=r && arr[l]<=arr[right]) l++;  //找到左邊小人國的叛徒  一定要用l<=r  否則碰到index值是極端值,l會走不到極端值處
 			while(l<=r && arr[r]>=arr[right]) r--;  //找到右邊大人國的叛徒   用< 或 <=都可以  r 隨便
