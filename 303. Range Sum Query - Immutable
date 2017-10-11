@@ -27,3 +27,32 @@ public class NumArray {
  * NumArray obj = new NumArray(nums);
  * int param_1 = obj.sumRange(i,j);
  */
+
+
+
+======================
+=========================
+https://leetcode.com/submissions/detail/123006777/
+Runtime: 207 ms
+You are here! 
+Your runtime beats 82.86 % of java submissions
+
+class NumArray {
+    public int num[];
+    public NumArray(int[] nums) {
+        num=new int[nums.length];
+        for(int i=1;i<nums.length;i++)
+            nums[i]+=nums[i-1];
+        num=nums;
+    }    
+    public int sumRange(int i, int j) {
+        return (i-1)<0?num[j]:num[j]-num[i-1];
+    }
+}
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray obj = new NumArray(nums);
+ * int param_1 = obj.sumRange(i,j);
+ */
+
