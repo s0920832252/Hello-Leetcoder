@@ -1,23 +1,34 @@
 public static void quickSort(int[] arr){
-    qsort(arr, 0, arr.length-1);
-}
-private static void qsort(int[] arr, int low, int high){
-    if (low < high){
-        int pivot=partition(arr, low, high);        //将数组分为两部分
-        qsort(arr, low, pivot-1);                   //递归排序左子数组
-        qsort(arr, pivot+1, high);                  //递归排序右子数组
+    		qsort(arr, 0, arr.length-1);
+	}
+	
+	private static void qsort(int[] arr, int low, int high){
+    		if (low < high){
+        			int pivot=partition(arr, low, high);        //將陣列分成兩部分
+        			qsort(arr, low, pivot-1);                   //地回排序左邊
+        			qsort(arr, pivot+1, high);                  //地回排序右邊	
+    		}
+	}
+	
+	private static int partition(int[] arr, int left, int right){
+		int index=(int)Math.random()*(right-left+1)+left;
+		swap(arr,index,right);
+        
+		int l=left,r=right-1;
+		while(l<r)
+		{
+			while(l<=r && arr[l]<=arr[right]) l++;  //找到左邊小人國的叛徒
+			while(l<=r && arr[r]>=arr[right]) r--;  //找到右邊大人國的叛徒
+			if(l<r)
+				swap(arr,l,r);                      //交換叛徒
+		}
+		swap(arr,l,right);
+		return l;
     }
-}
-private static int partition(int[] arr, int low, int high){
-    int pivot = arr[low];     //枢轴记录
-    while (low<high){
-        while (low<high && arr[high]>=pivot) --high;
-        arr[low]=arr[high];             //交换比枢轴小的记录到左端
-        while (low<high && arr[low]<=pivot) ++low;
-        arr[high] = arr[low];           //交换比枢轴小的记录到右端
-    }
-    //扫描完成，枢轴到位
-    arr[low] = pivot;
-    //返回的是枢轴的位置
-    return low;
-}
+    
+    public static void swap(int nums[],int left,int right)
+	{
+		int temp=nums[left];	
+		nums[left]=nums[right];
+		nums[right]=temp;
+	}
