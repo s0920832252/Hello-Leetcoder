@@ -16,3 +16,27 @@ public class Solution {
        return String.valueOf(revStr);
     }
 }
+
+========
+==============
+Runtime: 5 ms
+You are here! 
+Your runtime beats 15.94 % of java submissions.
+https://leetcode.com/submissions/detail/123623407/
+
+
+class Solution {
+    public String reverseString(String s) {
+        StringBuilder sb=new StringBuilder(s);
+        int left=0,right=sb.length()-1;
+        while(left<right)
+        {
+            char l=sb.charAt(left),r=sb.charAt(right);
+            sb.setCharAt(left++,r);
+            sb.setCharAt(right--,l);
+        }
+        //return new String(sb);
+        //return String.valueOf(sb);
+        return sb.toString();
+    }    
+}
