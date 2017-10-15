@@ -36,3 +36,38 @@ public class Solution {
         
     }
 }
+
+
+
+=======
+=================
+Runtime: 0 ms
+You are here! 
+Your runtime beats 63.32 % of java submissions
+https://leetcode.com/submissions/detail/123612852/
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if(head==null)
+            return head;
+        ListNode odd=head,even=odd.next,evenNode=even;
+        while(even!=null && even.next!=null)
+        {
+            odd.next=even.next;
+            odd=odd.next;
+            even.next=odd.next;
+            even=even.next;           
+        }
+        odd.next=evenNode;
+        return head;        
+    }
+}
