@@ -4,48 +4,39 @@ You are here!
 Your runtime beats 46.24% of java submissions
 https://leetcode.com/submissions/detail/91610794/
 
-
-public class Solution {
+class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
-        //對nums2 sort,再用二元搜尋法在nums2去找nums2是否有nums1的元素
+         //對nums2 sort,再用二元搜尋法在nums2去找nums2是否有nums1的元素
         //O( nlog(n) ) 搜尋一個物件是log(n) * n 次
-        
         Set<Integer> set=new HashSet<Integer>();
+        
         Arrays.sort(nums2);
         for(int i=0;i<nums1.length;i++)
         {
-            if(binarySearch(nums2,0,nums2.length-1,nums1[i])!=-1)
-                set.add(nums1[i]);
+            int target=nums1[i];
+            if(!set.contains(target)  && binary(nums2,0,nums2.length-1,target))
+                set.add(target);
         }
-        
         int ans[]=new int[set.size()];
         int index=0;
-        for(Integer intesection : set)
-        {
-            ans[index]=intesection;
-            index++;
-        }
-        
+        for(int i : set)
+            ans[index++]=i;
         return ans;
     }
     
-    public int binarySearch(int nums[],int left,int right,int find)
+    public boolean binary(int nums[],int left,int right,int target)
     {
-        int index,value;
         while(left<=right)
         {
-            index=(left+right)/2;
-            value=nums[index];
-            if(value==find)
-                return value;
-            else if(value<find)
-                left=index+1;
+            int mid=left+(right-left)/2;
+            if(nums[mid]==target)
+                return true;
+            else if(nums[mid]<target)
+                left=mid+1;
             else
-                right=index-1;
+                right=mid-1;
         }
         //throw new RuntimeException("not found!");
-        return -1;
-    }
+        return false;
+    }        
 }
-
-
