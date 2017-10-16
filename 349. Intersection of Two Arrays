@@ -40,3 +40,142 @@ class Solution {
         return false;
     }        
 }
+
+==========
+=========
+https://leetcode.com/problems/intersection-of-two-arrays/
+Runtime: 5 ms
+You are here! 
+Your runtime beats 82.46% of java submissions
+https://leetcode.com/submissions/detail/91608991/
+
+public class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        
+        int i=0,j=0;
+        Set<Integer> set=new HashSet<Integer>();
+        
+        //因為兩矩陣都sort過了,所以只要用兩個index分別在兩個矩陣上走訪就可以判斷是否有相同的交集
+        // O( nlong(n) )  - 排序是用Qsort.
+        while(i<nums1.length && j<nums2.length)
+        {
+            if(nums1[i]==nums2[j])
+            {
+                set.add(nums1[i]);
+                i++;
+                j++;
+            }
+            else if(nums1[i]<nums2[j])
+                i++;
+            else
+                j++;
+        }
+        
+        int ans[]=new int[set.size()];
+        int index=0;
+        for(Integer intesection : set)
+        {
+            ans[index]=intesection;
+            index++;
+        }
+        
+        return ans;
+        
+    }
+}
+===========
+===========
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        Set<Integer> set=new HashSet<Integer>();
+        
+        for(int i=0,j=0;i<nums1.length && j<nums2.length;)
+        {
+            while(i<nums1.length && j<nums2.length && nums1[i]<nums2[j]) i++;
+            while(i<nums1.length && j<nums2.length && nums1[i]>nums2[j]) j++;
+            if(i<nums1.length && j<nums2.length && nums1[i]==nums2[j])
+            {
+                set.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+        int ans[]=new int[set.size()];
+        int index=0;
+        for(int i:set)
+            ans[index++]=i;
+        return ans;             
+    }   
+}
+
+=========
+==============
+https://leetcode.com/problems/intersection-of-two-arrays/
+Runtime: 5 ms
+You are here! 
+Your runtime beats 82.46% of java submissions.
+https://leetcode.com/submissions/detail/91607651/
+
+
+
+public class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> numSet1=new HashSet<Integer>();  //Set介面, 不會存入相同的元素.  (因為是集合咩XD)
+        ArrayList<Integer> intersection=new ArrayList<Integer>();
+        
+        //用兩個容器裝,來判斷是否有相同的交集.
+        //ArrayList 可換成Set , 只是再轉成ans[],時候,使用ArrayList會比較快而已.
+        //O(n)
+        
+        for(int i=0;i<nums1.length;i++)
+            numSet1.add(nums1[i]); 
+        for(int i=0;i<nums2.length;i++)
+            if(numSet1.contains(nums2[i]))
+            {    
+                intersection.add(nums2[i]);
+                numSet1.remove(nums2[i]); //因為ArrayList不是集合,所以用過了,就必須刪除.否則交集會有重複
+            }
+        
+        int ans[]=new int[intersection.size()];
+        for(int index=0;index<intersection.size();index++)
+            ans[index]=intersection.get(index);
+        
+        /*int index=0;
+        for(Integer i : intersection)
+        {
+            ans[index]=i;
+            index++;
+        }*/
+        return ans;
+        
+    }
+}
+===========
+=============
+
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set= new HashSet<Integer>();
+        List<Integer> list=new ArrayList<Integer>();
+        
+        for(int value: nums1)
+            set.add(value);
+        for(int i=0;i<nums2.length;i++)
+            if(set.contains(nums2[i]))
+            {
+                list.add(nums2[i]);
+                set.remove(nums2[i]);
+            }    
+        
+        int ans[]=new int[list.size()];
+        int index=0;
+        for(int i:list)
+            ans[index++]=i;
+        return ans;        
+    }   
+}
