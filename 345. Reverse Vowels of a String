@@ -40,3 +40,32 @@ public class Solution {
         str[right]=temp;
     }
 }
+
+=================
+======================
+
+class Solution {
+    public String reverseVowels(String s) {
+        char str[]=s.toCharArray();
+        for(int left=0,right=str.length-1;left<right;left++,right--)
+        {
+            while(left<right && !isVowels(str[left]))   left++;
+            while(left<right && !isVowels(str[right]))  right--;        
+            swap(str,left,right);    
+        }
+        return new String(str);
+    }
+    
+    public boolean isVowels(char c)
+    {
+        char s=Character.toLowerCase(c);
+        return ( s=='a' || s =='e' || s=='i' || s=='o' || s=='u');
+    }
+                  
+    public void swap(char str[],int left,int right)
+    {
+        char s=str[left];
+        str[left]=str[right];
+        str[right]=s;
+    }
+}
