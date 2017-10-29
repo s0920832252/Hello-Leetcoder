@@ -1,10 +1,11 @@
-List
-Set
-Map
-Queue
-Stack
-LinkedList
-ArrayList
+全部的元素有下列.
+List.
+Set.
+Map.
+Queue.
+Stack.
+LinkedList.
+ArrayList.
 
 
 # List的特性在於：每個 List 中的元素都是循序加入的，並可透過 index 來存取元素。
