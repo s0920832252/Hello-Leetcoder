@@ -11,4 +11,3 @@
 >> 4. indexOf(Object o) : Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
 >> 5. isEmpty() : Returns true if this list contains no elements.
 >> 6. size() : Returns the number of elements in this list.
->> 7.	toArray() : Returns an array containing all of the elements in this list in proper sequence (from first to last element).
