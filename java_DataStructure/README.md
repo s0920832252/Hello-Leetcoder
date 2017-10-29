@@ -63,4 +63,21 @@
 >>* get(Object key) : Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
 
 ## Queue介面
->希望收集物件時可以佇列方式，收集的物件加入至尾端，取得物件時可以從前端，則可以使用Queue介面的實作物件。Queue繼承自Collection，所以也具有Collection的add()、remove()、element()等方法，然而Queue定義了自己的offer()、poll()與peek()等方法，最主要的差別之一在於，add()、remove()、element()等方法操作失敗時會拋出例外，而offer()、poll()與peek()等方法操作失敗時會傳回特定值。* 如果物件有實作Queue，並打算以佇列方式使用，且佇列長度受限，通常建議使用offer()、poll()與peek()等方法。offer()方法用來在佇列後端加入物件，成功會傳回true，失敗則傳回false。poll()方法用來取出佇列前端物件，若佇列為空則傳回null。peek()用來取得（但不取出）佇列前端物件，若佇列為空則傳回null。 *
+>希望收集物件時可以佇列方式，收集的物件加入至尾端，取得物件時可以從前端，則可以使用Queue介面的實作物件。Queue繼承自Collection，所以也具有Collection的add()、remove()、element()等方法，然而Queue定義了自己的offer()、poll()與peek()等方法，最主要的差別之一在於，add()、remove()、element()等方法操作失敗時會拋出例外，而offer()、poll()與peek()等方法操作失敗時會傳回特定值。** 如果物件有實作Queue，並打算以佇列方式使用，且佇列長度受限，通常建議使用offer()、poll()與peek()等方法。offer()方法用來在佇列後端加入物件，成功會傳回true，失敗則傳回false。poll()方法用來取出佇列前端物件，若佇列為空則傳回null。peek()用來取得（但不取出）佇列前端物件，若佇列為空則傳回null。 先前提過LinkedList，它不僅實作了List介面，也實作了Queue的行為，所以可將LinkedList當作佇列來使用。**
+
+> Queue<T> requests = new LinkedList<T>();
+> Queue:常用的function有
+>>* peek() : Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+>>* poll() : Retrieves and removes the head of this queue, or returns null if this queue is empty.
+>>*	remove() : Retrieves and removes the head of this queue.
+
+## Class Stack
+> 他是一種後進先出(Last-In-First-Out, LIFO)的排程，而在此資料結構中至少會實作兩個操作：push：將資料放入堆疊頂端
+pop：取出堆疊頂端之資料有時候也會多實作一些額外的操作以方便使用，例如：peek：看堆疊頂端的資料而不取出。。(註：也有top等不同的用字)size：取得堆疊的數目。在實作上一般可以使用陣列或連結串列(LinkedList)兩種方式來實作：陣列堆疊建立時即建立一個陣列，並使用一個索引來記錄目前所指到的位址，新增或移除資料時，同步修改索引位址；如果有實作堆疊數目的功能時，這數字正好可做為此索引之用。優點是不用處理指標鏈結建立與移除，缺點是容量超過陣列大小時需要額外處理。連結串列用指標將資料串起來，將新的東西不斷接在最後面，而取出時則移除最後面的東西即可。優缺點與陣列相反。
+
+> Stack:常用的function有
+>>* empty() : Tests if this stack is empty.
+>>* peek() : Looks at the object at the top of this stack without removing it from the stack.
+>>* pop() : Removes the object at the top of this stack and returns that object as the value of this function.
+>>* push(E item) : Pushes an item onto the top of this stack.
+>>* search(Object o) : Returns the 1-based position where an object is on this stack.
