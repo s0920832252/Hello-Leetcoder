@@ -17,6 +17,6 @@
 >ArrayList class 常用的function有
 >> 1. add(E e) : Appends the specified element to the end of this list.
 >> 2. add(int index, E element) : Inserts the specified element at the specified position in this list.
->> ### 3. contains(Object o) : Returns true if this list contains the specified element.
+>> 3. __contains(Object o) : Returns true if this list contains the specified element.__
 >> clear() : Removes all of the elements from this list.
 
