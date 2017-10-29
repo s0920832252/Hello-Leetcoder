@@ -80,4 +80,3 @@ pop：取出堆疊頂端之資料有時候也會多實作一些額外的操作�
 >>* peek() : Looks at the object at the top of this stack without removing it from the stack.
 >>* pop() : Removes the object at the top of this stack and returns that object as the value of this function.
 >>* push(E item) : Pushes an item onto the top of this stack.
->>* search(Object o) : Returns the 1-based position where an object is on this stack.
