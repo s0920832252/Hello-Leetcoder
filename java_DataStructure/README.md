@@ -5,18 +5,26 @@
 >1. ArrayList：處理循序加入以及存取元素方面，效率較佳
 >2. Linked List：處理經常變動元素排列順序時，效率較佳
 
-> List介面 常用的function 有	
->> 1. add(E e) : Appends the specified element to the end of this list (optional operation).
->> 2. add(int index, E element) : Inserts the specified element at the specified position in this list (optional operation).
->> 3. get(int index) : Returns the element at the specified position in this list.
+>class ArrayList:常用的function有
+>> * add(E e) : Appends the specified element to the end of this list.
+>> * add(int index, E element) : Inserts the specified element at the specified position in this list.
+>> * contains(Object o) : Returns true if this list contains the specified element.
 >> 4. indexOf(Object o) : Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
 >> 5. isEmpty() : Returns true if this list contains no elements.
 >> 6. size() : Returns the number of elements in this list.
->> 7. clear() : Removes all of the elements from this list (optional operation).
+>> 7. clear() : Removes all of the elements from this list.
+>> 8.	get(int index) : Returns the element at the specified position in this list. 
+>> 9. remove(int index) :Removes the element at the specified position in this list.
 
->ArrayList class 常用的function有
->> 1. add(E e) : Appends the specified element to the end of this list.
->> 2. add(int index, E element) : Inserts the specified element at the specified position in this list.
->> 3. __contains(Object o) : Returns true if this list contains the specified element.__
->> clear() : Removes all of the elements from this list.
+>Class LinkedList:常用的function有
+>> 1. add(E e) : Appends the specified element to the end of this list. ( throws an exception if the operation fails,)
+>> 2. add(int index, E element) : Inserts the specified element at the specified position in this list.  throws an exception if the operation fails,
+>> 3. 
+>> 3. contains(Object o) : Returns true if this list contains the specified element.
+>> 4. indexOf(Object o) : Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
+>> 5. isEmpty() : Returns true if this list contains no elements.
+>> 6. size() : Returns the number of elements in this list.
+>> 7. clear() : Removes all of the elements from this list.
+>> 8.	get(int index) : Returns the element at the specified position in this list. 
+>> 9. remove(int index) :Removes the element at the specified position in this list.
 
