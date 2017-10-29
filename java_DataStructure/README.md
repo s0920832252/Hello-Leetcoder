@@ -4,6 +4,7 @@
 >List 可使用 Array(java.util.ArrayList) 或是 Linked List(java.util.LinkedList) 來進行實作。而每一種不同的資料結構，適用的情況也不同：
 >1. ArrayList：處理循序加入以及存取元素方面，效率較佳
 >2. Linked List：處理經常變動元素排列順序時，效率較佳
+
 > List 常用的function 有	
 >> 1. add(E e) : Appends the specified element to the end of this list (optional operation).
 >> 2. add(int index, E element) : Inserts the specified element at the specified position in this list (optional operation).
