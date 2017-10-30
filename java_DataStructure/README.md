@@ -42,7 +42,7 @@
 >>* remove(Object o) : Removes the specified element from this set if it is present.
 >>* size() : Returns the number of elements in this set (its cardinality).
 
-> Class HashSe:常用的function有
+> Class HashSet:常用的function有
 >>* add(E e) : Adds the specified element to this set if it is not already present.
 >>* void	clear() : Removes all of the elements from this set.
 >>*	contains(Object o) : Returns true if this set contains the specified element.
@@ -61,6 +61,7 @@
 >>* remove(Object key) : Removes the mapping for the specified key from this map if present.
 >>*	put(K key, V value) : Associates the specified value with the specified key in this map.
 >>* get(Object key) : Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+>>* getOrDefault(Object key, V defaultValue) : Returns the value to which the specified key is mapped, or defaultValue if this map contains no mapping for the key.
 
 ## Queue介面
 >希望收集物件時可以佇列方式，收集的物件加入至尾端，取得物件時可以從前端，則可以使用Queue介面的實作物件。Queue繼承自Collection，所以也具有Collection的add()、remove()、element()等方法，然而Queue定義了自己的offer()、poll()與peek()等方法，最主要的差別之一在於，add()、remove()、element()等方法操作失敗時會拋出例外，而offer()、poll()與peek()等方法操作失敗時會傳回特定值。** 如果物件有實作Queue，並打算以佇列方式使用，且佇列長度受限，通常建議使用offer()、poll()與peek()等方法。offer()方法用來在佇列後端加入物件，成功會傳回true，失敗則傳回false。poll()方法用來取出佇列前端物件，若佇列為空則傳回null。peek()用來取得（但不取出）佇列前端物件，若佇列為空則傳回null。 先前提過LinkedList，它不僅實作了List介面，也實作了Queue的行為，所以可將LinkedList當作佇列來使用。**
