@@ -45,3 +45,109 @@ public class Solution {
         return true;
     }
 }
+
+==============
+==============================
+https://leetcode.com/submissions/detail/125957438/
+Runtime: 60 ms
+You are here! 
+Your runtime beats 28.99 % of java submission
+
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        Map<Character,Integer> map=new HashMap<Character,Integer>();
+        
+        for(char c : magazine.toCharArray())
+            map.put(c,map.getOrDefault(c,0)+1);
+        for(char c : ransomNote.toCharArray())
+        {
+            int count=map.getOrDefault(c,0);
+            if(count==0)
+                return false;
+            map.put(c,count-1);
+        }
+        return true;
+    }
+}
+
+=========
+==================
+
+
+https://leetcode.com/problems/ransom-note/
+Runtime: 23 ms
+You are here! 
+Your runtime beats 46.94% of java submissions.
+https://leetcode.com/submissions/detail/90524523/
+
+public class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        //使用26字元陣列記錄每一個字母使用的狀況
+        int letterDic[]=new int[26];
+        
+        for(int i=0;i<magazine.length();i++)
+            letterDic[magazine.charAt(i)-'a']++;
+        for(int i=0;i<ransomNote.length();i++)
+        {
+            if(letterDic[ransomNote.charAt(i)-'a']==0)
+                return false;
+            letterDic[ransomNote.charAt(i)-'a']--;
+        }
+        return true;
+    }
+}
+
+==============
+====================
+
+https://leetcode.com/problems/ransom-note/
+Runtime: 14 ms
+You are here! 
+Your runtime beats 90.91% of java submissions
+https://leetcode.com/submissions/detail/90524499/
+
+
+public class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int letterDic[]=new int[128];
+        char magazineArray[]=magazine.toCharArray();
+        char ransomNoteArray[]=ransomNote.toCharArray();
+        
+        //使用int陣列 記錄每一個字元使用的量
+        //字元編碼128位元.  此問題只使用陣列 96-122(a-z).  因為減少位移的計算,所以會稍快
+        for(int i=0;i<magazineArray.length;i++)
+            letterDic[magazineArray[i]]++;
+        for(int i=0;i<ransomNoteArray.length;i++)
+        {
+            if(letterDic[ransomNoteArray[i]]==0)
+                return false;
+            letterDic[ransomNoteArray[i]]--;
+        }
+        return true;
+    }
+}
+
+====================
+======================
+https://leetcode.com/submissions/detail/125955305/
+Runtime: 12 ms
+You are here! 
+Your runtime beats 95.57 % of java submissions
+
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int dict[]=new int[256];
+        char magazineC[]=magazine.toCharArray();
+        char ransomNoteC[]=ransomNote.toCharArray();
+        
+        for(char c:magazineC)
+            dict[c]++;
+        for(char c:ransomNoteC)
+        {
+            if(dict[c]==0)
+                return false;
+            dict[c]--;
+        }
+        return true;
+    }
+}
