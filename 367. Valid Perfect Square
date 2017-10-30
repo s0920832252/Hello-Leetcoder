@@ -40,3 +40,36 @@ public class Solution {
             return binarySearchRecurrer(mid+1,right,target);
     }
 }
+
+
+
+=================
+=================
+https://leetcode.com/submissions/detail/125946124/
+Runtime: 0 ms
+You are here! 
+Your runtime beats 34.43 % of java submissions
+
+
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        return num==0?false:num==1?true:binarySearch(0,num/2,num);
+    }
+    
+    public boolean binarySearch(long left,long right,int target)
+    {
+        long sqrtValue,powValue;
+        while(left<=right)
+        {
+            sqrtValue=left+(right-left)/2;
+            powValue=sqrtValue*sqrtValue;
+            if(powValue==target)
+                return true;
+            else if(powValue<target)
+                left=sqrtValue+1;
+            else
+                right=sqrtValue-1;
+        }
+        return false;
+    }
+}
