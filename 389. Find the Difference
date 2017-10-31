@@ -33,3 +33,21 @@ public class Solution {
     }
     
 }
+
+============
+==================
+https://leetcode.com/problems/find-the-difference/description/
+Runtime: 6 ms
+You are here! 
+Your runtime beats 82.63 % of java submissions.
+
+class Solution {
+    public char findTheDifference(String s, String t) {        
+        char ans=0;
+        for(char c : s.toCharArray())
+            ans^=c;
+        for(char c : t.toCharArray())
+            ans^=c;
+        return ans;
+    }
+}
