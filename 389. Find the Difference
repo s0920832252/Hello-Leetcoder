@@ -41,6 +41,11 @@ Runtime: 6 ms
 You are here! 
 Your runtime beats 82.63 % of java submissions.
 
+//做XOR運算,  因為兩個字元若是相同,則做XOR運算會等同於0.
+//但有一個多出來的字元,找不到其他字元與其配對,因此會留下來.
+// 0跟任何東西做XOR運算都會變成那個東西
+
+
 class Solution {
     public char findTheDifference(String s, String t) {        
         char ans=0;
@@ -48,6 +53,27 @@ class Solution {
             ans^=c;
         for(char c : t.toCharArray())
             ans^=c;
+        return ans;
+    }
+}
+
+=============
+============
+https://leetcode.com/submissions/detail/126111514/
+Runtime: 6 ms
+You are here! 
+Your runtime beats 82.63 % of java submissions.
+
+//t字串是s字串打亂後,再加入一個字.  因此t字串的字元數總和必定會比s字串的字元數總和多一個字元的數.
+//因此計算出兩字元數總和的差, 即可找到該字元  eg: A的字元數是65.
+
+class Solution {
+    public char findTheDifference(String s, String t) {        
+        char ans=0;
+        for(char c : t.toCharArray())
+            ans+=c;
+        for(char c : s.toCharArray())
+            ans-=c;
         return ans;
     }
 }
