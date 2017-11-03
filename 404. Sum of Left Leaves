@@ -12,9 +12,7 @@ https://leetcode.com/submissions/detail/91882445/
  *     TreeNode right;
  *     TreeNode(int x) { val = x; }
  * }
- */
- 
-
+ */ 
  
 public class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
@@ -52,9 +50,9 @@ public class Solution {
     } 
 }
 
-
 ==========================================================================================
 =========================================================================================
+
 https://leetcode.com/submissions/detail/126570583/
 Runtime: 12 ms
 You are here! 
@@ -91,14 +89,15 @@ class Solution {
     }
     
 }
+
 ==========================================================================================
 =========================================================================================
+
 https://leetcode.com/problems/sum-of-left-leaves/
 Runtime: 9 ms
 You are here! 
 Your runtime beats 47.03% of java submissions.
 https://leetcode.com/submissions/detail/91883181/
-
 
 /**
  * Definition for a binary tree node.
@@ -128,8 +127,10 @@ public class Solution {
             return dfs(tree.left,true)+dfs(tree.right,false);
     }      
 }
+
 ==========================================================================================
 =========================================================================================
+
 Runtime: 9 ms
 You are here! 
 Your runtime beats 30.93 % of java submissions.
@@ -156,8 +157,10 @@ class Solution {
         return sumLeftValue(root.left,true)+sumLeftValue(root.right,false);           
     }
 }
+
 ==========================================================================================
 =========================================================================================
+
 https://leetcode.com/problems/sum-of-left-leaves/
 Runtime: 8 ms
 You are here! 
@@ -174,6 +177,7 @@ https://leetcode.com/submissions/detail/91880212/
  *     TreeNode(int x) { val = x; }
  * }
  */
+ 
 public class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
         // 想法是: 再走這點時,看一下這點左邊那點是不是leaf,是的話,就加起來
@@ -188,8 +192,10 @@ public class Solution {
             return sumOfLeftLeaves(root.left)+sumOfLeftLeaves(root.right);
     }
 }
+
 ==========================================================================================
 =========================================================================================
+
 https://leetcode.com/submissions/detail/126563173/
 Runtime: 7 ms
 You are here! 
@@ -218,8 +224,6 @@ class Solution {
         return leftValue+rightValue;       
     }
 }
-==========================================================================================
-=========================================================================================
 
 ==========================================================================================
 =========================================================================================
