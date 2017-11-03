@@ -51,3 +51,175 @@ public class Solution {
         return ans;
     } 
 }
+
+
+==========================================================================================
+=========================================================================================
+https://leetcode.com/submissions/detail/126570583/
+Runtime: 12 ms
+You are here! 
+Your runtime beats 4.36 % of java submissions
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        if(root!=null && root.left==null && root.right==null) return 0; 
+        
+        Queue<TreeNode> queue=new LinkedList<TreeNode>();
+        queue.offer(root);
+        int ans=0;
+        while(!queue.isEmpty()) {            
+            int size=queue.size();
+            for(int no=1;no<=size;no++) {
+                TreeNode node=queue.poll();
+                if(node!=null)  {
+                    if( ((no%2)==1) && node.left==null && node.right==null)
+                        ans+=node.val;
+                    queue.offer(node.left==null?null:node.left);                
+                    queue.offer(node.right==null?null:node.right);                    
+                }
+            }
+        }
+        return ans;        
+    }
+    
+}
+==========================================================================================
+=========================================================================================
+https://leetcode.com/problems/sum-of-left-leaves/
+Runtime: 9 ms
+You are here! 
+Your runtime beats 47.03% of java submissions.
+https://leetcode.com/submissions/detail/91883181/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        //使用dfs走訪tree, 使用一boolean變數傳遞是否是目標left
+        return dfs(root, false);
+    }
+    
+    public int dfs(TreeNode tree,Boolean isLeft)
+    {
+        if(tree==null)
+            return 0;
+        else if (tree.right==null && tree.left==null)
+            if (isLeft)
+                return tree.val;
+            else
+                return 0;
+        else
+            return dfs(tree.left,true)+dfs(tree.right,false);
+    }      
+}
+==========================================================================================
+=========================================================================================
+Runtime: 9 ms
+You are here! 
+Your runtime beats 30.93 % of java submissions.
+https://leetcode.com/submissions/detail/126564804/
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        return sumLeftValue(root,false);     
+    }
+    
+    public int sumLeftValue(TreeNode root, boolean isLeft){
+        if(root==null)
+            return 0;
+        if(root.left==null && root.right==null && isLeft)
+            return root.val;
+        return sumLeftValue(root.left,true)+sumLeftValue(root.right,false);           
+    }
+}
+==========================================================================================
+=========================================================================================
+https://leetcode.com/problems/sum-of-left-leaves/
+Runtime: 8 ms
+You are here! 
+Your runtime beats 77.72% of java submissions.
+https://leetcode.com/submissions/detail/91880212/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        // 想法是: 再走這點時,看一下這點左邊那點是不是leaf,是的話,就加起來
+        // 同時看看這點右邊有沒有點,有的話去看看右邊那點的值是多少
+        // 若是左邊這點不是leaf,則代表左右兩點都有可能要走訪一下.
+        
+        if ( root==null || (root.right==null && root.left==null)) 
+            return 0;
+        else if ( root.left!=null && root.left.left==null && root.left.right==null )
+            return root.left.val+sumOfLeftLeaves(root.right);
+        else
+            return sumOfLeftLeaves(root.left)+sumOfLeftLeaves(root.right);
+    }
+}
+==========================================================================================
+=========================================================================================
+https://leetcode.com/submissions/detail/126563173/
+Runtime: 7 ms
+You are here! 
+Your runtime beats 96.83 % of java submissions.
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        if(root==null)
+            return 0;
+           
+        int leftValue=0,rightValue=0;
+        
+        if(root.left!=null)
+            leftValue=(root.left.left==null && root.left.right==null)?root.left.val:sumOfLeftLeaves(root.left);        
+        if(root.right!=null)
+            rightValue=sumOfLeftLeaves(root.right);
+        return leftValue+rightValue;       
+    }
+}
+==========================================================================================
+=========================================================================================
+
+==========================================================================================
+=========================================================================================
