@@ -70,6 +70,7 @@
 > Queue:常用的function有
 >>* peek() : Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
 >>* poll() : Retrieves and removes the head of this queue, or returns null if this queue is empty.
+>>* offer(E e) : Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
 >>*	remove() : Retrieves and removes the head of this queue.
 
 ## Class Stack
