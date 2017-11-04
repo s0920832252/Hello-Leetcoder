@@ -25,6 +25,27 @@ public class Solution {
     }
 }
 
+====================================================================================
+====================================================================================
+
+class Solution {
+    public int thirdMax(int[] nums) {
+        Arrays.sort(nums);
+        int third=Integer.MAX_VALUE;
+        int count=0;
+        for(int i=nums.length-1;i>=0;i--)
+        {
+            if(nums[i]<third)
+            {
+                third=nums[i];
+                if((++count)==3)
+                    return third;
+            }            
+        }
+        return nums[nums.length-1];
+    }
+}
+
 =======================================================================================
 =======================================================================================
 
@@ -109,6 +130,39 @@ public class Solution {
                 itSet.next();
         }
             
+        return max;
+    }
+}
+
+
+============
+==============
+
+class Solution {
+    public int thirdMax(int[] nums) {
+         Set<Integer> set=new TreeSet<Integer>( 
+            new Comparator<Integer>() 
+            {
+                public int compare(Integer s1, Integer s2) 
+                {
+                    return -Long.compare(s1, s2);//由大到小排列
+                }
+            }
+        );
+        
+        int count=0;
+        int max=0;
+        for(int num:nums)
+            set.add(num);
+                  
+        for (int value : set)
+        {
+            count++;
+            if(count==1)                    //count++其實可以寫進來if敘述---->    if(++count==1)  不過會很難讓人看懂吧XD
+                max=value;
+            else if(count==3)
+                return value;
+        }            
         return max;
     }
 }
