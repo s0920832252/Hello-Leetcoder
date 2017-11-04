@@ -77,3 +77,21 @@ public class Solution {
         return pairCount*2>=charStr.length?pairCount*2:pairCount*2+1;
     }
 }
+
+=========
+=======================
+
+class Solution {
+    public int longestPalindrome(String s) {
+        boolean dict[]=new boolean[256];
+        char str[]=s.toCharArray();
+        int pairCount=0;
+        for(char c : str)
+        {
+            if(dict[c])
+               pairCount++;
+            dict[c]=!dict[c];
+        }
+        return pairCount*2==str.length?pairCount*2:pairCount*2+1;
+    }
+}
