@@ -37,3 +37,25 @@ public class Solution {
         return count;
     }
 }
+
+================
+
+https://leetcode.com/submissions/detail/129223769/
+Runtime: 2 ms
+You are here! 
+Your runtime beats 61.65 % of java submissions.
+
+class Solution {
+    public int countSegments(String s) {
+        char str[]=s.trim().toCharArray();
+        int space=0;
+        for(int i=1;i<str.length;i++)
+        {
+            if(str[i-1]==' ' && str[i]!=' ')   
+                space++;            
+        }
+        return (str.length==0)?0:space+1;
+    }
+}
+
+
