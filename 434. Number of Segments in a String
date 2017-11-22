@@ -6,7 +6,7 @@ https://leetcode.com/submissions/detail/104770808/
 
 public class Solution {
     public int countSegments(String s) {
-        String str[]=s.trim().split("\\s+");  //正規表示, \s表特殊符號(\t 那些) + 表可能多個.
+        String str[]=s.trim().split("\\s+");  //正規表示, \s表括空格、定位字元、換頁符等等。等價於[\f\n\r\t\v]。 + 表可能多個.
         return s.length()==0?0:(s.indexOf(" ")==0 && str.length==1)?0:str.length; 
     }
 }
