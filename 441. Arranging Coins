@@ -17,6 +17,15 @@ public class Solution {
 }
 
 ====================================================================
+
+public class Solution {
+    public int arrangeCoins(int n) {
+        for(int step=1;true;step++)
+            if((n-=step)<0)
+                return step-1;
+    }  
+}
+
 ====================================================================
 Runtime: 44 ms
 You are here! 
