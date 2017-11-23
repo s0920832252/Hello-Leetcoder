@@ -50,9 +50,117 @@ public class Solution {
     }
 }
 
+==================================================================================================================
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    private int ans=0;
+    public int pathSum(TreeNode root, int sum) {
+        if (root==null)
+            return 0;
+        
+        Queue<TreeNode> queue=new LinkedList<TreeNode>();
+        queue.offer(root);
+        
+        while(!queue.isEmpty())
+        {
+            TreeNode node=queue.poll();
+            pathS(node,sum);
+                
+            if(node.left!=null)
+                queue.offer(node.left);
+            if(node.right!=null)
+                queue.offer(node.right);
+        }
+        return ans;
+    }
+    
+    public void pathS(TreeNode root,int sum)
+    {
+        if(root==null)
+            return ;
+        if(root.val==sum)
+            ans++;
+        pathS(root.left,sum-root.val);
+        pathS(root.right,sum-root.val);        
+    }
+}
+
+===================================================================================================================
+
+https://leetcode.com/problems/path-sum-iii/?tab=Description
+Runtime: 31 ms
+You are here! 
+Your runtime beats 47.21% of java submissions.
+https://leetcode.com/submissions/detail/93683421/
 
 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int pathSum(TreeNode root, int sum) {
+        return root==null? 0:runTree(root,sum,true);
+    }
+    
+    public int runTree(TreeNode root,int sum,boolean choice)
+    {
+        //先遞迴求解目前這個node當作起點的話,有多少path sum是等於sum的
+        //用choice選擇是否要換下一個點當作起點. 重複上一行做的事情.
+        //這題好難想ORZ.  我好廢ORZ.
+        if(root==null) 
+            return 0;
+        int val=(root.val==sum?1:0);
+        int theValCount=val+runTree(root.left,sum-root.val,false)+runTree(root.right,sum-root.val,false);
+        int nextValCount=(choice==true)?runTree(root.left,sum,true)+runTree(root.right,sum,true):0;
+        return theValCount+nextValCount;
+    }
+}
 
+
+//偷看別人的想法之後重寫.  多用一個遞迴,如此可不用使用bool變數
+//複雜度應該是差不多的.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int pathSum(TreeNode root, int sum) {
+        return root==null?0:runTree(root,sum)+pathSum(root.left,sum)+pathSum(root.right,sum);
+    }
+    
+    public int runTree(TreeNode root,int target){
+        if (root==null) 
+            return 0;
+        return (root.val==target?1:0)+runTree(root.left,target-root.val)+runTree(root.right,target-root.val);
+    }
+}
+
+=============================================================================
+
+https://leetcode.com/submissions/detail/129349518/
+Runtime: 18 ms
+You are here! 
+Your runtime beats 84.14 % of java submissions.
 
 
 //神人的做法, 太強了= =
@@ -76,3 +184,5 @@ public class Solution {
         return res;
     }
 }
+
+
