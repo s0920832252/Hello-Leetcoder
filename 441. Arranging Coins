@@ -53,6 +53,44 @@ public class Solution {
 }
 ====================================================================
 ====================================================================
+Runtime: 41 ms
+You are here! 
+Your runtime beats 96.00 % of java submissions.
+https://leetcode.com/submissions/detail/129357202/
+
+public class Solution {
+    public int arrangeCoins(int n) {
+        return binarySearch((int)Math.sqrt(n),n,n);
+    }
+    
+    public long check(long h)
+    {
+        return ((h*h+h)/2);
+    }
+    
+    public int binarySearch(int left,int right,int target)
+    {
+        while(left<=right)
+        {
+            int mid=(left-right)/2+right;
+            long value=check(mid);
+            long nextV=check(mid+1);
+            
+            if(value==target)
+                return mid;
+            else if(value<target && nextV>target)
+                return mid;
+            else if(value<target)
+                left=mid+1;
+            else if(value>target)
+                right=mid-1;                
+        }
+        return left;        
+    }
+}
+
+=======================================================================
+
 Runtime: 42 ms
 You are here! 
 Your runtime beats 95.18 % of java submissions.
