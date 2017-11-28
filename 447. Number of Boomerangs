@@ -77,3 +77,35 @@ public class Solution {
         return (pA[0]-pB[0])*(pA[0]-pB[0])+(pA[1]-pB[1])*(pA[1]-pB[1]);
     }   
 }
+
+
+=====================================
+===========================================
+
+class Solution {
+    public int numberOfBoomerangs(int[][] points) {
+        Map<Integer,Integer> map=new HashMap<Integer,Integer>();
+        int ans=0;
+        for(int i=0;i<points.length;i++)
+        {            
+            for(int j=0;j<points.length;j++)
+            {
+                if(i!=j)
+                {
+                    int powDist=getpowDist(points[i],points[j]);
+                    int tempCount=map.getOrDefault(powDist,0);
+                    map.put(powDist,tempCount+1);
+                    if(tempCount>0)
+                        ans+=tempCount;
+                }                
+            }
+            map.clear();
+        }
+        return ans*2;        
+    }
+    
+     public int getpowDist(int pA[],int pB[])
+    {
+            return (pA[0]-pB[0])*(pA[0]-pB[0])+(pA[1]-pB[1])*(pA[1]-pB[1]);
+    }  
+}
