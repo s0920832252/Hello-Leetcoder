@@ -50,3 +50,33 @@ public class Solution {
         return ans;
     }
 }
+
+======================================================================
+======================================================================
+https://leetcode.com/submissions/detail/129967481/
+Runtime: 14 ms
+You are here! 
+Your runtime beats 90.42 % of java submissions
+//因為1<=num[i]<=n  n=array Size
+//所以先將每一個元素配置他應該去的位置,  e.g. 1就去陣列所引0的位置 , 2就去陣列所引1的位置 引此類推
+//做完後,相當於排序完了. 只要去看判斷是否有值不存在他應該存在的位置(代表他是重複值).
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> list=new LinkedList<Integer>();
+        
+        for(int i=0;i<nums.length;i++)
+            while(nums[nums[i]-1]!=nums[i])
+                mySwap(nums,nums[i]-1,i);        
+        for(int i=0;i<nums.length;i++)
+            if((nums[i]-1)!=i)
+                list.add(nums[i]);    
+        return list;        
+    }
+    
+    public void mySwap(int nums[],int left,int right)
+    {
+        int temp=nums[left];
+        nums[left]=nums[right];
+        nums[right]=temp;
+    }
+}
