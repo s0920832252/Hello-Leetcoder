@@ -76,6 +76,32 @@ public class Solution {
 
 =====================================================================================
 =====================================================================================
+https://leetcode.com/submissions/detail/130473971/
+Runtime: 25 ms
+You are here! 
+Your runtime beats 82.23 % of java submissions.
+
+class Solution {
+    public boolean repeatedSubstringPattern(String s) {
+        char charArray[]=charArray=s.toCharArray();
+        for(int i=1;i<charArray.length;i++)        
+            if(charArray.length%i==0 && checkRepeatStr(charArray,i))            
+                return true;       
+        return false;
+    }
+    
+    public boolean checkRepeatStr(char charArray[],int divide)
+    {
+        for(int i=divide;i<charArray.length;i+=divide)
+            for(int j=0;j<divide;j++)
+                if(charArray[i+j]!=charArray[j])
+                    return false;
+        return true;
+    }
+}
+
+====================================================================================
+===================================================================================
 
 Runtime: 66 ms
 You are here! 
