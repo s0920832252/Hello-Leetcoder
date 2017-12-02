@@ -1,22 +1,66 @@
 https://leetcode.com/problems/hamming-distance/
+Runtime: 13 ms
 You are here! 
-Your runtime beats 9.55% of java submissions
-https://leetcode.com/submissions/detail/89254510/
+Your runtime beats 11.49 % of java submissions.
+https://leetcode.com/submissions/detail/130477865/
 
 
-public class Solution {
-    public int hammingDistance(int x, int y) {    
-		
-    int dif = x ^ y;  //找出兩個數字在2進位的差異部分. 差異的,會變成1		
-    char ansStr[]=Integer.toBinaryString(dif).toCharArray(); //將此數字轉成2進位,準備找有幾個1	
-    int count=0;
-    	for (int j=0;j<ansStr.length;j++)
-        {
-		if (ansStr[j]=='1')
-		{
-			count++;
-		}
-	}
-	return count;
+class Solution {
+    public int hammingDistance(int x, int y) {
+        char z[]=Integer.toBinaryString(x^y).toCharArray();
+        int ans=0;
+        for(int i=0;i<z.length;i++)
+            if(z[i]=='1')
+                ans++;
+        return ans;        
     }
 }
+
+===============================================================================
+https://leetcode.com/submissions/detail/130478001/
+Runtime: 12 ms
+You are here! 
+Your runtime beats 20.15 % of java submissions.
+
+class Solution {
+    public int hammingDistance(int x, int y) {
+        return Integer.bitCount(x^y);        
+    }
+}
+
+===============================================================================
+https://leetcode.com/submissions/detail/130478465/
+Runtime: 11 ms
+You are here! 
+Your runtime beats 38.43 % of java submissions
+
+class Solution {
+    public int hammingDistance(int x, int y) {
+        int z=x^y; 
+        int ans=0;
+        for(int i=0;i<32;i++)
+            ans+=(z>>i)&1;
+        return ans;
+    }
+}
+
+===============================================================================
+https://leetcode.com/submissions/detail/130478416/
+Runtime: 11 ms
+You are here! 
+Your runtime beats 38.43 % of java submissions
+
+class Solution {
+    public int hammingDistance(int x, int y) {
+        int z=x^y; 
+        int ans=0;
+        while(z>0)
+        {
+            ans++;
+            //z&(z-1) 會把最右邊的1去除掉, 因此常用此動作來判斷是否為2的次方數(0是例外)
+            z=z&(z-1);
+        }
+        return ans;
+    }
+}
+===============================================================================
