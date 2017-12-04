@@ -1,4 +1,8 @@
 https://leetcode.com/problems/number-complement/
+Runtime: 15 ms
+You are here! 
+Your runtime beats 7.21 % of java submissions
+https://leetcode.com/submissions/detail/130711194/
 
 public class Solution {
     public int findComplement(int num) {
@@ -12,5 +16,54 @@ public class Solution {
             tempSum+=(1-(numArray[i]-48))*Math.pow(2,(numArray.length-1)-i);
         }
         return tempSum;
+    }
+}
+
+========================
+==========================
+https://leetcode.com/problems/number-complement/
+Runtime: 13 ms
+You are here! 
+Your runtime beats 16.75 % of java submissions.
+https://leetcode.com/submissions/detail/130711263/
+
+public class Solution {
+    public int findComplement(int num) {
+        //想要取補數,一個好的方法是跟 1...1取 XOR運算.
+        //但不知道位數是多少?
+        //所以要先做出這樣的mask.->一直左移再減1,即可得到與數字num相同位數的1...1 mask
+        int mask = 1, temp = num;
+          while(temp > 0) {
+              mask = mask << 1;
+              temp = temp >> 1;
+          }
+          return num^(mask-1);
+    }
+}
+
+=================
+=================
+https://leetcode.com/submissions/detail/130712835/
+Runtime: 12 ms
+You are here! 
+Your runtime beats 27.75 % of java submissions.
+
+class Solution {
+    public int findComplement(int num) {
+        return ~num & (Integer.highestOneBit(num) - 1); 
+    }
+}
+
+======================
+=================
+https://leetcode.com/submissions/detail/130712722/
+Runtime: 13 ms
+You are here! 
+Your runtime beats 16.75 % of java submissions
+
+public class Solution {
+    public int findComplement(int num) {
+        int mask=(Integer.highestOneBit(num)<<1)-1;
+        return num^mask;
     }
 }
