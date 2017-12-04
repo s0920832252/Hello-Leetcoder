@@ -26,3 +26,18 @@ public class Solution {
         return maxConsecutive_1s_Count;
     }
 }
+
+=============
+========================
+
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int max=0,count=0;
+        for(int n:nums)
+            switch(n){
+                case 1: max=Math.max(++count,max);break;
+                case 0: count=0; break;
+            }        
+        return max;
+    }
+}
