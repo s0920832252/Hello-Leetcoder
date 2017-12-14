@@ -45,3 +45,47 @@ public class Solution {
         
     }
 }
+
+======================================================================
+=======================================================================
+https://leetcode.com/submissions/detail/131927505/
+Runtime: 5 ms
+You are here! 
+Your runtime beats 47.70 % of java submissions
+
+class Solution {
+    public int[] constructRectangle(int area) {
+        int cells=(int)Math.sqrt(area);
+        while(area%cells!=0)
+            cells--;
+        return new int[]{area/cells,cells};
+    }
+}
+
+
+======================================================================
+=======================================================================
+You are here! 
+Your runtime beats 47.70 % of java submissions
+Runtime: 5 ms
+https://leetcode.com/submissions/detail/131926647/
+
+class Solution {
+    public int[] constructRectangle(int area) {
+        int ans[]=new int[2];
+        ans[0]=Integer.MAX_VALUE;ans[1]=0;
+        for(int floor=1;floor*floor<=area;floor++)
+            if(area%floor==0)
+            {
+                int W=floor;
+                int L=area/floor;
+                if( (L-W)<ans[0]-ans[1] )
+                {
+                    ans[0]=L;
+                    ans[1]=W;
+                }                    
+            }
+        return ans;       
+    }
+}
+
