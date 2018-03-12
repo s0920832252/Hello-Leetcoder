@@ -64,3 +64,26 @@ public class Solution {
         return head;
     }
 }
+
+===================
+==============
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def deleteDuplicates(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        point=head
+        while point and point.next:
+            if point.val==point.next.val:
+                point.next=point.next.next
+            else:
+                point=point.next
+        return head
