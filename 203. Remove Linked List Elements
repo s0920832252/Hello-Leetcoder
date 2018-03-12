@@ -28,3 +28,29 @@ public class Solution {
         return head;
     }
 }
+
+=================================
+==================================
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def removeElements(self, head, val):
+        """
+        :type head: ListNode
+        :type val: int
+        :rtype: ListNode
+        """
+        while head and head.val==val:
+            head=head.next
+        point=head
+        while point and point.next:
+            if point.next.val==val:
+                point.next=point.next.next
+            else:
+                point=point.next
+        return head
