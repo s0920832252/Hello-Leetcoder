@@ -72,6 +72,44 @@ public class Solution {
     }   
 }
 
+===========================================================================================
+
+public class Solution {
+    List<Integer> list = new LinkedList<Integer>(); 
+    int count=0,max=0,preVal=-1;
+    public int[] findMode(TreeNode root) {
+        if(root==null)
+            return new int[]{};
+        
+        run(root);
+        
+        int ans[]=new int[list.size()];
+        for(int i=0;i<ans.length;i++)
+            ans[i]=list.get(i);
+        
+        return ans;
+    }
+
+    public void run(TreeNode root){
+        if(root.left!=null)
+            run(root.left);
+        
+        count=(preVal==root.val)?count+1:1;
+        
+        if(count>max)
+        {
+            list.clear();
+            max=count;     
+        }
+        if(count>=max)
+            list.add(root.val);     
+        
+        preVal=root.val;
+        
+        if(root.right!=null)
+            run(root.right);
+    }
+}
 
 ===============================================================================================
 Runtime: 17 ms
