@@ -149,3 +149,51 @@ public class Solution {
         return Math.max(map.get(node.val), m);
     }
 }
+
+
+==============================
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    
+    def __init__(self):
+        self.count=0
+        self.max=0
+        self.preValue=-1
+        self.list=[]
+        
+        
+    def findMode(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        
+        if  root:
+            self.runT(root)
+        return self.list
+        
+    def runT(self,root):
+        if root.left is not None:
+            self.runT(root.left)
+            
+        if self.preValue== root.val:
+            self.count=self.count+1
+        else:
+            self.count=1
+            
+        if self.count>self.max:
+            self.list.clear()
+            self.max=self.count
+        if self.count>=self.max:            
+            self.list.append(root.val)
+        self.preValue=root.val
+        
+        
+        if root.right is not None:
+            self.runT(root.right)
